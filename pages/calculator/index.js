@@ -58,7 +58,7 @@ export default function Index() {
 	
 	return (
 		<Box>
-			<meta name="color-scheme" content="light only"/>
+			<meta name="color-scheme" content="dark"/>
 			<NextSeo
 				title="線上進位計算機 - 即時十進位轉二進位、八進位轉十六進位、二進位轉十六進位"
 				description="即時將十進位轉換為二進位、八進位轉十六進位、二進位轉十六進位等等進位制"
