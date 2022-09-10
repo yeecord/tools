@@ -60,11 +60,12 @@ export default function Index() {
 				]}
 			/>
 			<Nav/>
-			<Grid gap={8} maxWidth={1024} mx="auto" px={4}>
+			<Grid gap={8} maxWidth={1280} mx="auto" px={4}>
 				<Flex gap={4} alignItems="center">
-					<Image src="https://yeecord.com/img/logo.png" w="48px" h="48px" rounded="full"/>
+					<Image alt="Yeecord" src="https://yeecord.com/img/logo.png" w="36px" h="36px" rounded="full"/>
 					<Heading as="h1">Yeecord 小工具</Heading>
 				</Flex>
+				<Text>實用的數學小工具，包含進位計算機等簡便小工具，以及乾淨的操作介面</Text>
 				<SimpleGrid columns={[1, 2, 3]} spacing={4}>
 					<IndexItem
 						title="進位計算機"

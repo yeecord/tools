@@ -1,0 +1,23 @@
+{
+	"short_name": "Yeecord 小工具",
+	"name": "Yeecord 小工具",
+	"icons": [
+		{
+			"src": "https://yeecord.com/img/logo.png",
+			"sizes": "128x128",
+			"type": "image/png",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "https://yeecord.com/img/logo_512x512.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "any maskable"
+		}
+	],
+	"start_url": "/?utm_source=PWA&utm_medium=home_screen&utm_campaign=pwa",
+	"background_color": "#1A202C",
+	"theme_color": "#38B2AC",
+	"display": "standalone",
+	"orientation": "portrait-primary"
+}

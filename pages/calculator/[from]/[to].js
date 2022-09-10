@@ -29,7 +29,7 @@ export default function SingleCalculator({ from, to }) {
 	
 	const [loading, setLoading] = useState(true)
 	
-	useEffect(() => setLoading(false))
+	useEffect(() => setLoading(false), [])
 	
 	const fromData = {
 		...types.find(x => x.id === from),
