@@ -3,7 +3,7 @@ import {Nav} from "@components/nav"
 import {NextSeo} from "next-seo"
 import {CalculatorItem, CalculatorLogo, types} from "@components/calculatorItem"
 import {useState} from "react"
-import Head from "next/head"
+import {SeoConfig} from "../../next-seo.config"
 
 export default function Index() {
 	const updates = types.map((type) => {
@@ -20,26 +20,7 @@ export default function Index() {
 	
 	return (
 		<Box>
-			<NextSeo
-				title="線上進位計算機 - 即時十進位轉二進位、八進位轉十六進位、二進位轉十六進位"
-				description="即時將十進位轉換為二進位、八進位轉十六進位、二進位轉十六進位等等進位制"
-				canonical="https://tools.yeecord.com/calculator"
-				openGraph={{
-					images: [{
-						url: "https://tools.yeecord.com/img/calculator/favicon.png",
-						width: 128,
-						height: 128,
-						alt: "進位計算機",
-						type: "image/png"
-					}]
-				}}
-				additionalLinkTags={[
-					{
-						rel: "icon",
-						href: "/img/calculator/favicon.png"
-					}
-				]}
-			/>
+			<NextSeo {...SeoConfig}/>
 			<Nav/>
 			<Grid
 				maxWidth={1280}
