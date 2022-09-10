@@ -71,7 +71,7 @@ export default function SingleCalculator({ from, to }) {
 						<Select defaultValue={to} onChange={(event) => {
 							router.push(`/calculator/${from}/${event.target.value}`)
 						}}>
-							{types.map(x => <option value={x.id} key={x.id} disabled={x.id === to}>{x.title}</option>)}
+							{types.map(x => <option value={x.id} key={x.id} disabled={x.id === from}>{x.title}</option>)}
 						</Select>
 					</Flex>
 				</Grid>
