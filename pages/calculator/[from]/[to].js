@@ -43,6 +43,7 @@ export default function SingleCalculator({ from, to }) {
 				alignItems="center"
 				maxWidth={1024}
 				gap={6}
+				px={4}
 			>
 				<CalculatorLogo title={title}/>
 				<Flex
