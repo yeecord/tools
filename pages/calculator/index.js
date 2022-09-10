@@ -98,6 +98,7 @@ export default function Index() {
 						進位計算機
 					</Heading>
 				</Flex>
+				<Text mt={-4} fontSize="xl">輸入十進位 / 二進位 / 十六進位 / 八進位數字快速轉換</Text>
 				<Grid
 					templateColumns={["1fr", "1fr", "1fr 1fr"]}
 					gap={6}
@@ -106,10 +107,16 @@ export default function Index() {
 				</Grid>
 				<Divider/>
 				<Heading as="h2" borderBottom="3px solid #0090ff" mr="auto">
-					什麼是<Text as="span" color="deepskyblue">進位制</Text>？
+					什麼是
+					<Text as="span" color="deepskyblue">
+						進位制
+					</Text>
+					？
 				</Heading>
-				<Text>進位制是一種記數方法，也稱進位計數法，利用這種記數法可以使用有限的數字符號來表示所有的數值</Text>
-				<UnorderedList spacing={4}>
+				<Text fontSize="lg">
+					進位制是一種記數方法，也稱進位計數法，利用這種記數法可以使用有限的數字符號來表示所有的數值
+				</Text>
+				<UnorderedList spacing={4} fontSize="lg">
 					<ListItem>
 						一種進位制中可以使用的數字符號的數目稱為這種進位制的基數，若一個進位制的基數為 N，則可稱之為 N 進位制，即表示數值時滿 N 進一位
 					</ListItem>
