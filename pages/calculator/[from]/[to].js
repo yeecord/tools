@@ -1,4 +1,4 @@
-import {Box, Button, Flex, Grid, Select, Text} from "@chakra-ui/react"
+import {Box, Button, Flex, Grid, Text} from "@chakra-ui/react"
 import {Nav} from "@components/nav"
 import {CalculatorItem, CalculatorLogo, types} from "@components/calculatorItem"
 import {useRouter} from "next/router"
@@ -7,6 +7,19 @@ import {useCalculate} from "../index"
 import {NextSeo} from "next-seo"
 import {SeoConfig} from "../../../next-seo.config"
 import {HiSwitchHorizontal} from "react-icons/hi"
+import {Select} from "chakra-react-select"
+
+const selectStyle = {
+	container: (provided) => ({
+		...provided,
+		flexGrow: 1
+	})
+}
+
+const selectOptions = types.map(x => ({
+	label: x.title,
+	value: x.id,
+}))
 
 export default function SingleCalculator({ from, to }) {
 	const router = useRouter()
@@ -62,20 +75,30 @@ export default function SingleCalculator({ from, to }) {
 							gap="1rem"
 						>
 							<Text>從</Text>
-							<Select value={from}
-									onChange={(event) => push(router, `/calculator/${event.target.value}/${to}`, setLoading)}>
-								{types.map(x => <option value={x.id} key={x.id} disabled={x.id === to}>{x.title}</option>)}
-							</Select>
+							<Select
+								useBasicStyles
+								chakraStyles={selectStyle}
+								value={selectOptions.find(x => x.value === from)}
+								isLoading={loading}
+								isDisabled={loading}
+								onChange={(event) => push(router, `/calculator/${event.value}/${to}`, setLoading)}
+								options={selectOptions}
+							/>
 						</Flex>
 						<Flex
 							gap="1rem"
 							alignItems="center"
 						>
 							<Text>到</Text>
-							<Select value={to}
-									onChange={(event) => push(router, `/calculator/${from}/${event.target.value}`, setLoading)}>
-								{types.map(x => <option value={x.id} key={x.id} disabled={x.id === from}>{x.title}</option>)}
-							</Select>
+							<Select
+								useBasicStyles
+								chakraStyles={selectStyle}
+								value={selectOptions.find(x => x.value === to)}
+								isLoading={loading}
+								isDisabled={loading}
+								onChange={(event) => push(router, `/calculator/${from}/${event.value}`, setLoading)}
+								options={selectOptions}
+							/>
 						</Flex>
 					</Grid>
 					<Button colorScheme="teal" rightIcon={<HiSwitchHorizontal/>} isLoading={loading}
