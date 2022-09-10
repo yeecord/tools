@@ -87,7 +87,7 @@ export default function Index() {
 				maxWidth={1280}
 				margin="auto"
 				px={4}
-				gap={[4, 6, 8]}
+				gap={8}
 			>
 				<Flex
 					w="full"
@@ -108,7 +108,7 @@ export default function Index() {
 						進位計算機
 					</Heading>
 				</Flex>
-				<Text mt={-4} fontSize="xl">輸入十進位 / 二進位 / 十六進位 / 八進位數字快速轉換</Text>
+				<Text mt={-4} fontSize={["lg", "xl"]} textAlign={["center", "center", "left"]}>輸入十進位、二進位、十六進位、八進位數字快速轉換</Text>
 				<Grid
 					templateColumns={["1fr", "1fr", "1fr 1fr"]}
 					gap={6}

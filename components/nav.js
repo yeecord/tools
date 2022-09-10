@@ -9,25 +9,75 @@ export function Nav() {
 	const toggle = () => setIsOpen(!isOpen)
 	
 	return (
-		<NavBarContainer>
-			<Logo/>
-			<a style={{ lineHeight: "100%" }} rel="noreferrer" href="https://github.com/yeecord/tools" target="_blank" aria-label="Github">
-				<Button variant="ghost">
-					<Flex alignItems="center" gap=".75rem">
-						<Icon as={FaGithub} w={6} h={6}/>
-						<Text>Github</Text>
-						<ExternalLinkIcon/>
-					</Flex>
-				</Button>
-			</a>
-			<MenuToggle toggle={toggle} isOpen={isOpen}/>
-		</NavBarContainer>
+		<>
+			<NavBarContainer>
+				<Logo/>
+				<Menu>
+					<Links/>
+				</Menu>
+				<MenuToggle toggle={toggle} isOpen={isOpen}/>
+			</NavBarContainer>
+			<MobileMenu isOpen={isOpen}>
+				<Links/>
+			</MobileMenu>
+		</>
+	)
+}
+
+function Links() {
+	return (
+		<>
+			<ExternalLink href="https://github.com/yeecord/tools" icon={FaGithub} label="Github"/>
+		</>
+	)
+}
+
+function Menu({ children }) {
+	return (
+		<Flex gap={.75} display={["none", "block"]}>
+			{children}
+		</Flex>
+	)
+}
+
+function MobileMenu({ children, isOpen }) {
+	return (
+		<Flex
+			flexDirection="column"
+			gap={.75}
+			display={isOpen ? ["block", "none"] : "none"}
+			position="absolute"
+			top={16}
+			bg="gray.800"
+			w="full"
+			h="full"
+			zIndex={99}
+			px={2}
+		>
+			{children}
+		</Flex>
+	)
+}
+
+function ExternalLink({ href, label, icon }) {
+	return (
+		<a style={{ lineHeight: "100%" }} rel="noreferrer" href={href} target="_blank" aria-label={label}>
+			<Button variant="ghost">
+				<Flex alignItems="center" gap=".75rem">
+					<Icon as={icon} w={6} h={6}/>
+					<Text>{label}</Text>
+					<ExternalLinkIcon/>
+				</Flex>
+			</Button>
+		</a>
 	)
 }
 
 function NavBarContainer({ children }) {
 	return (
 		<Flex
+			top={0}
+			position="sticky"
 			as="nav"
 			align="center"
 			justify="space-between"
@@ -36,11 +86,11 @@ function NavBarContainer({ children }) {
 			mb={[4, 6, 8]}
 			py={2.5}
 			px={6}
-			bg={["primary.500", "primary.500", "transparent", "transparent"]}
-			color={["white", "white", "primary.700", "primary.700"]}
+			bg="gray.800"
+			zIndex={100}
 			borderBottom={1}
 			borderStyle="solid"
-			borderColor={"gray.500"}
+			borderColor="gray.500"
 		>
 			{children}
 		</Flex>
@@ -72,7 +122,7 @@ export function Item({ children, to }) {
 
 export function MenuToggle({ toggle, isOpen }) {
 	return (
-		<Box display={{ base: "block", md: "none" }} onClick={toggle}>
+		<Box display={["block", "none"]} onClick={toggle}>
 			{isOpen ? <SmallCloseIcon w={6} h={6}/> : <HamburgerIcon w={6} h={6}/>}
 		</Box>
 	)
