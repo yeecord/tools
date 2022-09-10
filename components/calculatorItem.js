@@ -1,4 +1,4 @@
-import {Flex, Grid, Heading, Image, Link, Input, Text} from "@chakra-ui/react"
+import {Flex, Grid, Heading, Image, Link, Input, Text, Box} from "@chakra-ui/react"
 import NextLink from "next/link"
 
 export const types = [
@@ -67,28 +67,29 @@ export function CalculatorItem({ title, prefix, value, calculate, regex }) {
 
 export function CalculatorLogo({ title }) {
 	return (
-		<NextLink href="/calculator" passHref>
-			<Link mx={["auto", "unset"]}>
-				<Flex
-					justifyContent={["center", "center", "start"]}
-					alignItems="center"
-					gap=".75rem"
-				>
-					<Image
-						src="/img/calculator/favicon.png"
-						width={["2rem", "2.5rem"]}
-						height={["2rem", "2.5rem"]}
-						alt="進位計算機"
-					/>
-					<Heading
-						as="h1"
-						fontSize={["2xl", "3xl"]}
-						fontWeight="600"
+		<Flex justifyContent={["center", "center", "start"]}>
+			<NextLink href="/calculator" passHref>
+				<Link mx={["auto", "unset"]}>
+					<Flex
+						alignItems="center"
+						gap=".75rem"
 					>
-						{title || "進位計算機"}
-					</Heading>
-				</Flex>
-			</Link>
-		</NextLink>
+						<Image
+							src="/img/calculator/favicon.png"
+							width={["2rem", "2.5rem"]}
+							height={["2rem", "2.5rem"]}
+							alt="進位計算機"
+						/>
+						<Heading
+							as="h1"
+							fontSize={["2xl", "3xl"]}
+							fontWeight="600"
+						>
+							{title || "進位計算機"}
+						</Heading>
+					</Flex>
+				</Link>
+			</NextLink>
+		</Flex>
 	)
 }

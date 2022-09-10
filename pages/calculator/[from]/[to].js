@@ -62,7 +62,7 @@ export default function SingleCalculator({ from, to }) {
 				px={4}
 			>
 				<CalculatorLogo title={title}/>
-				<Flex gap={4}>
+				<Flex gap={4} flexDirection={["column", "row"]}>
 					<Grid
 						flexGrow={1}
 						fontSize="xl"
@@ -111,7 +111,7 @@ export default function SingleCalculator({ from, to }) {
 							/>
 						</Flex>
 					</Grid>
-					<Button colorScheme="teal" rightIcon={<HiSwitchHorizontal/>} isLoading={loading}
+					<Button rightIcon={<HiSwitchHorizontal/>} isLoading={loading}
 						onClick={() => push(router, `/calculator/${to}/${from}`, setLoading)}>反轉</Button>
 				</Flex>
 				<CalculatorItem {...fromData} calculate={getCalculate(fromData)}/>
