@@ -62,12 +62,11 @@ function MobileMenu({ children, isOpen }) {
 
 function ExternalLink({ href, label, icon }) {
 	return (
-		<Link rel="noreferrer" href={href} target="_blank" aria-label={label}>
+		<Link rel="noreferrer" href={href} target="_blank" aria-label={label} isExternal>
 			<Button variant="ghost" display="block">
 				<Flex alignItems="center" gap=".75rem">
 					<Icon as={icon} w={6} h={6}/>
 					<Text>{label}</Text>
-					<ExternalLinkIcon/>
 				</Flex>
 			</Button>
 		</Link>

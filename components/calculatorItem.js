@@ -1,5 +1,5 @@
-import {Flex, Grid, Heading, Image, Input, Text} from "@chakra-ui/react"
-import Link from "next/link"
+import {Flex, Grid, Heading, Image, Link, Input, Text} from "@chakra-ui/react"
+import NextLink from "next/link"
 
 export const types = [
 	{
@@ -67,10 +67,9 @@ export function CalculatorItem({ title, prefix, value, calculate, regex }) {
 
 export function CalculatorLogo({ title }) {
 	return (
-		<Link href="/calculator">
-			<a>
+		<NextLink href="/calculator" passHref>
+			<Link mx={["auto", "unset"]}>
 				<Flex
-					w="full"
 					justifyContent={["center", "center", "start"]}
 					alignItems="center"
 					gap=".75rem"
@@ -89,7 +88,7 @@ export function CalculatorLogo({ title }) {
 						{title || "進位計算機"}
 					</Heading>
 				</Flex>
-			</a>
-		</Link>
+			</Link>
+		</NextLink>
 	)
 }
