@@ -52,8 +52,14 @@ export default function Index() {
 			if(!base.regex.test(event.target.value) || event.target.value.endsWith("."))
 				return base.update(event.target.value)
 			
-			for(const type of types)
-				type.update(parseFloat(event.target.value, base.base).toString(type.base))
+			const parsed = parseFloat(event.target.value, base.base)
+			
+			for(const type of types) {
+				if(type.base === 10)
+					type.update(parsed.toLocaleString('fullwide', { useGrouping: false }))
+				
+				else type.update(parsed.toString(type.base))
+			}
 		}
 	}
 	
