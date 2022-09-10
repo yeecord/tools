@@ -52,6 +52,9 @@ export function CalculatorItem({ title, prefix, value, calculate, regex }) {
 					{prefix}
 				</Text>
 				<Input
+					autoComplete="off"
+					autoCapitalize="off"
+					autoCorrect="off"
 					isInvalid={!regex?.test(value)}
 					errorBorderColor="red.300"
 					size="lg"

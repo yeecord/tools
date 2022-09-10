@@ -2,7 +2,7 @@ import {Box, Button, Flex, Grid, Text} from "@chakra-ui/react"
 import {Nav} from "@components/nav"
 import {CalculatorItem, CalculatorLogo, types} from "@components/calculatorItem"
 import {useRouter} from "next/router"
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import {useCalculate} from "../index"
 import {NextSeo} from "next-seo"
 import {SeoConfig} from "../../../next-seo.config"
@@ -27,7 +27,9 @@ export default function SingleCalculator({ from, to }) {
 	const [fromVal, setFrom] = useState("0")
 	const [toVal, setTo] = useState("0")
 	
-	const [loading, setLoading] = useState(false)
+	const [loading, setLoading] = useState(true)
+	
+	useEffect(() => setLoading(false))
 	
 	const fromData = {
 		...types.find(x => x.id === from),
