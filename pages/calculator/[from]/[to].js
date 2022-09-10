@@ -1,4 +1,4 @@
-import {Box, Flex, Grid, Select, Text} from "@chakra-ui/react"
+import {Box, Button, Flex, Grid, Select, Text} from "@chakra-ui/react"
 import {Nav} from "@components/nav"
 import {CalculatorItem, CalculatorLogo, types} from "@components/calculatorItem"
 import {useRouter} from "next/router"
@@ -6,12 +6,15 @@ import {useState} from "react"
 import {useCalculate} from "../index"
 import {NextSeo} from "next-seo"
 import {SeoConfig} from "../../../next-seo.config"
+import {HiSwitchHorizontal} from "react-icons/hi"
 
 export default function SingleCalculator({ from, to }) {
 	const router = useRouter()
 	
 	const [fromVal, setFrom] = useState("0")
 	const [toVal, setTo] = useState("0")
+	
+	const [loading, setLoading] = useState(false)
 	
 	const fromData = {
 		...types.find(x => x.id === from),
@@ -46,40 +49,49 @@ export default function SingleCalculator({ from, to }) {
 				px={4}
 			>
 				<CalculatorLogo title={title}/>
-				<Grid
-					fontSize="xl"
-					gap="1rem"
-					alignItems="center"
-					templateColumns={["1fr", "1fr 1fr"]}
-				>
-					<Flex
-						alignItems="center"
-						gap="1rem"
-					>
-						<Text>從</Text>
-						<Select defaultValue={from} onChange={(event) => {
-							router.push(`/calculator/${event.target.value}/${to}`)
-						}}>
-							{types.map(x => <option value={x.id} key={x.id} disabled={x.id === to}>{x.title}</option>)}
-						</Select>
-					</Flex>
-					<Flex
+				<Flex gap={4}>
+					<Grid
+						flexGrow={1}
+						fontSize="xl"
 						gap="1rem"
 						alignItems="center"
+						templateColumns={["1fr", "1fr 1fr"]}
 					>
-						<Text>到</Text>
-						<Select defaultValue={to} onChange={(event) => {
-							router.push(`/calculator/${from}/${event.target.value}`)
-						}}>
-							{types.map(x => <option value={x.id} key={x.id} disabled={x.id === from}>{x.title}</option>)}
-						</Select>
-					</Flex>
-				</Grid>
+						<Flex
+							alignItems="center"
+							gap="1rem"
+						>
+							<Text>從</Text>
+							<Select value={from}
+									onChange={(event) => push(router, `/calculator/${event.target.value}/${to}`, setLoading)}>
+								{types.map(x => <option value={x.id} key={x.id} disabled={x.id === to}>{x.title}</option>)}
+							</Select>
+						</Flex>
+						<Flex
+							gap="1rem"
+							alignItems="center"
+						>
+							<Text>到</Text>
+							<Select value={to}
+									onChange={(event) => push(router, `/calculator/${from}/${event.target.value}`, setLoading)}>
+								{types.map(x => <option value={x.id} key={x.id} disabled={x.id === from}>{x.title}</option>)}
+							</Select>
+						</Flex>
+					</Grid>
+					<Button colorScheme="teal" rightIcon={<HiSwitchHorizontal/>} isLoading={loading}
+						onClick={() => push(router, `/calculator/${to}/${from}`, setLoading)}>反轉</Button>
+				</Flex>
 				<CalculatorItem {...fromData} calculate={getCalculate(fromData)}/>
 				<CalculatorItem {...toData} calculate={getCalculate(toData)}/>
 			</Grid>
 		</Box>
 	)
+}
+
+async function push(router, path, setLoading) {
+	setLoading(true)
+	await router.push(path)
+	setLoading(false)
 }
 
 export async function getStaticPaths() {
