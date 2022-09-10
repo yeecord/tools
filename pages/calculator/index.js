@@ -1,73 +1,25 @@
-import {Box, Divider, Flex, Grid, Heading, Image, Link, ListItem, Text, UnorderedList} from "@chakra-ui/react"
+import {Box, Divider, Grid, Heading, Link, ListItem, Text, UnorderedList} from "@chakra-ui/react"
 import {Nav} from "@components/nav"
 import {NextSeo} from "next-seo"
-import {CalculatorItem} from "@components/calculatorItem"
+import {CalculatorItem, CalculatorLogo, types} from "@components/calculatorItem"
 import {useState} from "react"
 import Head from "next/head"
 
 export default function Index() {
-	const [dec, setDec] = useState('0')
-	const [hex, setHex] = useState('0')
-	const [bin, setBin] = useState('0')
-	const [oct, setOct] = useState('0')
-	
-	const types = [
-		{
-			base: 10,
-			value: dec,
-			update: setDec,
-			regex: /^\d+\.?\d*$/,
-			title: "十進位 (Decimal)",
-		},
-		{
-			base: 16,
-			value: hex,
-			update: setHex,
-			prefix: "0x",
-			title: "十六進位 (Hexadecimal)",
-			regex: /^[0-9a-f]+\.?[0-9a-f]*$/i,
-		},
-		{
-			base: 2,
-			value: bin,
-			update: setBin,
-			prefix: "0b",
-			title: "二進位 (Binary)",
-			regex: /^[0-1]+\.?[0-1]*$/,
-		},
-		{
-			base: 8,
-			value: oct,
-			update: setOct,
-			title: "八進位 (Octal)",
-			regex: /^[0-7]+\.?[0-7]*$/,
+	const updates = types.map((type) => {
+		const [value, update] = useState('0')
+		
+		return {
+			...type,
+			value,
+			update
 		}
-	]
+	})
 	
-	function getCalculate(base) {
-		return function calculate(event) {
-			if(event.target.value.length === 0)
-				event.target.value = "0"
-			
-			if(!base.regex.test(event.target.value) || event.target.value.endsWith("."))
-				return base.update(event.target.value)
-			
-			const parsed = parseFloat(event.target.value, base.base)
-			
-			for(const type of types) {
-				if(type.base === 10)
-					type.update(parsed.toLocaleString('fullwide', { useGrouping: false }))
-				
-				else type.update(parsed.toString(type.base))
-			}
-		}
-	}
+	const getCalculate = useCalculate(updates)
 	
 	return (
 		<Box>
-			<Head>
-				<meta name="color-scheme" content="dark"/>
-			</Head>
 			<NextSeo
 				title="線上進位計算機 - 即時十進位轉二進位、八進位轉十六進位、二進位轉十六進位"
 				description="即時將十進位轉換為二進位、八進位轉十六進位、二進位轉十六進位等等進位制"
@@ -91,35 +43,17 @@ export default function Index() {
 			<Nav/>
 			<Grid
 				maxWidth={1280}
-				margin="auto"
+				mx="auto"
 				px={4}
 				gap={8}
 			>
-				<Flex
-					w="full"
-					justifyContent={["center", "center", "start"]}
-					alignItems="center"
-					gap=".75rem"
-				>
-					<Image
-						src="/img/calculator/favicon.png"
-						width="2.5rem"
-						height="2.5rem"
-						alt="進位計算機"
-					/>
-					<Heading
-						as="h1"
-						fontWeight="600"
-					>
-						進位計算機
-					</Heading>
-				</Flex>
+				<CalculatorLogo/>
 				<Text mt={-4} fontSize={["lg", "xl"]} textAlign={["center", "center", "left"]}>輸入十進位、二進位、十六進位、八進位數字快速轉換</Text>
 				<Grid
 					templateColumns={["1fr", "1fr", "1fr 1fr"]}
 					gap={6}
 				>
-					{types.map(t => <CalculatorItem {...t} calculate={getCalculate(t)} key={t.title}/>)}
+					{updates.map(t => <CalculatorItem {...t} calculate={getCalculate(t)} key={t.title}/>)}
 				</Grid>
 				<Divider/>
 				<Heading as="h2" borderBottom="3px solid #0090ff" mr="auto">
@@ -150,6 +84,27 @@ export default function Index() {
 			</Grid>
 		</Box>
 	)
+}
+
+export function useCalculate(updates) {
+	return function getCalculate(base) {
+		return function calculate(event) {
+			if(event.target.value.length === 0)
+				event.target.value = "0"
+			
+			if(!base.regex.test(event.target.value) || event.target.value.endsWith("."))
+				return base.update(event.target.value)
+			
+			const parsed = parseFloat(event.target.value, base.base)
+			
+			for(const type of updates) {
+				if(type.base === 10)
+					type.update(parsed.toLocaleString('fullwide', { useGrouping: false }))
+				
+				else type.update(parsed.toString(type.base))
+			}
+		}
+	}
 }
 
 function parseFloat(str, radix) {

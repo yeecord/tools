@@ -2,6 +2,7 @@ import {Box, Button, Flex, Heading, Icon, Image, Link, Text} from "@chakra-ui/re
 import {ExternalLinkIcon, HamburgerIcon, SmallCloseIcon} from "@chakra-ui/icons"
 import {useState} from "react"
 import {FaGithub} from "react-icons/fa"
+import {useRouter} from "next/router";
 
 export function Nav() {
 	const [isOpen, setIsOpen] = useState(false)
@@ -98,8 +99,13 @@ function NavBarContainer({ children }) {
 }
 
 export function Logo() {
+	const router = useRouter()
+	
 	return (
-		<a href="https://tools.yeecord.com/">
+		<a href="https://tools.yeecord.com/" onClick={(e) => {
+			e.preventDefault()
+			router.push("/calculator")
+		}}>
 			<Flex gap=".75rem" alignItems="center">
 				<Image src="https://yeecord.com/img/logo.png" borderRadius="full" boxSize="32px" alt="Yeecord"/>
 				<Heading as="h3" fontSize="lg" fontWeight="bold" fontFamily="Readex Pro">
