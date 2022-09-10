@@ -1,9 +1,9 @@
-import {Box, Divider, Flex, Grid, Heading, Image, ListItem, Text, UnorderedList} from "@chakra-ui/react"
+import {Box, Divider, Flex, Grid, Heading, Image, Link, ListItem, Text, UnorderedList} from "@chakra-ui/react"
 import {Nav} from "@components/nav"
 import {NextSeo} from "next-seo"
 import {CalculatorItem} from "@components/calculatorItem"
 import {useState} from "react"
-import Head from "next/head";
+import Head from "next/head"
 
 export default function Index() {
 	const [dec, setDec] = useState('0')
@@ -140,7 +140,7 @@ export default function Index() {
 						在電子計算機領域，內部使用的是二進位制，電路的狀態通過 0 和 1 表示來實現記數。八進位制和十六進位制計算機領域也較為常用，尤其十六進位制
 					</ListItem>
 				</UnorderedList>
-				<a href="https://zh.wikipedia.org/wiki/进位制" target="_blank" rel="noreferrer">➤ https://zh.wikipedia.org/wiki/进位制</a>
+				<Link pb={[4, 0]} href="https://zh.wikipedia.org/wiki/进位制" target="_blank" rel="noreferrer">➤ https://zh.wikipedia.org/wiki/进位制</Link>
 			</Grid>
 		</Box>
 	)
