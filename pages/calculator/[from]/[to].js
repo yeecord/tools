@@ -81,7 +81,12 @@ export default function SingleCalculator({ from, to }) {
 								value={selectOptions.find(x => x.value === from)}
 								isLoading={loading}
 								isDisabled={loading}
-								onChange={(event) => push(router, `/calculator/${event.value}/${to}`, setLoading)}
+								onChange={(event) => {
+									if(event.value === to)
+										return push(router, `/calculator/${to}/${from}`, setLoading)
+									
+									return push(router, `/calculator/${event.value}/${to}`, setLoading)
+								}}
 								options={selectOptions}
 							/>
 						</Flex>
@@ -96,7 +101,12 @@ export default function SingleCalculator({ from, to }) {
 								value={selectOptions.find(x => x.value === to)}
 								isLoading={loading}
 								isDisabled={loading}
-								onChange={(event) => push(router, `/calculator/${from}/${event.value}`, setLoading)}
+								onChange={(event) => {
+									if(event.value === from)
+										return push(router, `/calculator/${to}/${from}`, setLoading)
+									
+									return push(router, `/calculator/${from}/${event.value}`, setLoading)
+								}}
 								options={selectOptions}
 							/>
 						</Flex>
