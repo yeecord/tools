@@ -132,6 +132,9 @@ export async function getStaticPaths() {
 	
 	for(const from of types) {
 		for(const to of types) {
+			if(from.id === to.id)
+				continue
+			
 			paths.push({
 				params: {
 					from: from.id, to: to.id
