@@ -39,7 +39,26 @@ for(const from of types) {
 export default function Index() {
 	return (
 		<Box>
-			<NextSeo/>
+			<NextSeo
+				title="Yeecord 小工具"
+				description="實用的數學小工具，包含進位計算機等簡便小工具，以及乾淨的操作介面"
+				canonical="https://tools.yeecord.com/"
+				openGraph={{
+					images: [{
+						url: "https://yeecord.com/img/logo.png",
+						width: 128,
+						height: 128,
+						alt: "Yeecord",
+						type: "image/png"
+					}]
+				}}
+				additionalLinkTags={[
+					{
+						rel: "icon",
+						href: "https://yeecord.com/img/logo.png"
+					}
+				]}
+			/>
 			<Nav/>
 			<Grid gap={8} maxWidth={1024} mx="auto" px={4}>
 				<Flex gap={4} alignItems="center">
