@@ -52,7 +52,7 @@ export function Logo() {
 		<a href="https://tools.yeecord.com/">
 			<Flex gap=".75rem" alignItems="center">
 				<Image src="https://yeecord.com/img/logo.png" borderRadius="full" boxSize="32px" alt="Yeecord"/>
-				<Heading as="h2" fontSize="lg" fontWeight="bold" fontFamily="Readex Pro">
+				<Heading as="h3" fontSize="lg" fontWeight="bold" fontFamily="Readex Pro">
 					Yeecord
 				</Heading>
 			</Flex>
