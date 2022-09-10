@@ -6,15 +6,17 @@ import {useState} from "react"
 import {SeoConfig} from "../../next-seo.config"
 
 export default function Index() {
-	const updates = types.map((type) => {
+	const updates = []
+	
+	for(const type of types) {
 		const [value, update] = useState('0')
 		
-		return {
+		updates.push({
 			...type,
 			value,
 			update
-		}
-	})
+		})
+	}
 	
 	const getCalculate = useCalculate(updates)
 	
