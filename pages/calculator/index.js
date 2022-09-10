@@ -43,7 +43,7 @@ export default function Index() {
 		}
 	]
 	
-	function useCalculate(base) {
+	function getCalculate(base) {
 		return function calculate(event) {
 			if(event.target.value.length === 0)
 				event.target.value = "0"
@@ -96,6 +96,7 @@ export default function Index() {
 						src="/img/calculator/favicon.png"
 						width="2.5rem"
 						height="2.5rem"
+						alt="進位計算機"
 					/>
 					<Heading
 						as="h1"
@@ -109,7 +110,7 @@ export default function Index() {
 					templateColumns={["1fr", "1fr", "1fr 1fr"]}
 					gap={6}
 				>
-					{types.map(t => <CalculatorItem {...t} calculate={useCalculate(t)} key={t.title}/>)}
+					{types.map(t => <CalculatorItem {...t} calculate={getCalculate(t)} key={t.title}/>)}
 				</Grid>
 				<Divider/>
 				<Heading as="h2" borderBottom="3px solid #0090ff" mr="auto">

@@ -11,7 +11,7 @@ export function Nav() {
 	return (
 		<NavBarContainer>
 			<Logo/>
-			<a style={{ lineHeight: "100%" }} href="https://github.com/yeecord/tools" target="_blank" aria-label="Github">
+			<a style={{ lineHeight: "100%" }} rel="noreferrer" href="https://github.com/yeecord/tools" target="_blank" aria-label="Github">
 				<Button variant="ghost">
 					<Flex alignItems="center" gap=".75rem">
 						<Icon as={FaGithub} w={6} h={6}/>
