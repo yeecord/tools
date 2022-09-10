@@ -86,7 +86,7 @@ function NavBarContainer({ children }) {
 			w="100%"
 			mb={[6, 8]}
 			py={2.5}
-			px={6}
+			px={[4, 6]}
 			bg="gray.800"
 			zIndex={100}
 			borderBottom={1}
@@ -104,7 +104,7 @@ export function Logo() {
 	return (
 		<a href="https://tools.yeecord.com/" onClick={(e) => {
 			e.preventDefault()
-			router.push("/calculator")
+			router.push("/")
 		}}>
 			<Flex gap=".75rem" alignItems="center">
 				<Image src="https://yeecord.com/img/logo.png" borderRadius="full" boxSize="32px" alt="Yeecord"/>

@@ -1,4 +1,4 @@
-import {Flex, Grid, Heading, Image, Link, Input, Text, Box} from "@chakra-ui/react"
+import {Flex, Grid, Heading, Image, Link, Input, Text} from "@chakra-ui/react"
 import NextLink from "next/link"
 
 export const types = [
@@ -43,7 +43,7 @@ export function CalculatorItem({ title, prefix, value, calculate, regex }) {
 			px={[4, 6, 8]}
 			py={[4, 4, 6]}
 		>
-			<Heading as="h3" fontSize={["1.25rem", "1.5rem"]}>{title}</Heading>
+			<Heading as="h3" fontSize="1.25rem">{title}</Heading>
 			<Flex
 				gap=".5rem"
 				alignItems="center"
