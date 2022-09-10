@@ -46,24 +46,35 @@ export default function SingleCalculator({ from, to }) {
 				px={4}
 			>
 				<CalculatorLogo title={title}/>
-				<Flex
+				<Grid
 					fontSize="xl"
 					gap="1rem"
 					alignItems="center"
+					templateColumns={["1fr", "1fr 1fr"]}
 				>
-					<Text>從</Text>
-					<Select defaultValue={from} onChange={(event) => {
-						router.push(`/calculator/${event.target.value}/${to}`)
-					}}>
-						{types.map(x => <option value={x.id} key={x.id} disabled={x.id === to}>{x.title}</option>)}
-					</Select>
-					<Text>到</Text>
-					<Select defaultValue={to} onChange={(event) => {
-						router.push(`/calculator/${from}/${event.target.value}`)
-					}}>
-						{types.map(x => <option value={x.id} key={x.id} disabled={x.id === to}>{x.title}</option>)}
-					</Select>
-				</Flex>
+					<Flex
+						alignItems="center"
+						gap="1rem"
+					>
+						<Text>從</Text>
+						<Select defaultValue={from} onChange={(event) => {
+							router.push(`/calculator/${event.target.value}/${to}`)
+						}}>
+							{types.map(x => <option value={x.id} key={x.id} disabled={x.id === to}>{x.title}</option>)}
+						</Select>
+					</Flex>
+					<Flex
+						gap="1rem"
+						alignItems="center"
+					>
+						<Text>到</Text>
+						<Select defaultValue={to} onChange={(event) => {
+							router.push(`/calculator/${from}/${event.target.value}`)
+						}}>
+							{types.map(x => <option value={x.id} key={x.id} disabled={x.id === to}>{x.title}</option>)}
+						</Select>
+					</Flex>
+				</Grid>
 				<CalculatorItem {...fromData} calculate={getCalculate(fromData)}/>
 				<CalculatorItem {...toData} calculate={getCalculate(toData)}/>
 			</Grid>

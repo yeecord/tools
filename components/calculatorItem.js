@@ -77,12 +77,13 @@ export function CalculatorLogo({ title }) {
 				>
 					<Image
 						src="/img/calculator/favicon.png"
-						width="2.5rem"
-						height="2.5rem"
+						width={["2rem", "2.5rem"]}
+						height={["2rem", "2.5rem"]}
 						alt="進位計算機"
 					/>
 					<Heading
 						as="h1"
+						fontSize={["2xl", "3xl"]}
 						fontWeight="600"
 					>
 						{title || "進位計算機"}

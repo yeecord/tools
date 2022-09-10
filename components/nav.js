@@ -84,7 +84,7 @@ function NavBarContainer({ children }) {
 			justify="space-between"
 			wrap="wrap"
 			w="100%"
-			mb={[4, 6, 8]}
+			mb={[6, 8]}
 			py={2.5}
 			px={6}
 			bg="gray.800"
