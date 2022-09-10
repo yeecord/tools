@@ -72,6 +72,12 @@ export default function Index() {
 						type: "image/png"
 					}]
 				}}
+				additionalLinkTags={[
+					{
+						rel: "icon",
+						href: "/img/calculator/favicon.png"
+					}
+				]}
 			/>
 			<Nav/>
 			<Grid
