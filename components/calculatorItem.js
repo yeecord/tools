@@ -8,7 +8,7 @@ import {
 	Text,
 	InputGroup,
 	InputRightElement,
-	CloseButton, Fade
+	CloseButton, Fade, Badge
 } from "@chakra-ui/react"
 import NextLink from "next/link"
 
@@ -90,7 +90,7 @@ export function CalculatorItem({ title, prefix, value, calculate, regex, readonl
 	)
 }
 
-export function CalculatorLogo({ title }) {
+export function CalculatorLogo({ title, isNew }) {
 	return (
 		<Flex justifyContent={["center", "center", "start"]}>
 			<NextLink href="/calculator" passHref>
@@ -112,6 +112,7 @@ export function CalculatorLogo({ title }) {
 						>
 							{title || "進位計算機"}
 						</Heading>
+						{isNew && <Badge colorScheme="green" fontSize="sm">NEW</Badge>}
 					</Flex>
 				</Link>
 			</NextLink>

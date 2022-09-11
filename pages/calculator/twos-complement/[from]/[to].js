@@ -37,7 +37,7 @@ export default function TwosComplement({ from, to }) {
 			/>
 			<Nav/>
 			<Grid maxWidth={1024} alignItems="center" gap={6} px={4} mx="auto">
-				<CalculatorLogo title="二補數計算機"/>
+				<CalculatorLogo title="二補數計算機" isNew/>
 				<FromToNav
 					from={from}
 					to={to}
