@@ -1,4 +1,15 @@
-import {Flex, Grid, Heading, Image, Link, Input, Text} from "@chakra-ui/react"
+import {
+	Flex,
+	Grid,
+	Heading,
+	Image,
+	Link,
+	Input,
+	Text,
+	InputGroup,
+	InputRightElement,
+	CloseButton, Fade, useDisclosure
+} from "@chakra-ui/react"
 import NextLink from "next/link"
 
 export const types = [
@@ -35,6 +46,8 @@ export const types = [
 ]
 
 export function CalculatorItem({ title, prefix, value, calculate, regex }) {
+	const isInvalid = !regex?.test(value)
+
 	return (
 		<Grid
 			rounded="md"
@@ -51,18 +64,26 @@ export function CalculatorItem({ title, prefix, value, calculate, regex }) {
 				<Text fontSize={["md", "lg"]}>
 					{prefix}
 				</Text>
-				<Input
-					autoComplete="off"
-					autoCapitalize="off"
-					autoCorrect="off"
-					isInvalid={!regex?.test(value)}
-					errorBorderColor="red.300"
-					size="lg"
-					fontSize={["lg", "xl"]}
-					variant="flushed"
-					onChange={calculate}
-					value={value}
-				/>
+				<InputGroup>
+					<Input
+						autoComplete="off"
+						autoCapitalize="off"
+						autoCorrect="off"
+						isInvalid={isInvalid}
+						errorBorderColor="red.300"
+						size="lg"
+						fontSize={["lg", "xl"]}
+						variant="flushed"
+						onChange={calculate}
+						value={value}
+						placeholder="0"
+					/>
+					<Fade in={isInvalid}>
+						<InputRightElement>
+							<CloseButton color="red.400" size="lg" mb={-2.5}/>
+						</InputRightElement>
+					</Fade>
+				</InputGroup>
 			</Flex>
 		</Grid>
 	)
