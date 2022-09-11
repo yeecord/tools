@@ -45,7 +45,7 @@ export const types = [
 	}
 ]
 
-export function CalculatorItem({ title, prefix, value, calculate, regex }) {
+export function CalculatorItem({ title, prefix, value, calculate, regex, readonly }) {
 	const isInvalid = !regex?.test(value)
 
 	return (
@@ -77,6 +77,7 @@ export function CalculatorItem({ title, prefix, value, calculate, regex }) {
 						onChange={calculate}
 						value={value}
 						placeholder="0"
+						readOnly={readonly}
 					/>
 					<Fade in={isInvalid}>
 						<InputRightElement>

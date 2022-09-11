@@ -1,4 +1,5 @@
 import {
+	Badge,
 	Box,
 	Flex,
 	Grid,
@@ -68,6 +69,13 @@ export default function Index() {
 				<Text textAlign={["center", "start"]}>實用的數學小工具，包含進位計算機等簡便小工具，以及乾淨的操作介面</Text>
 				<SimpleGrid columns={[1, 2, 3]} spacing={4}>
 					<IndexItem
+						title="二補數計算機"
+						description="輸入十進位整數計算二的補數"
+						href="/calculator/twos-complement"
+						icon={HiSwitchHorizontal}
+						isNew
+					/>
+					<IndexItem
 						title="進位計算機"
 						description="輸入十進位、二進位、十六進位、八進位數字快速轉換"
 						href="/calculator"
@@ -80,7 +88,7 @@ export default function Index() {
 	)
 }
 
-function IndexItem({ title, description, icon, href }) {
+function IndexItem({ title, description, icon, href, isNew }) {
 	return (
 		<LinkBox borderWidth="1px" rounded="md" px={5} py={4} display="grid" gap={4}>
 			<NextLink href={href} passHref>
@@ -88,6 +96,7 @@ function IndexItem({ title, description, icon, href }) {
 					<Flex gap={2} alignItems="center">
 						<Icon as={icon} w={6} h={5} color="orange.400"/>
 						<Heading lineHeight="100%" size="md">{title}</Heading>
+						{isNew && <Badge colorScheme="green" fontSize="sm">NEW</Badge>}
 					</Flex>
 				</LinkOverlay>
 			</NextLink>
