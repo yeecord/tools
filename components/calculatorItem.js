@@ -37,18 +37,18 @@ export const types = [
 export function CalculatorItem({ title, prefix, value, calculate, regex }) {
 	return (
 		<Grid
-			backgroundColor="gray.700"
-			borderRadius=".75rem"
+			rounded="md"
+			borderWidth="1px"
 			gap={[".25rem", ".5rem", ".75rem"]}
 			px={[4, 6, 8]}
 			py={[4, 4, 6]}
 		>
-			<Heading as="h3" fontSize="1.25rem">{title}</Heading>
+			<Heading as="h3" fontSize={["md", "lg"]}>{title}</Heading>
 			<Flex
 				gap=".5rem"
 				alignItems="center"
 			>
-				<Text fontSize="lg">
+				<Text fontSize={["md", "lg"]}>
 					{prefix}
 				</Text>
 				<Input
@@ -58,7 +58,7 @@ export function CalculatorItem({ title, prefix, value, calculate, regex }) {
 					isInvalid={!regex?.test(value)}
 					errorBorderColor="red.300"
 					size="lg"
-					fontSize="xl"
+					fontSize={["lg", "xl"]}
 					variant="flushed"
 					onChange={calculate}
 					value={value}

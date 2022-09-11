@@ -19,7 +19,7 @@ export default function Index() {
 	const getCalculate = useCalculate(updates)
 	
 	return (
-		<Box>
+		<Box pb={4}>
 			<NextSeo {...SeoConfig}/>
 			<Nav/>
 			<Grid
@@ -61,7 +61,7 @@ export default function Index() {
 						在電子計算機領域，內部使用的是二進位制，電路的狀態通過 0 和 1 表示來實現記數。八進位制和十六進位制計算機領域也較為常用，尤其十六進位制
 					</ListItem>
 				</UnorderedList>
-				<Link pb={[4, 0]} href="https://zh.wikipedia.org/wiki/进位制" isExternal>➤ https://zh.wikipedia.org/wiki/进位制</Link>
+				<Link href="https://zh.wikipedia.org/wiki/进位制" isExternal>➤ https://zh.wikipedia.org/wiki/进位制</Link>
 			</Grid>
 		</Box>
 	)

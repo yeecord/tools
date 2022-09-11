@@ -38,7 +38,7 @@ for(const from of types) {
 
 export default function Index() {
 	return (
-		<Box>
+		<Box pb={4}>
 			<NextSeo
 				title="Yeecord 小工具"
 				description="實用的數學小工具，包含進位計算機等簡便小工具，以及乾淨的操作介面"
@@ -61,11 +61,11 @@ export default function Index() {
 			/>
 			<Nav/>
 			<Grid gap={8} maxWidth={1280} mx="auto" px={4}>
-				<Flex gap={4} alignItems="center">
+				<Flex gap={4} alignItems="center" justifyContent={["center", "start"]}>
 					<Image alt="Yeecord" src="https://yeecord.com/img/logo.png" w="36px" h="36px" rounded="full"/>
 					<Heading as="h1">Yeecord 小工具</Heading>
 				</Flex>
-				<Text>實用的數學小工具，包含進位計算機等簡便小工具，以及乾淨的操作介面</Text>
+				<Text textAlign={["center", "start"]}>實用的數學小工具，包含進位計算機等簡便小工具，以及乾淨的操作介面</Text>
 				<SimpleGrid columns={[1, 2, 3]} spacing={4}>
 					<IndexItem
 						title="進位計算機"
@@ -93,7 +93,7 @@ function IndexItem({ title, description, icon, href }) {
 			</NextLink>
 			<Text>{description}</Text>
 			<NextLink href={href} passHref>
-				<Link color="teal.400" fontWeight={600}>
+				<Link color="teal.400" fontWeight={600} display="flex" gap={2} alignItems="center">
 					馬上使用
 					<ArrowForwardIcon/>
 				</Link>
