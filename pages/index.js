@@ -71,7 +71,7 @@ export default function Index() {
 					<IndexItem
 						title="二補數計算機"
 						description="輸入十進位整數計算二的補數"
-						href="/calculator/twos-complement"
+						href="/calculator/twos-complement/dec/bin"
 						icon={HiSwitchHorizontal}
 						isNew
 					/>

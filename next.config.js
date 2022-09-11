@@ -13,6 +13,11 @@ const nextConfig = {
 				source: '/calculator/twos-complement',
 				destination: '/calculator/twos-complement/dec/bin',
 				permanent: false
+			},
+			{
+				source: '/twos-complement',
+				destination: '/calculator/twos-complement/dec/bin',
+				permanent: false
 			}
 		]
 	}
