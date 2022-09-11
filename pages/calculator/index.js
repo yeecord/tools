@@ -73,6 +73,9 @@ export function useCalculate(updates) {
 			if(event.target.value.length === 0)
 				event.target.value = "0"
 			
+			if(event.target.value[1] === "-")
+				event.target.value = event.target.value.slice(1)
+			
 			if(!base.regex.test(event.target.value) || event.target.value.endsWith("."))
 				return base.update(event.target.value)
 			

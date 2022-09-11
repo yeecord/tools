@@ -8,7 +8,7 @@ import {
 	Text,
 	InputGroup,
 	InputRightElement,
-	CloseButton, Fade, useDisclosure
+	CloseButton, Fade
 } from "@chakra-ui/react"
 import NextLink from "next/link"
 
@@ -16,14 +16,14 @@ export const types = [
 	{
 		id: "dec",
 		base: 10,
-		regex: /^\d+\.?\d*$/,
+		regex: /^-?\d+\.?\d*$/,
 		title: "十進位 (Decimal)",
 		chinese: "十進位"
 	},
 	{
 		id: "hex",
 		base: 16,
-		regex: /^[0-9a-f]+\.?[0-9a-f]*$/i,
+		regex: /^-?[0-9a-f]+\.?[0-9a-f]*$/i,
 		prefix: "0x",
 		title: "十六進位 (Hexadecimal)",
 		chinese: "十六進位"
@@ -31,7 +31,7 @@ export const types = [
 	{
 		id: "bin",
 		base: 2,
-		regex: /^[0-1]+\.?[0-1]*$/,
+		regex: /^-?[0-1]+\.?[0-1]*$/,
 		prefix: "0b",
 		title: "二進位 (Binary)",
 		chinese: "二進位"
@@ -39,7 +39,7 @@ export const types = [
 	{
 		id: "oct",
 		base: 8,
-		regex: /^[0-7]+\.?[0-7]*$/,
+		regex: /^-?[0-7]+\.?[0-7]*$/,
 		title: "八進位 (Octal)",
 		chinese: "八進位"
 	}
