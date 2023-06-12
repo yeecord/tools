@@ -12,10 +12,14 @@ export const TwoComplement = () => {
 			<div className="grid w-full items-center gap-2">
 				<Label htmlFor={sourceId}>來源 (十進位整數)</Label>
 				<Input
+					id={sourceId}
+					className="font-medium text-base border font-mono max-w-xl"
 					placeholder="1"
-					onChange={(event) =>
-						setSource(BigInt(event.target.value.trim()) || 0n)
-					}
+					onChange={(event) => {
+						try {
+							setSource(BigInt(event.target.value.trim()) || 0n);
+						} catch (e) {}
+					}}
 					value={source.toString()}
 				/>
 			</div>
@@ -40,6 +44,8 @@ const Output: FC<{
 		<div className="grid w-full items-center gap-2">
 			<Label htmlFor={id}>{label}</Label>
 			<Input
+				className="font-medium text-base border font-mono max-w-xl"
+				id={id}
 				readOnly
 				value={typeof value === "bigint" ? value.toString(2) : value}
 				onClick={(event) => event.currentTarget.select()}
