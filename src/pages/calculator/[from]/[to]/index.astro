@@ -1,20 +1,36 @@
 ---
 import "@/styles/global.css";
 
-import { calculatorTypes } from "../../../../utils/calculator";
-import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import { calculatorTypes, type CalculatorConfig } from "@/utils/calculator";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { calculatorConfig } from "../../../../utils/calculator";
+import { type InferGetStaticPropsType } from "astro";
+import H2 from "../../../../components/ui/h2.astro";
 
 export function getStaticPaths() {
-	const paths = [];
+	const paths: {
+		props: {
+			from: CalculatorConfig;
+			to: CalculatorConfig;
+		};
+		params: {
+			from: string;
+			to: string;
+		};
+	}[] = [];
 
 	for (const from of calculatorTypes) {
 		for (const to of calculatorTypes) {
 			if (from === to) continue;
 
 			paths.push({
+				props: {
+					from: calculatorConfig[from],
+					to: calculatorConfig[to],
+				},
 				params: {
-					from: from,
-					to: to,
+					from,
+					to,
 				},
 			});
 		}
@@ -23,9 +39,13 @@ export function getStaticPaths() {
 	return paths;
 }
 
-const { from, to } = Astro.params;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { from, to } = Astro.props as Props;
+
+const title = `${from.title}轉${to.title}進位`;
 ---
 
-<BaseLayout title={`${from} 轉 ${to} 進位`}>
-	<span>{from}</span>
+<BaseLayout title={title}>
+	<H2>{title}</H2>
 </BaseLayout>

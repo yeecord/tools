@@ -1,12 +1,27 @@
 ---
-import Header from "../components/Header.astro";
-import { containerStyle } from "../utils/cn";
+import Header from "@/components/Header.astro";
+import logo from "@/assets/logo.png";
+import { containerStyle } from "@/utils/cn";
+import { getImage } from "astro:assets";
+import { ImageMetadata } from "astro";
+import { cn } from "../utils/cn";
 
-const { title } = Astro.props;
+interface Props {
+	title: string;
+	icon?: ImageMetadata;
+}
+
+const { title, icon } = Astro.props;
 
 const suffix = "Yeecord 小工具";
 
 const titleWithPrefix = title ? `${title} | ${suffix}` : suffix;
+
+const iconUrl = (
+	await getImage({
+		src: icon || logo,
+	})
+).src;
 ---
 
 <html lang="zh-Hant-Tw" class="dark">
@@ -14,11 +29,12 @@ const titleWithPrefix = title ? `${title} | ${suffix}` : suffix;
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link rel="icon" href={iconUrl} />
 		<title>{titleWithPrefix}</title>
 	</head>
 	<body>
 		<Header />
-		<div class={containerStyle}>
+		<div class={cn(containerStyle, "mb-8 md:mb-4")}>
 			<slot />
 		</div>
 	</body>
