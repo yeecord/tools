@@ -1,12 +1,14 @@
 ---
 import { cn, containerStyle } from "../utils/cn";
+import { Image } from "astro:assets";
+import logo from "@/assets/logo.png";
 ---
 
 <div class="border-b border-accent w-full mb-4">
 	<nav class={cn(containerStyle, "h-16 flex items-center")}>
-		<img
+		<Image
 			alt="Yeecord"
-			src="https://yeecord.com/img/logo.png"
+			src={logo}
 			width="128"
 			height="128"
 			class="w-8 rounded-full mr-2"
