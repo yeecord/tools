@@ -5,8 +5,9 @@
     "jsxImportSource": "react",
     "baseUrl": "src",
     "paths": {
-      "@/*": ["./*"]
-    },
-    "types": ["@astrojs/image/client"]
+      "@/*": [
+        "./*"
+      ]
+    }
   }
 }

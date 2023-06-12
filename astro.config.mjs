@@ -1,8 +1,8 @@
 import { defineConfig, sharpImageService } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import compress from "astro-compress";
-import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,14 +13,19 @@ export default defineConfig({
 				applyBaseStyles: false,
 			},
 		}),
-		react(),
 		compress(),
 		sitemap(),
+		react(),
 	],
 	experimental: {
 		assets: true,
 	},
 	image: {
 		service: sharpImageService(),
+	},
+	vite: {
+		ssr: {
+			noExternal: ["@radix-ui/*"],
+		},
 	},
 });

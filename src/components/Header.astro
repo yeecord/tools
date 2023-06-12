@@ -1,18 +1,23 @@
 ---
 import { cn, containerStyle } from "../utils/cn";
 import { Image } from "astro:assets";
+import { HeaderMenu } from "./HeaderMenu";
 import logo from "@/assets/logo.png";
 ---
 
-<div class="border-b border-accent w-full mb-4">
+<div class="border-b border-accent w-full mb-8">
 	<nav class={cn(containerStyle, "h-16 flex items-center")}>
-		<Image
-			alt="Yeecord"
-			src={logo}
-			width="128"
-			height="128"
-			class="w-8 rounded-full mr-2"
-		/>
-		<span class="font-bold">Yeecord 小工具</span>
+		<a href="/" class="flex items-center">
+			<Image
+				alt="Yeecord"
+				src={logo}
+				width="128"
+				height="128"
+				class="w-8 rounded-full mr-2"
+			/>
+			<span class="font-bold">Yeecord 小工具</span>
+		</a>
+		<div class="flex-grow"></div>
+		<HeaderMenu />
 	</nav>
 </div>
