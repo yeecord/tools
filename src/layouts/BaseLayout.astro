@@ -10,12 +10,14 @@ interface Props {
 	title: string;
 	description?: string;
 	icon?: ImageMetadata;
+	class?: string;
 }
 
 const {
 	title,
 	description = "實用的數學小工具，包含進位計算機等簡便小工具，以及乾淨的操作介面",
 	icon,
+	class: className,
 } = Astro.props;
 
 const suffix = "Yeecord 小工具";
@@ -51,7 +53,7 @@ const url = `${Astro.site.origin}${Astro.url.pathname}`;
 	</head>
 	<body>
 		<Header />
-		<div class={cn(containerStyle, "mb-8 md:mb-4")}>
+		<div class={cn(containerStyle, "mb-8 md:mb-4", className)}>
 			<slot />
 		</div>
 	</body>
