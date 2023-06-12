@@ -39,7 +39,7 @@ for (const [fromId, from] of Object.entries(calculatorConfig)) {
 		{
 			calculators.map((config) => (
 				<a href={config.href}>
-					<div class="p-5 border rounded-md space-y-2">
+					<div class="p-5 border rounded-md space-y-2 hover:bg-gray-900 transition-colors">
 						<Calculator />
 						<Text>{config.title}</Text>
 						<div class="flex items-center gap-2">

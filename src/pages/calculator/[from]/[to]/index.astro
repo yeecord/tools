@@ -7,7 +7,6 @@ import { calculatorConfig } from "@/utils/calculator";
 import { ArrowRightLeft } from "lucide-react";
 import { type InferGetStaticPropsType } from "astro";
 import { Calculator } from "@/components/Calculator";
-import H2 from "@/components/ui/h2.astro";
 import Text from "@/components/ui/text.astro";
 import H3 from "../../../../components/ui/h3.astro";
 
@@ -51,11 +50,11 @@ const title = `${from.title}轉${to.title}`;
 const description = `在線上使用瀏覽器將${title}的計算機`;
 ---
 
-<BaseLayout title={title}>
-	<H2 class="flex items-center gap-2 mb-4">
+<BaseLayout title={title} description={description}>
+	<div class="flex items-center gap-2 mb-8">
 		<ArrowRightLeft />
-		進位計算機
-	</H2>
+		<span class="text-lg font-bold">進位計算機</span>
+	</div>
 	<H3>{title}</H3>
 	<Text>{description}</Text>
 	<Calculator from={from} to={to} client:idle />

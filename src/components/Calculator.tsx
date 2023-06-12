@@ -38,14 +38,14 @@ const Item: FC<
 	const id = useId();
 
 	return (
-		<div className="grid w-full items-center gap-1.5 p-5 border border-input rounded-md">
+		<div className="grid w-full items-center gap-2">
 			<Label htmlFor={id}>{title}</Label>
 			<Input
 				id={id}
 				placeholder="0"
 				value={value}
 				className={cn(
-					"font-medium text-base border-2 font-mono",
+					"font-medium text-base border font-mono max-w-xl",
 					!valid && "focus-visible:ring-0 border-red-700",
 				)}
 				onChange={(event) => set(event.target.value.trim())}
