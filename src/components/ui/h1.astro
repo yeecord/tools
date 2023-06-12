@@ -1,3 +1,12 @@
-<h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+---
+import { cn } from "../../utils/cn";
+---
+
+<h1
+	class={cn(
+		"scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl",
+		Astro.props.class,
+	)}
+>
 	<slot />
 </h1>
