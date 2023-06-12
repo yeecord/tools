@@ -4,28 +4,25 @@ import compress from "astro-compress";
 import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 
+import robotsTxt from "astro-robots-txt";
+
 // https://astro.build/config
 export default defineConfig({
-	site: "https://tools.yeecord.com",
-	integrations: [
-		tailwind({
-			config: {
-				applyBaseStyles: false,
-			},
-		}),
-		compress(),
-		sitemap(),
-		react(),
-	],
-	experimental: {
-		assets: true,
-	},
-	image: {
-		service: sharpImageService(),
-	},
-	vite: {
-		ssr: {
-			noExternal: ["@radix-ui/*"],
-		},
-	},
+  site: "https://tools.yeecord.com",
+  integrations: [tailwind({
+    config: {
+      applyBaseStyles: false
+    }
+  }), compress(), sitemap(), react(), robotsTxt()],
+  experimental: {
+    assets: true
+  },
+  image: {
+    service: sharpImageService()
+  },
+  vite: {
+    ssr: {
+      noExternal: ["@radix-ui/*"]
+    }
+  }
 });

@@ -8,10 +8,15 @@ import { cn } from "../utils/cn";
 
 interface Props {
 	title: string;
+	description?: string;
 	icon?: ImageMetadata;
 }
 
-const { title, icon } = Astro.props;
+const {
+	title,
+	description = "實用的數學小工具，包含進位計算機等簡便小工具，以及乾淨的操作介面",
+	icon,
+} = Astro.props;
 
 const suffix = "Yeecord 小工具";
 
@@ -22,12 +27,19 @@ const iconUrl = (
 		src: icon || logo,
 	})
 ).src;
+
+const url = `${Astro.site.origin}${Astro.url.pathname}`;
+
+console.log(Astro.url.toString(), Astro.site.toString());
 ---
 
 <html lang="zh-Hant-Tw" class="dark">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content={description} />
+		<link rel="canonical" href={url} />
+		<meta name="og:site_name" content="Yeecord 小工具" />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="icon" href={iconUrl} />
 		<title>{titleWithPrefix}</title>
