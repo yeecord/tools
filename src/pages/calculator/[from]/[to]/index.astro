@@ -1,0 +1,31 @@
+---
+import "@/styles/global.css";
+
+import { calculatorTypes } from "../../../../utils/calculator";
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+	const paths = [];
+
+	for (const from of calculatorTypes) {
+		for (const to of calculatorTypes) {
+			if (from === to) continue;
+
+			paths.push({
+				params: {
+					from: from,
+					to: to,
+				},
+			});
+		}
+	}
+
+	return paths;
+}
+
+const { from, to } = Astro.params;
+---
+
+<BaseLayout title={`${from} 轉 ${to} 進位`}>
+	<span>{from}</span>
+</BaseLayout>

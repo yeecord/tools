@@ -1,0 +1,24 @@
+---
+import Header from "../components/Header.astro";
+import { containerStyle } from "../utils/cn";
+
+const { title } = Astro.props;
+
+const suffix = "Yeecord 小工具";
+
+const titleWithPrefix = title ? `${title} | ${suffix}` : suffix;
+---
+
+<html lang="zh-Hant-Tw" class="dark">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>{titleWithPrefix}</title>
+	</head>
+	<body>
+		<Header />
+		<div class={containerStyle}>
+			<slot />
+		</div>
+	</body>
+</html>
