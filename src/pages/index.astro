@@ -4,6 +4,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import H1 from "@/components/ui/h1.astro";
 import H2 from "@/components/ui/h2.astro";
 import { calculatorConfig } from "../utils/calculator";
+import { ArrowRightLeft } from "lucide-react";
 import { Calculator, ArrowRight } from "lucide-react";
 import Text from "../components/ui/text.astro";
 import Muted from "../components/ui/muted.astro";
@@ -33,7 +34,7 @@ for (const [fromId, from] of Object.entries(calculatorConfig)) {
 
 <BaseLayout title="我只想要個快一點的小工具。">
 	<H1 class="mb-16">我只想要個快一點的小工具。</H1>
-	<H2 class="mb-8">進制轉換</H2>
+	<H2 class="mb-8 flex items-center gap-2"><ArrowRightLeft /> 進制轉換</H2>
 	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 		{
 			calculators.map((config) => (

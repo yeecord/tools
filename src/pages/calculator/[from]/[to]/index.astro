@@ -3,9 +3,13 @@ import "@/styles/global.css";
 
 import { calculatorTypes, type CalculatorConfig } from "@/utils/calculator";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { calculatorConfig } from "../../../../utils/calculator";
+import { calculatorConfig } from "@/utils/calculator";
+import { ArrowRightLeft } from "lucide-react";
 import { type InferGetStaticPropsType } from "astro";
-import H2 from "../../../../components/ui/h2.astro";
+import { Calculator } from "@/components/Calculator";
+import H2 from "@/components/ui/h2.astro";
+import Text from "@/components/ui/text.astro";
+import H3 from "../../../../components/ui/h3.astro";
 
 export function getStaticPaths() {
 	const paths: {
@@ -43,9 +47,16 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { from, to } = Astro.props as Props;
 
-const title = `${from.title}轉${to.title}進位`;
+const title = `${from.title}轉${to.title}`;
+const description = `在線上使用瀏覽器將${title}的計算機`;
 ---
 
 <BaseLayout title={title}>
-	<H2>{title}</H2>
+	<H2 class="flex items-center gap-2 mb-4">
+		<ArrowRightLeft />
+		進位計算機
+	</H2>
+	<H3>{title}</H3>
+	<Text>{description}</Text>
+	<Calculator from={from} to={to} client:idle />
 </BaseLayout>
