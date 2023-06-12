@@ -24,7 +24,7 @@ const items: Item[] = [
 
 export function HeaderMenu() {
 	return (
-		<NavigationMenu className="md:block hidden">
+		<NavigationMenu>
 			<NavigationMenuList>
 				{items.map(({ label, ...item }, index) => (
 					<NavigationMenuItem key={index}>
