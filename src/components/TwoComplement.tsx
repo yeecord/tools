@@ -7,29 +7,38 @@ export const TwoComplement = () => {
 	const sourceId = useId();
 
 	return (
-		<div className="space-y-4 mt-4">
-			<h4 className="text-xl font-semibold tracking-tight">從</h4>
-			<div className="grid w-full items-center gap-2">
-				<Label htmlFor={sourceId}>來源 (十進位整數)</Label>
-				<Input
-					id={sourceId}
-					className="font-medium text-base border font-mono max-w-xl"
-					placeholder="1"
-					onChange={(event) => {
-						try {
-							setSource(BigInt(event.target.value.trim()) || 0n);
-						} catch (e) {}
-					}}
-					value={source.toString()}
+		<div className="space-y-8 mt-8">
+			<div className="space-y-4">
+				<h4 className="text-xl font-semibold tracking-tight">從</h4>
+				<div className="grid w-full items-center gap-2">
+					<Label htmlFor={sourceId}>來源 (十進位整數)</Label>
+					<Input
+						id={sourceId}
+						className="font-medium text-base border font-mono max-w-xl"
+						placeholder="1"
+						onChange={(event) => {
+							try {
+								setSource(
+									BigInt(event.target.value.trim()) || 0n,
+								);
+							} catch (e) {}
+						}}
+						value={source.toString()}
+					/>
+				</div>
+			</div>
+			<div className="space-y-4">
+				<h4 className="text-xl font-semibold tracking-tight">轉換為</h4>
+				<Output value={source} label="二進位" />
+				<Output
+					value={(~source + 1n) & 0xffn}
+					label="二補數 (八進位)"
+				/>
+				<Output
+					value={(~source + 1n) & 0xffffn}
+					label="二補數 (十六進位)"
 				/>
 			</div>
-			<h4 className="text-xl font-semibold tracking-tight">轉換為</h4>
-			<Output value={source} label="二進位" />
-			<Output value={(~source + 1n) & 0xffn} label="二補數 (八進位)" />
-			<Output
-				value={(~source + 1n) & 0xffffn}
-				label="二補數 (十六進位)"
-			/>
 		</div>
 	);
 };

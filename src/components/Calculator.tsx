@@ -14,16 +14,25 @@ export const Calculator: FC<{
 		useCalculator(from, to);
 
 	return (
-		<div className="space-y-4 mt-4">
-			<h4 className="text-xl font-semibold tracking-tight">從</h4>
-			<Item
-				{...from}
-				set={setFromValue}
-				valid={fromValid}
-				value={fromValue}
-			/>
-			<h4 className="text-xl font-semibold tracking-tight">轉為</h4>
-			<Item {...to} set={setToValue} valid={toValid} value={toValue} />
+		<div className="space-y-8 mt-8">
+			<div className="space-y-4">
+				<h4 className="text-xl font-semibold tracking-tight">從</h4>
+				<Item
+					{...from}
+					set={setFromValue}
+					valid={fromValid}
+					value={fromValue}
+				/>
+			</div>
+			<div className="space-y-4">
+				<h4 className="text-xl font-semibold tracking-tight">轉為</h4>
+				<Item
+					{...to}
+					set={setToValue}
+					valid={toValid}
+					value={toValue}
+				/>
+			</div>
 		</div>
 	);
 };
