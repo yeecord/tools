@@ -1,0 +1,25 @@
+---
+import "@/styles/global.css";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import H2 from "@/components/ui/h2.astro";
+import { TwoComplement } from "@/components/TwoComplement";
+import { Button } from "@/components/ui/button";
+import { RotateCcw } from "lucide-react";
+import Text from "@/components/ui/text.astro";
+---
+
+<BaseLayout
+	title="二的補數計算機"
+	description="簡易的八位元、十六位元、等二補數計算機"
+>
+	<H2>二的補數計算機</H2>
+	<Text>簡易的八位元、十六位元二補數計算機</Text>
+	<TwoComplement client:idle />
+	<a class="mt-4 block" href="/calculator/two-complement/reverse">
+		<Button>
+			<span class="mr-2">
+				<RotateCcw size="16" />
+			</span> 反轉
+		</Button>
+	</a>
+</BaseLayout>

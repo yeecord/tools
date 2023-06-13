@@ -1,0 +1,25 @@
+---
+import "@/styles/global.css";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { TwoComplementReverse } from "@/components/TwoComplementReverse";
+import Text from "@/components/ui/text.astro";
+import H2 from "../../../components/ui/h2.astro";
+import { Button } from "../../../components/ui/button";
+import { Sparkles } from "lucide-react";
+---
+
+<BaseLayout
+	title="二的補數逆向計算機"
+	description="簡易的八位元、十六位元等二補數逆向計算機"
+>
+	<H2>二的補數逆向計算機</H2>
+	<Text>簡易的八位元、十六位元等二補數逆向計算機</Text>
+	<TwoComplementReverse client:idle />
+	<a class="mt-4 block" href="/calculator/two-complement">
+		<Button>
+			<span class="mr-2">
+				<Sparkles size="16" />
+			</span> 生成
+		</Button>
+	</a>
+</BaseLayout>

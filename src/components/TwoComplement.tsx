@@ -1,21 +1,28 @@
-import { FC, useId, useState } from "react";
+import { useId, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { Output } from "@/components/Output";
+import { getBitMask } from "@/utils/bits";
 
 export const TwoComplement = () => {
 	const [source, setSource] = useState(0n);
+	const [bits, setBits] = useState(8);
 	const sourceId = useId();
+	const bitsId = useId();
+
+	const overflow = source > getBitMask(bits - 1);
 
 	return (
 		<div className="space-y-8 mt-8">
 			<div className="space-y-4">
 				<h4 className="text-xl font-semibold tracking-tight">從</h4>
-				<div className="grid w-full items-center gap-2">
+				<div className="grid gap-2">
 					<Label htmlFor={sourceId}>來源 (十進位整數)</Label>
 					<Input
 						id={sourceId}
 						className="font-medium text-base border font-mono max-w-xl"
 						placeholder="1"
+						defaultValue={source.toString()}
 						onChange={(event) => {
 							try {
 								setSource(
@@ -23,7 +30,21 @@ export const TwoComplement = () => {
 								);
 							} catch (e) {}
 						}}
-						value={source.toString()}
+					/>
+				</div>
+				<div className="grid gap-2">
+					<Label htmlFor={bitsId}>位元數</Label>
+					<Input
+						type="number"
+						id={bitsId}
+						min={1}
+						className="font-mono max-w-xl "
+						defaultValue={bits}
+						onChange={(event) => {
+							const number = parseInt(event.target.value);
+
+							if (number) return setBits(number);
+						}}
 					/>
 				</div>
 			</div>
@@ -31,34 +52,20 @@ export const TwoComplement = () => {
 				<h4 className="text-xl font-semibold tracking-tight">轉換為</h4>
 				<Output value={source} label="二進位" />
 				<Output
-					value={(~source + 1n) & 0xffn}
-					label="二補數 (八進位)"
-				/>
-				<Output
-					value={(~source + 1n) & 0xffffn}
-					label="二補數 (十六進位)"
+					value={overflow ? "溢位" : calculate(source, bits)}
+					label={`二補數 (${bits} 進位)`}
 				/>
 			</div>
 		</div>
 	);
 };
 
-const Output: FC<{
-	value: bigint | string;
-	label: string;
-}> = ({ value, label }) => {
-	const id = useId();
+function calculate(source: bigint, bits: number) {
+	const sign = Number(source < 0);
 
-	return (
-		<div className="grid w-full items-center gap-2">
-			<Label htmlFor={id}>{label}</Label>
-			<Input
-				className="font-medium text-base border font-mono max-w-xl"
-				id={id}
-				readOnly
-				value={typeof value === "bigint" ? value.toString(2) : value}
-				onClick={(event) => event.currentTarget.select()}
-			/>
-		</div>
-	);
-};
+	const number = ((~source + 1n) & getBitMask(bits - 1))
+		.toString(2)
+		.padStart(bits - 1, "0");
+
+	return `${sign}${number}`;
+}

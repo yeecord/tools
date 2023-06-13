@@ -1,4 +1,4 @@
-function parseLargeNumber(string: string, radix: number) {
+export function parseLargeNumber(string: string, radix: number) {
 	return [...string.toString()].reduce(
 		(r, v) => r * BigInt(radix) + BigInt(parseInt(v, radix)),
 		0n,
