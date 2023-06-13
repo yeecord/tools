@@ -4,8 +4,9 @@ import compress from "astro-compress";
 import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import AstroPWA from "@vite-pwa/astro";
-
 import robotsTxt from "astro-robots-txt";
+
+import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,6 +22,7 @@ export default defineConfig({
 		react(),
 		robotsTxt(),
 		AstroPWA(),
+		mdx(),
 	],
 	experimental: {
 		assets: true,

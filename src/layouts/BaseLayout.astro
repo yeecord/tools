@@ -33,6 +33,15 @@ const iconUrl = (
 ).src;
 
 const url = `${Astro.site.origin}${Astro.url.pathname}`;
+
+const schema = {
+	"@context": "https://schema.org",
+	"@type": "Tool",
+	name: titleWithPrefix,
+	description,
+	image: iconUrl,
+	url,
+};
 ---
 
 <html lang="zh-Hant-Tw" class="dark">
@@ -49,6 +58,8 @@ const url = `${Astro.site.origin}${Astro.url.pathname}`;
 		<meta name="og:url" content={iconUrl} />
 		<meta name="twitter:creator" content="@yeecord" />
 		<meta name="twitter:site" content="@yeecord" />
+
+		<script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="icon" href={iconUrl} />
