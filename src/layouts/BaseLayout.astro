@@ -1,6 +1,6 @@
 ---
 import Header from "@/components/Header.astro";
-import logo from "@/assets/logo.png";
+import { logo } from "@/utils/logo";
 import { containerStyle } from "@/utils/cn";
 import { getImage } from "astro:assets";
 import { ImageMetadata } from "astro";
@@ -25,9 +25,11 @@ const suffix = "Yeecord 小工具";
 const titleWithPrefix = title ? `${title} | ${suffix}` : suffix;
 
 const iconUrl = (
-	await getImage({
-		src: icon || logo,
-	})
+	icon
+		? await getImage({
+				src: icon,
+		  })
+		: logo
 ).src;
 
 const url = `${Astro.site.origin}${Astro.url.pathname}`;

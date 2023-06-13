@@ -1,8 +1,7 @@
 ---
 import { cn, containerStyle } from "@/utils/cn";
-import { Image } from "astro:assets";
 import { HeaderMenu } from "./HeaderMenu";
-import logo from "@/assets/logo.png";
+import { logo } from "@/utils/logo";
 ---
 
 <div class="border-b border-accent w-full mb-8 sticky top-0">
@@ -10,9 +9,9 @@ import logo from "@/assets/logo.png";
 		class={cn(containerStyle, "h-16 flex items-center bg-background z-50")}
 	>
 		<a href="/" class="flex items-center">
-			<Image
+			<img
 				alt="Yeecord"
-				src={logo}
+				src={logo.src}
 				width="128"
 				height="128"
 				class="w-8 rounded-full mr-2"
