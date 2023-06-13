@@ -1,8 +1,6 @@
 import type { FC } from "react";
 import type { CalculatorConfig } from "@/utils/calculator";
 import { useCalculator } from "@/hooks/useCalculator";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { useId } from "react";
 import { cn } from "@/utils/cn";
 
@@ -48,8 +46,8 @@ const Item: FC<
 
 	return (
 		<div className="grid w-full items-center gap-2">
-			<Label htmlFor={id}>{title}</Label>
-			<Input
+			<label htmlFor={id}>{title}</label>
+			<input
 				id={id}
 				placeholder="0"
 				value={value}

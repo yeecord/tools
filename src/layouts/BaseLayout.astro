@@ -67,8 +67,8 @@ const schema = {
 	</head>
 	<body>
 		<Header />
-		<div class={cn(containerStyle, "mb-8 md:mb-4", className)}>
-			<slot />
-		</div>
 	</body>
+	<div class={cn(containerStyle, "mb-8 md:mb-4", className)}>
+		<slot />
+	</div>
 </html>

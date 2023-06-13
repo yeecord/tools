@@ -1,18 +1,10 @@
 ---
 import "@/styles/global.css";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import H2 from "@/components/ui/h2.astro";
 import { TwoComplement } from "@/components/TwoComplement";
 import { Button } from "@/components/ui/button";
 import { RotateCcw } from "lucide-react";
-import Text from "@/components/ui/text.astro";
 import Article from "@/articles/two-complement.mdx";
-import H1 from "../../../components/ui/h1.astro";
-import H2 from "../../../components/ui/h2.astro";
-import H3 from "../../../components/ui/h3.astro";
-import H4 from "../../../components/ui/h4.astro";
-import Text from "../../../components/ui/text.astro";
-import ul from "../../../components/ui/ul.astro";
 import { Separator } from "../../../components/ui/separator";
 ---
 
@@ -20,8 +12,8 @@ import { Separator } from "../../../components/ui/separator";
 	title="二的補數計算機"
 	description="簡易的八位元、十六位元、等二補數計算機"
 >
-	<H2>二的補數計算機</H2>
-	<Text>簡易的八位元、十六位元二補數計算機</Text>
+	<h2>二的補數計算機</h2>
+	<p>簡易的八位元、十六位元二補數計算機</p>
 	<TwoComplement client:idle />
 	<a class="my-4 inline-block" href="/calculator/two-complement/reverse">
 		<Button>
@@ -32,15 +24,6 @@ import { Separator } from "../../../components/ui/separator";
 	</a>
 	<Separator className="my-8 block bg-border/50" />
 	<article class="my-4">
-		<Article
-			components={{
-				h1: H1,
-				h2: H2,
-				h3: H3,
-				h4: H4,
-				p: Text,
-				ol: ul,
-			}}
-		/>
+		<Article />
 	</article>
 </BaseLayout>

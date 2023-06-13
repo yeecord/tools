@@ -1,6 +1,5 @@
 ---
 import { ArrowRight, Calculator } from "lucide-react";
-import Text from "@/components/ui/text.astro";
 import Muted from "@/components/ui/muted.astro";
 
 const { href, title, from, to } = Astro.props.config;
@@ -8,10 +7,10 @@ const { href, title, from, to } = Astro.props.config;
 
 <a
 	href={href}
-	class="block p-5 border border-border/40 rounded-md space-y-2 hover:bg-border/10 transition-colors"
+	class="block p-5 border border-border/40 rounded-md space-y-2 hover:bg-border/10 transition-all active:scale-[0.975]"
 >
 	<Calculator />
-	<Text>{title}</Text>
+	<p>{title}</p>
 	<div class="flex items-center gap-2">
 		<Muted class="flex">{from}</Muted>
 		<Muted class="flex">

@@ -1,6 +1,4 @@
 import { useId, useMemo, useState } from "react";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 import { parseLargeNumber } from "@/utils/parse";
 import { Output } from "@/components/Output";
 import { getBitMask } from "@/utils/bits";
@@ -17,8 +15,8 @@ export const TwoComplementReverse = () => {
 			<div className="space-y-4">
 				<h4 className="text-xl font-semibold tracking-tight">從</h4>
 				<div className="grid gap-2">
-					<Label htmlFor={sourceId}>來源 (二進位)</Label>
-					<Input
+					<label htmlFor={sourceId}>來源 (二進位)</label>
+					<input
 						id={sourceId}
 						className={cn(
 							"font-medium text-base font-mono max-w-xl",

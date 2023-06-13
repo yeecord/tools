@@ -7,8 +7,6 @@ import { calculatorConfig } from "@/utils/calculator";
 import { ArrowRightLeft } from "lucide-react";
 import { type InferGetStaticPropsType } from "astro";
 import { Calculator } from "@/components/Calculator";
-import Text from "@/components/ui/text.astro";
-import H2 from "@/components/ui/h2.astro";
 
 export function getStaticPaths() {
 	const paths: {
@@ -55,7 +53,7 @@ const description = `在線上使用瀏覽器將${title}的計算機`;
 		<ArrowRightLeft />
 		<span class="text-lg font-bold">進位計算機</span>
 	</div>
-	<H2>{title}</H2>
-	<Text>{description}</Text>
+	<h2>{title}</h2>
+	<p>{description}</p>
 	<Calculator from={from} to={to} client:idle />
 </BaseLayout>

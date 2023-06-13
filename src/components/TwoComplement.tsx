@@ -1,6 +1,4 @@
 import { useId, useState } from "react";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 import { Output } from "@/components/Output";
 import { getBitMask } from "@/utils/bits";
 
@@ -17,8 +15,8 @@ export const TwoComplement = () => {
 			<div className="space-y-4">
 				<h4 className="text-xl font-semibold tracking-tight">從</h4>
 				<div className="grid gap-2">
-					<Label htmlFor={sourceId}>來源 (十進位整數)</Label>
-					<Input
+					<label htmlFor={sourceId}>來源 (十進位整數)</label>
+					<input
 						id={sourceId}
 						className="font-medium text-base border font-mono max-w-xl"
 						placeholder="1"
@@ -33,8 +31,8 @@ export const TwoComplement = () => {
 					/>
 				</div>
 				<div className="grid gap-2">
-					<Label htmlFor={bitsId}>位元數</Label>
-					<Input
+					<label htmlFor={bitsId}>位元數</label>
+					<input
 						type="number"
 						id={bitsId}
 						min={1}

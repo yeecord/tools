@@ -7,6 +7,7 @@ import {
 	navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Github } from "lucide-react";
+import { cn } from "@/utils/cn";
 
 interface Item {
 	children: ReactNode;
@@ -29,7 +30,10 @@ export function HeaderMenu() {
 				{items.map(({ label, ...item }, index) => (
 					<NavigationMenuItem key={index}>
 						<NavigationMenuLink
-							className={navigationMenuTriggerStyle()}
+							className={cn(
+								navigationMenuTriggerStyle(),
+								"bg-transparent",
+							)}
 							aria-label={label}
 							{...item}
 						/>

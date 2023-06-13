@@ -1,12 +1,9 @@
 ---
 import "@/styles/global.css";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import H1 from "@/components/ui/h1.astro";
-import H2 from "@/components/ui/h2.astro";
 import { calculatorConfig } from "@/utils/calculator";
 import { ArrowRightLeft, Sparkles } from "lucide-react";
 import HomeItem from "@/components/HomeItem.astro";
-import Text from "@/components/ui/text.astro";
 
 interface Item {
 	title: string;
@@ -33,12 +30,10 @@ for (const [fromId, from] of Object.entries(calculatorConfig)) {
 }
 ---
 
-<BaseLayout title="我只想要個快一點的小工具網站。" class="space-y-8">
-	<H1 class="mb-8">我只想要個快一點的小工具網站。</H1>
-	<Text>
-		實用的數學小工具，包含進位計算機等簡便小工具，以及乾淨的操作介面
-	</Text>
-	<H2 class="flex items-center gap-2"><Sparkles />為你推薦</H2>
+<BaseLayout title="我只想要個快一點的小工具網站" class="space-y-8">
+	<h1 class="mb-8">我只想要個快一點的小工具網站</h1>
+	<p>實用的數學小工具，包含進位計算機等簡便小工具，以及乾淨的操作介面</p>
+	<h2 class="flex items-center gap-2"><Sparkles />為你推薦</h2>
 	<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 		<HomeItem
 			config={{
@@ -57,7 +52,7 @@ for (const [fromId, from] of Object.entries(calculatorConfig)) {
 			}}
 		/>
 	</div>
-	<H2 class="flex items-center gap-2"><ArrowRightLeft />進制轉換</H2>
+	<h2 class="flex items-center gap-2"><ArrowRightLeft />進制轉換</h2>
 	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 		{calculators.map((item) => <HomeItem config={item} />)}
 	</div>
