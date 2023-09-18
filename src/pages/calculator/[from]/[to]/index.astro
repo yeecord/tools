@@ -2,17 +2,19 @@
 import "@/styles/global.css";
 
 import { calculatorTypes, type CalculatorConfig } from "@/utils/calculator";
-import BaseLayout from "../../../../layouts/base-layout.astro";
+import BaseLayout from "@/layouts/base-layout.astro";
 import { calculatorConfig } from "@/utils/calculator";
 import { ArrowRightLeft } from "lucide-react";
 import { type InferGetStaticPropsType } from "astro";
-import { Calculator } from "../../../../components/calculator";
+import { Calculator } from "@/components/calculator";
 
 export function getStaticPaths() {
   const paths: {
     props: {
       from: CalculatorConfig;
       to: CalculatorConfig;
+      fromId: string;
+      toId: string;
     };
     params: {
       from: string;
@@ -26,6 +28,8 @@ export function getStaticPaths() {
 
       paths.push({
         props: {
+          fromId: from,
+          toId: to,
           from: calculatorConfig[from],
           to: calculatorConfig[to],
         },
@@ -42,7 +46,7 @@ export function getStaticPaths() {
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const { from, to } = Astro.props as Props;
+const { from, to, fromId, toId } = Astro.props as Props;
 
 const title = `${from.title}轉${to.title}`;
 const description = `在線上使用瀏覽器將${title}的計算機`;
@@ -55,5 +59,5 @@ const description = `在線上使用瀏覽器將${title}的計算機`;
   </div>
   <h2>{title}</h2>
   <p>{description}</p>
-  <Calculator from={from} to={to} client:idle />
+  <Calculator from={from} to={to} fromId={fromId} toId={toId} client:idle />
 </BaseLayout>
