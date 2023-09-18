@@ -1,0 +1,59 @@
+---
+import "@/styles/global.css";
+import BaseLayout from "../layouts/base-layout.astro";
+import { calculatorConfig } from "@/utils/calculator";
+import { ArrowRightLeft, Sparkles } from "lucide-react";
+import HomeItem from "../components/home-item.astro";
+
+interface Item {
+  title: string;
+  href: string;
+  from: string;
+  to: string;
+}
+
+const calculators: Item[] = [];
+
+const example = 69;
+
+for (const [fromId, from] of Object.entries(calculatorConfig)) {
+  for (const [toId, to] of Object.entries(calculatorConfig)) {
+    if (fromId === toId) continue;
+
+    calculators.push({
+      title: `${from.title}轉${to.title}進位`,
+      href: `/calculator/${fromId}/${toId}`,
+      from: example.toString(from.base),
+      to: example.toString(to.base),
+    });
+  }
+}
+---
+
+<BaseLayout title="我只想要個快一點的小工具網站" class="space-y-8">
+  <h1 class="mb-8">我只想要個快一點的小工具網站</h1>
+  <p>實用的數學小工具，包含進位計算機等簡便小工具，以及乾淨的操作介面</p>
+  <h2 class="flex items-center gap-2"><Sparkles />為你推薦</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <HomeItem
+      config={{
+        title: "二的補數計算機",
+        href: "/calculator/two-complement",
+        from: "69",
+        to: "00111011",
+      }}
+    />
+    <HomeItem
+      config={{
+        title: "二的補數逆向計算機",
+        href: "/calculator/two-complement/reverse",
+        from: "00111011",
+        to: "69",
+      }}
+    />
+  </div>
+  <h2 class="flex items-center gap-2"><ArrowRightLeft />進制轉換</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    {calculators.map((item) => <HomeItem config={item} />)}
+  </div>
+</BaseLayout>

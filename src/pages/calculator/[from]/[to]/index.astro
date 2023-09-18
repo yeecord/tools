@@ -1,0 +1,69 @@
+---
+import "@/styles/global.css";
+
+import { calculatorTypes, type CalculatorConfig } from "@/utils/calculator";
+import BaseLayout from "@/layouts/base-layout.astro";
+import { calculatorConfig } from "@/utils/calculator";
+import { ArrowRightLeft } from "lucide-react";
+import { type InferGetStaticPropsType } from "astro";
+import { Calculator } from "@/components/calculator";
+import { Separator } from "@/components/ui/separator";
+import Article from "@/articles/calculator.mdx";
+
+export function getStaticPaths() {
+  const paths: {
+    props: {
+      from: CalculatorConfig;
+      to: CalculatorConfig;
+      fromId: string;
+      toId: string;
+    };
+    params: {
+      from: string;
+      to: string;
+    };
+  }[] = [];
+
+  for (const from of calculatorTypes) {
+    for (const to of calculatorTypes) {
+      if (from === to) continue;
+
+      paths.push({
+        props: {
+          fromId: from,
+          toId: to,
+          from: calculatorConfig[from],
+          to: calculatorConfig[to],
+        },
+        params: {
+          from,
+          to,
+        },
+      });
+    }
+  }
+
+  return paths;
+}
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { from, to, fromId, toId } = Astro.props as Props;
+
+const title = `${from.title}轉${to.title}`;
+const description = `在線上使用瀏覽器將${title}的計算機`;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="flex items-center gap-2 mb-8">
+    <ArrowRightLeft />
+    <span class="text-lg font-bold">進位計算機</span>
+  </div>
+  <h2>{title}</h2>
+  <p>{description}</p>
+  <Calculator from={from} to={to} fromId={fromId} toId={toId} client:idle />
+  <Separator className="my-8 block bg-border/50" />
+  <article class="my-4">
+    <Article />
+  </article>
+</BaseLayout>
