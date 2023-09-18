@@ -97,6 +97,9 @@ devDependencies:
   prettier-plugin-astro:
     specifier: ^0.12.0
     version: 0.12.0
+  workbox-window:
+    specifier: ^7.0.0
+    version: 7.0.0
 
 packages:
 
