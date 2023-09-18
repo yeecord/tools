@@ -18,7 +18,9 @@ export default defineConfig({
     compress(),
     sitemap(),
     react(),
-    robotsTxt(),
+    robotsTxt({
+      sitemapBaseFileName: "sitemap-index.xml"
+    }),
     AstroPWA(),
     mdx(),
   ],
