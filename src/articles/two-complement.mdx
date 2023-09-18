@@ -31,24 +31,24 @@
 ```javascript
 // 計算數字的二的補數
 function calculateTwosComplement(number) {
-	// 將數字轉換為二進制字串
-	const binary = number.toString(2);
+  // 將數字轉換為二進制字串
+  const binary = number.toString(2);
 
-	// 計算補數
-	let complement = '';
-	for (let i = 0; i < binary.length; i++) {
-		complement += binary[i] === '0' ? '1' : '0';
-	}
+  // 計算補數
+  let complement = "";
+  for (let i = 0; i < binary.length; i++) {
+    complement += binary[i] === "0" ? "1" : "0";
+  }
 
-	// 將補數轉換為數字並加上 1 得到二的補數
-	return parseInt(complement, 2) + 1;
+  // 將補數轉換為數字並加上 1 得到二的補數
+  return parseInt(complement, 2) + 1;
 }
 
 // 使用範例
 const number = -5;
 const twosComplement = calculateTwosComplement(number);
 
-console.log('數字', number, '的二的補數是', twosComplement);
+console.log("數字", number, "的二的補數是", twosComplement);
 ```
 
 使用上述範例程式，我們可以輸入一個數字並計算其二的補數。
@@ -59,7 +59,7 @@ console.log('數字', number, '的二的補數是', twosComplement);
 
 ## 如何避免計算二的補數時的常見錯誤
 
-在計算二的補數時，常見的錯誤包括忽略補數加上1這一步驟，或者在計算過程中出現位元溢出的情況。為了避免這些錯誤，我們應該仔細理解計算過程並進行仔細的數學計算。此外，使用程式語言時，也應該確保程式的正確性和完整性。
+在計算二的補數時，常見的錯誤包括忽略補數加上 1 這一步驟，或者在計算過程中出現位元溢出的情況。為了避免這些錯誤，我們應該仔細理解計算過程並進行仔細的數學計算。此外，使用程式語言時，也應該確保程式的正確性和完整性。
 
 ## 結論
 

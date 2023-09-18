@@ -1,23 +1,22 @@
 ---
 import Header from "@/components/Header.astro";
 import { logo } from "@/utils/logo";
-import { containerStyle } from "@/utils/cn";
 import { getImage } from "astro:assets";
 import { ImageMetadata } from "astro";
 import { cn } from "@/utils/cn";
 
 interface Props {
-	title: string;
-	description?: string;
-	icon?: ImageMetadata;
-	class?: string;
+  title: string;
+  description?: string;
+  icon?: ImageMetadata;
+  class?: string;
 }
 
 const {
-	title,
-	description = "實用的數學小工具，包含進位計算機等簡便小工具，以及乾淨的操作介面",
-	icon,
-	class: className,
+  title,
+  description = "實用的數學小工具，包含進位計算機等簡便小工具，以及乾淨的操作介面",
+  icon,
+  class: className,
 } = Astro.props;
 
 const suffix = "Yeecord 小工具";
@@ -25,50 +24,50 @@ const suffix = "Yeecord 小工具";
 const titleWithPrefix = title ? `${title} | ${suffix}` : suffix;
 
 const iconUrl = (
-	icon
-		? await getImage({
-				src: icon,
-		  })
-		: logo
+  icon
+    ? await getImage({
+        src: icon,
+      })
+    : logo
 ).src;
 
 const url = `${Astro.site.origin}${Astro.url.pathname}`;
 
 const schema = {
-	"@context": "https://schema.org",
-	"@type": "Tool",
-	name: titleWithPrefix,
-	description,
-	image: iconUrl,
-	url,
+  "@context": "https://schema.org",
+  "@type": "Tool",
+  name: titleWithPrefix,
+  description,
+  image: iconUrl,
+  url,
 };
 ---
 
-<html lang="zh-Hant-Tw" class="dark">
-	<head>
-		<meta charset="utf-8" />
-		<title>{titleWithPrefix}</title>
-		<meta name="viewport" content="width=device-width" />
-		<meta name="description" content={description} />
+<html lang="zh-Hant-TW" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <title>{titleWithPrefix}</title>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
 
-		<meta name="og:title" content={title} />
-		<meta name="og:description" content={description} />
-		<meta name="og:site_name" content="Yeecord 小工具" />
-		<meta name="og:image" content={iconUrl} />
-		<meta name="og:url" content={iconUrl} />
-		<meta name="twitter:creator" content="@yeecord" />
-		<meta name="twitter:site" content="@yeecord" />
+    <meta name="og:title" content={title} />
+    <meta name="og:description" content={description} />
+    <meta name="og:site_name" content="Yeecord 小工具" />
+    <meta name="og:image" content={iconUrl} />
+    <meta name="og:url" content={iconUrl} />
+    <meta name="twitter:creator" content="@yeecord" />
+    <meta name="twitter:site" content="@yeecord" />
 
-		<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
-		<link rel="sitemap" href="/sitemap-index.xml" />
-		<link rel="icon" href={iconUrl} />
-		<link rel="canonical" href={url} />
-	</head>
-	<body>
-		<Header />
-	</body>
-	<div class={cn(containerStyle, "mb-8 md:mb-4", className)}>
-		<slot />
-	</div>
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" href={iconUrl} />
+    <link rel="canonical" href={url} />
+  </head>
+  <body>
+    <Header />
+  </body>
+  <div class={cn("mb-8 md:mb-4 container", className)}>
+    <slot />
+  </div>
 </html>
