@@ -1,5 +1,5 @@
 import { useId, useState } from "react";
-import { Output } from "@/components/Output";
+import { Output } from "@/components/output.tsx";
 import { getBitMask } from "@/utils/bits";
 
 export const TwoComplement = () => {

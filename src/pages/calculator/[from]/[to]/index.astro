@@ -2,11 +2,11 @@
 import "@/styles/global.css";
 
 import { calculatorTypes, type CalculatorConfig } from "@/utils/calculator";
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import BaseLayout from "../../../../layouts/base-layout.astro";
 import { calculatorConfig } from "@/utils/calculator";
 import { ArrowRightLeft } from "lucide-react";
 import { type InferGetStaticPropsType } from "astro";
-import { Calculator } from "@/components/Calculator";
+import { Calculator } from "../../../../components/calculator";
 
 export function getStaticPaths() {
   const paths: {

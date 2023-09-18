@@ -1,6 +1,6 @@
 import { useId, useMemo, useState } from "react";
 import { parseLargeNumber } from "@/utils/parse";
-import { Output } from "@/components/Output";
+import { Output } from "@/components/output.tsx";
 import { getBitMask } from "@/utils/bits";
 import { cn } from "@/utils/cn";
 
@@ -20,7 +20,7 @@ export const TwoComplementReverse = () => {
             id={sourceId}
             className={cn(
               "font-medium text-base font-mono max-w-xl",
-              !isValid && "border-red-700 focus-visible:ring-0"
+              !isValid && "border-red-700 focus-visible:ring-0",
             )}
             placeholder="00111011"
             defaultValue={source}
