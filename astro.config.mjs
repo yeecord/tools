@@ -25,7 +25,6 @@ export default defineConfig({
       sitemapBaseFileName: "sitemap-index",
     }),
     AstroPWA({
-      registerType: "autoUpdate",
       workbox: {
         runtimeCaching: [
           {
