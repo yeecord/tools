@@ -11,7 +11,7 @@ import type { SelectProps } from "@radix-ui/react-select";
 
 export const CalculatorSelect: FC<SelectProps> = (props) => (
   <Select {...props}>
-    <SelectTrigger className="md:w-40">
+    <SelectTrigger className="md:w-40" aria-label="選擇進制位">
       <SelectValue />
     </SelectTrigger>
     <SelectContent>

@@ -19,7 +19,7 @@ export const Calculator: FC<{
     <div className="space-y-8 mt-8">
       <div className="space-y-4">
         <div className="flex gap-2 items-center">
-          <h4 className="text-xl font-semibold tracking-tight">從</h4>
+          <p className="text-xl font-semibold tracking-tight">從</p>
           <CalculatorSelect
             defaultValue={fromId}
             onValueChange={(value) =>
@@ -36,9 +36,9 @@ export const Calculator: FC<{
       </div>
       <div className="space-y-4">
         <div className="flex gap-2 items-center">
-          <h4 className="text-xl font-semibold tracking-tight whitespace-nowrap">
+          <p className="text-xl font-semibold tracking-tight whitespace-nowrap">
             轉為
-          </h4>
+          </p>
           <CalculatorSelect
             defaultValue={toId}
             onValueChange={(value) =>
