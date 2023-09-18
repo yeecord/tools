@@ -7,6 +7,8 @@ import { calculatorConfig } from "@/utils/calculator";
 import { ArrowRightLeft } from "lucide-react";
 import { type InferGetStaticPropsType } from "astro";
 import { Calculator } from "@/components/calculator";
+import { Separator } from "@/components/ui/separator";
+import Article from "@/articles/calculator.mdx";
 
 export function getStaticPaths() {
   const paths: {
@@ -60,4 +62,6 @@ const description = `在線上使用瀏覽器將${title}的計算機`;
   <h2>{title}</h2>
   <p>{description}</p>
   <Calculator from={from} to={to} fromId={fromId} toId={toId} client:idle />
+  <Separator className="my-8 block bg-border/50" />
+  <Article />
 </BaseLayout>
