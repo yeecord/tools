@@ -30,7 +30,7 @@ export default defineConfig({
         runtimeCaching: [
           {
             handler: "CacheFirst",
-            urlPattern: /.+\.webp$/,
+            urlPattern: ({ request }) => request.destination === "image",
           },
         ],
       },
