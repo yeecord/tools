@@ -24,7 +24,9 @@ export default defineConfig({
     robotsTxt({
       sitemapBaseFileName: "sitemap-index"
     }),
-    AstroPWA(),
+    AstroPWA({
+      registerType: "autoUpdate"
+    }),
     mdx(),
   ],
   image: {
