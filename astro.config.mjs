@@ -27,7 +27,12 @@ export default defineConfig({
     AstroPWA({
       registerType: "autoUpdate",
       workbox: {
-        globPatterns: ["**/*.{js,css,html,webp}"],
+        runtimeCaching: [
+          {
+            handler: "CacheFirst",
+            urlPattern: /.+\.webp$/,
+          },
+        ],
       },
     }),
     mdx(),
