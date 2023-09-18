@@ -22,7 +22,7 @@ export default defineConfig({
     sitemap(),
     react(),
     robotsTxt({
-      sitemapBaseFileName: "sitemap-index.xml"
+      sitemapBaseFileName: "sitemap-index"
     }),
     AstroPWA(),
     mdx(),
