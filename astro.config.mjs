@@ -12,7 +12,7 @@ export default defineConfig({
   site: "https://tools.yeecord.com",
   trailingSlash: "never",
   build: {
-    format: "file"
+    format: "file",
   },
   integrations: [
     tailwind({
@@ -22,10 +22,13 @@ export default defineConfig({
     sitemap(),
     react(),
     robotsTxt({
-      sitemapBaseFileName: "sitemap-index"
+      sitemapBaseFileName: "sitemap-index",
     }),
     AstroPWA({
-      registerType: "autoUpdate"
+      registerType: "autoUpdate",
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,webp}"],
+      },
     }),
     mdx(),
   ],
