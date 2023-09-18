@@ -11,6 +11,9 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
   site: "https://tools.yeecord.com",
   trailingSlash: "never",
+  build: {
+    format: "file"
+  },
   integrations: [
     tailwind({
       applyBaseStyles: false,
