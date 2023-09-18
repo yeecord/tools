@@ -1,4 +1,4 @@
-import { FC, useId } from "react";
+import { type FC, useId } from "react";
 
 export const Output: FC<{
   value: bigint | string;

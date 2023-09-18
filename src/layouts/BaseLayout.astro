@@ -1,8 +1,8 @@
 ---
 import Header from "@/components/Header.astro";
-import { logo } from "@/utils/logo";
 import { getImage } from "astro:assets";
 import { ImageMetadata } from "astro";
+import logo from "@/assets/logo.png";
 import { cn } from "@/utils/cn";
 
 interface Props {
@@ -23,22 +23,20 @@ const suffix = "Yeecord 小工具";
 
 const titleWithPrefix = title ? `${title} | ${suffix}` : suffix;
 
-const iconUrl = (
-  icon
-    ? await getImage({
-        src: icon,
-      })
-    : logo
-).src;
-
 const url = `${Astro.site.origin}${Astro.url.pathname}`;
+
+const logoUrl = (
+  await getImage({
+    src: logo,
+  })
+).src;
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "Tool",
   name: titleWithPrefix,
   description,
-  image: iconUrl,
+  image: logoUrl,
   url,
 };
 ---
@@ -53,15 +51,15 @@ const schema = {
     <meta name="og:title" content={title} />
     <meta name="og:description" content={description} />
     <meta name="og:site_name" content="Yeecord 小工具" />
-    <meta name="og:image" content={iconUrl} />
-    <meta name="og:url" content={iconUrl} />
+    <meta name="og:image" content={logoUrl} />
+    <meta name="og:url" content={logoUrl} />
     <meta name="twitter:creator" content="@yeecord" />
     <meta name="twitter:site" content="@yeecord" />
 
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="icon" href={iconUrl} />
+    <link rel="icon" href={logoUrl} />
     <link rel="canonical" href={url} />
   </head>
   <body>

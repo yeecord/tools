@@ -1,14 +1,15 @@
 ---
 import { HeaderMenu } from "./HeaderMenu";
-import { logo } from "@/utils/logo";
+import { Image } from "astro:assets";
+import logo from "@/assets/logo.png";
 ---
 
 <div class="w-full mb-8 sticky top-0 z-50">
   <nav class="h-16 flex items-center container">
     <a href="/" class="flex items-center">
-      <img
+      <Image
         alt="Yeecord"
-        src={logo.src}
+        src={logo}
         width="128"
         height="128"
         class="w-8 rounded-full mr-2"

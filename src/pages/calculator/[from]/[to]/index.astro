@@ -9,35 +9,35 @@ import { type InferGetStaticPropsType } from "astro";
 import { Calculator } from "@/components/Calculator";
 
 export function getStaticPaths() {
-	const paths: {
-		props: {
-			from: CalculatorConfig;
-			to: CalculatorConfig;
-		};
-		params: {
-			from: string;
-			to: string;
-		};
-	}[] = [];
+  const paths: {
+    props: {
+      from: CalculatorConfig;
+      to: CalculatorConfig;
+    };
+    params: {
+      from: string;
+      to: string;
+    };
+  }[] = [];
 
-	for (const from of calculatorTypes) {
-		for (const to of calculatorTypes) {
-			if (from === to) continue;
+  for (const from of calculatorTypes) {
+    for (const to of calculatorTypes) {
+      if (from === to) continue;
 
-			paths.push({
-				props: {
-					from: calculatorConfig[from],
-					to: calculatorConfig[to],
-				},
-				params: {
-					from,
-					to,
-				},
-			});
-		}
-	}
+      paths.push({
+        props: {
+          from: calculatorConfig[from],
+          to: calculatorConfig[to],
+        },
+        params: {
+          from,
+          to,
+        },
+      });
+    }
+  }
 
-	return paths;
+  return paths;
 }
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
@@ -49,11 +49,11 @@ const description = `在線上使用瀏覽器將${title}的計算機`;
 ---
 
 <BaseLayout title={title} description={description}>
-	<div class="flex items-center gap-2 mb-8">
-		<ArrowRightLeft />
-		<span class="text-lg font-bold">進位計算機</span>
-	</div>
-	<h2>{title}</h2>
-	<p>{description}</p>
-	<Calculator from={from} to={to} client:idle />
+  <div class="flex items-center gap-2 mb-8">
+    <ArrowRightLeft />
+    <span class="text-lg font-bold">進位計算機</span>
+  </div>
+  <h2>{title}</h2>
+  <p>{description}</p>
+  <Calculator from={from} to={to} client:idle />
 </BaseLayout>
