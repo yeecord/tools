@@ -1,22 +1,21 @@
 ---
 import { HeaderMenu } from "./header-menu";
-import { Branding } from "./branding";
 import { Image } from "astro:assets";
 import logo from "@/assets/logo.png";
 ---
 
 <div class="w-full mb-8 sticky top-0 z-50 bg-background/30 backdrop-blur">
   <nav class="h-16 flex items-center container">
-    <Branding client:visible>
+    <a href="/" class="flex items-center">
       <Image
         alt="Yeecord"
         src={logo}
         width="128"
         height="128"
-        class="w-8 rounded-full"
+        class="w-8 mr-2.5 rounded-full"
       />
-    </Branding>
-    <span class="font-medium">小工具</span>
+      <span class="font-medium">小工具</span>
+    </a>
     <div class="flex-grow"></div>
     <HeaderMenu />
   </nav>
