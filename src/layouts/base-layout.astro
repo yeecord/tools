@@ -4,7 +4,7 @@ import { getImage } from "astro:assets";
 import { ImageMetadata } from "astro";
 import logo from "@/assets/logo.png";
 import { cn } from "@/utils/cn";
-import { pwaInfo } from 'virtual:pwa-info';
+import { pwaInfo } from "virtual:pwa-info";
 
 interface Props {
   title: string;
@@ -24,7 +24,7 @@ const suffix = "Yeecord 小工具";
 
 const titleWithPrefix = title ? `${title} | ${suffix}` : suffix;
 
-const url = `${Astro.site.origin}${Astro.url.pathname}`;
+const url = `${Astro.site.origin}${Astro.url.pathname.replace(".html", "")}`;
 
 const logoUrl = icon
   ? icon.src
@@ -64,8 +64,8 @@ const schema = {
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" href={logoUrl} />
     <link rel="canonical" href={url} />
-    <script src="/src/pwa.ts" />
-    { pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} /> }
+    <script src="/src/pwa.ts"></script>
+    {pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
   </head>
   <body>
     <Header />
