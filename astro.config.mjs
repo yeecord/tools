@@ -29,8 +29,8 @@ export default defineConfig({
       workbox: {
         runtimeCaching: [
           {
-            handler: "CacheFirst",
-            urlPattern: ({ request }) => request.destination === "image",
+            handler: "StaleWhileRevalidate",
+            urlPattern: ({ sameOrigin }) => sameOrigin,
           },
         ],
       },
