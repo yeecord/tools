@@ -29,8 +29,17 @@ export default defineConfig({
       workbox: {
         runtimeCaching: [
           {
-            handler: "StaleWhileRevalidate",
-            urlPattern: ({ sameOrigin }) => sameOrigin,
+            handler: "CacheFirst",
+            urlPattern: ({ sameOrigin, request }) =>
+              sameOrigin && request.destination !== "document",
+            options: {
+              backgroundSync: {
+                name: "sync",
+                options: {
+                  maxRetentionTime: 3600,
+                },
+              },
+            },
           },
         ],
       },
