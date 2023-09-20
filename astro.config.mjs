@@ -29,6 +29,10 @@ export default defineConfig({
       workbox: {
         runtimeCaching: [
           {
+            handler: "NetworkFirst",
+            urlPattern: ({ request }) => request.destination === "document",
+          },
+          {
             handler: "CacheFirst",
             urlPattern: ({ sameOrigin, request }) =>
               sameOrigin && request.destination !== "document",
