@@ -4,7 +4,6 @@ import { getImage } from "astro:assets";
 import { ImageMetadata } from "astro";
 import logo from "@/assets/logo.png";
 import { cn } from "@/utils/cn";
-import { pwaInfo } from "virtual:pwa-info";
 
 interface Props {
   title: string;
@@ -64,8 +63,6 @@ const schema = {
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" href={logoUrl} />
     <link rel="canonical" href={url} />
-    <script src="/src/pwa.ts"></script>
-    {pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
   </head>
   <body>
     <Header />
