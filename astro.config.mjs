@@ -3,7 +3,6 @@ import tailwind from "@astrojs/tailwind";
 import compress from "astro-compress";
 import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
-import AstroPWA from "@vite-pwa/astro";
 import robotsTxt from "astro-robots-txt";
 
 import mdx from "@astrojs/mdx";
@@ -23,30 +22,6 @@ export default defineConfig({
     react(),
     robotsTxt({
       sitemapBaseFileName: "sitemap-index",
-    }),
-    AstroPWA({
-      registerType: "autoUpdate",
-      workbox: {
-        runtimeCaching: [
-          {
-            handler: "NetworkFirst",
-            urlPattern: ({ request }) => request.destination === "document",
-          },
-          {
-            handler: "CacheFirst",
-            urlPattern: ({ sameOrigin, request }) =>
-              sameOrigin && request.destination !== "document",
-            options: {
-              backgroundSync: {
-                name: "sync",
-                options: {
-                  maxRetentionTime: 3600,
-                },
-              },
-            },
-          },
-        ],
-      },
     }),
     mdx(),
   ],
