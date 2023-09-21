@@ -18,7 +18,7 @@ const items: Item[] = [
 
 export function HeaderMenu() {
   return items.map(({ label, ...item }, index) => (
-    <Button key={index} asChild variant="ghost" size="sm">
+    <Button key={index} asChild variant="ghost" size="sm" className="ml-2">
       <a {...item} aria-label={label} />
     </Button>
   ));

@@ -41,6 +41,8 @@ const schema = {
   image: logoUrl,
   url,
 };
+
+const themeScript = `!function e(){let t=localStorage.getItem("theme");!t&&window.matchMedia&&(t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"),"dark"===t&&document.querySelector("html").classList.add("dark"),localStorage.setItem("theme",t)}();`;
 ---
 
 <html lang="zh-Hant-TW" class="dark">
@@ -59,6 +61,7 @@ const schema = {
     <meta name="twitter:site" content="@yeecord" />
 
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <script set:html={themeScript} />
 
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" href={logoUrl} />

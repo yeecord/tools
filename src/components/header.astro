@@ -2,6 +2,7 @@
 import { HeaderMenu } from "./header-menu";
 import { Image } from "astro:assets";
 import logo from "@/assets/logo.png";
+import { ThemeToggle } from "./theme-toggle";
 ---
 
 <div class="w-full mb-8 sticky top-0 z-50 bg-background/30 backdrop-blur">
@@ -17,6 +18,7 @@ import logo from "@/assets/logo.png";
       <span class="font-medium">小工具</span>
     </a>
     <div class="flex-grow"></div>
+    <ThemeToggle client:visible />
     <HeaderMenu />
   </nav>
 </div>

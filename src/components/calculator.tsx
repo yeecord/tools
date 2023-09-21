@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import type { CalculatorConfig } from "@/utils/calculator";
-import { useCalculator } from "@/hooks/useCalculator";
+import { useCalculator } from "@/hooks/use-calculator.ts";
 import { useId } from "react";
 import { cn } from "@/utils/cn";
 import { CalculatorSelect } from "@/components/calculator-select.tsx";
