@@ -1,6 +1,9 @@
 import { useId, useState } from "react";
 import { Output } from "@/components/output.tsx";
 import { getBitMask } from "@/utils/bits";
+import { Label } from "@/components/ui/label.tsx";
+import { Input } from "@/components/ui/input.tsx";
+import { ArrowDown } from "lucide-react";
 
 export const TwoComplement = () => {
   const [source, setSource] = useState(0n);
@@ -15,8 +18,8 @@ export const TwoComplement = () => {
       <div className="space-y-4">
         <h4 className="text-xl font-semibold tracking-tight">從</h4>
         <div className="grid gap-2">
-          <label htmlFor={sourceId}>來源 (十進位整數)</label>
-          <input
+          <Label htmlFor={sourceId}>來源 (十進位整數)</Label>
+          <Input
             id={sourceId}
             className="font-medium text-base border font-mono max-w-xl"
             placeholder="1"
@@ -29,12 +32,12 @@ export const TwoComplement = () => {
           />
         </div>
         <div className="grid gap-2">
-          <label htmlFor={bitsId}>位元數</label>
-          <input
+          <Label htmlFor={bitsId}>位元數</Label>
+          <Input
             type="number"
             id={bitsId}
             min={1}
-            className="font-mono max-w-xl "
+            className="font-mono max-w-xl"
             defaultValue={bits}
             onChange={(event) => {
               const number = parseInt(event.target.value);
@@ -44,6 +47,7 @@ export const TwoComplement = () => {
           />
         </div>
       </div>
+      <ArrowDown />
       <div className="space-y-4">
         <h4 className="text-xl font-semibold tracking-tight">轉換為</h4>
         <Output value={source} label="二進位" />

@@ -5,6 +5,9 @@ import { useId } from "react";
 import { cn } from "@/utils/cn";
 import { CalculatorSelect } from "@/components/calculator-select.tsx";
 import { calculatorTypes } from "@/utils/calculator";
+import { Input } from "@/components/ui/input.tsx";
+import { Label } from "@/components/ui/label.tsx";
+import { ArrowDown } from "lucide-react";
 
 export const Calculator: FC<{
   from: CalculatorConfig;
@@ -34,6 +37,7 @@ export const Calculator: FC<{
           value={fromValue}
         />
       </div>
+      <ArrowDown />
       <div className="space-y-4">
         <div className="flex gap-2 items-center">
           <p className="text-xl font-semibold tracking-tight whitespace-nowrap">
@@ -64,8 +68,8 @@ const Item: FC<
 
   return (
     <div className="grid w-full items-center gap-2">
-      <label htmlFor={id}>{title}</label>
-      <input
+      <Label htmlFor={id}>{title}</Label>
+      <Input
         id={id}
         placeholder="0"
         value={value}

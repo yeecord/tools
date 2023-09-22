@@ -3,6 +3,9 @@ import { parseLargeNumber } from "@/utils/parse";
 import { Output } from "@/components/output.tsx";
 import { getBitMask } from "@/utils/bits";
 import { cn } from "@/utils/cn";
+import { Input } from "@/components/ui/input.tsx";
+import { Label } from "@/components/ui/label.tsx";
+import { ArrowDown } from "lucide-react";
 
 export const TwoComplementReverse = () => {
   const [source, setSource] = useState("0");
@@ -15,8 +18,8 @@ export const TwoComplementReverse = () => {
       <div className="space-y-4">
         <h4 className="text-xl font-semibold tracking-tight">從</h4>
         <div className="grid gap-2">
-          <label htmlFor={sourceId}>來源 (二進位)</label>
-          <input
+          <Label htmlFor={sourceId}>來源 (二進位)</Label>
+          <Input
             id={sourceId}
             className={cn(
               "font-medium text-base font-mono max-w-xl",
@@ -28,6 +31,7 @@ export const TwoComplementReverse = () => {
           />
         </div>
       </div>
+      <ArrowDown />
       <div className="space-y-4">
         <h4 className="text-xl font-semibold tracking-tight">轉換為</h4>
         <Output value={isValid ? calculate(source) : ""} label="十進位" />
