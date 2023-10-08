@@ -73,7 +73,7 @@ const Item: FC<
 
   return (
     <div className="grid w-full items-center gap-2">
-      <Label htmlFor={id}>{title}</Label>
+      <Label htmlFor={id}>{title}進位</Label>
       <Input
         id={id}
         placeholder="0"

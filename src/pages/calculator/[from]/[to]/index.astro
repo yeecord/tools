@@ -50,14 +50,14 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { from, to, fromId, toId } = Astro.props as Props;
 
-const title = `線上${from.title}轉${to.title}、進制轉換器`;
+const title = `線上${from.title}進位轉${to.title}進位計算機、${from.title}進制轉${to.title}進制轉換器`;
 const description = `在線上使用瀏覽器將${title}的計算機`;
 ---
 
 <BaseLayout title={title} description={description}>
   <div class="flex items-center gap-2 mb-8">
     <ArrowRightLeft />
-    <span class="text-lg font-bold">進位、進制計算機</span>
+    <span class="text-lg font-bold">進位計算機、進制轉換器</span>
   </div>
   <h2>{title}</h2>
   <p>{description}</p>

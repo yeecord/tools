@@ -17,7 +17,7 @@ export const CalculatorSelect: FC<SelectProps> = (props) => (
     <SelectContent>
       {Object.entries(calculatorConfig).map(([key, value]) => (
         <SelectItem value={key} key={key}>
-          {value.title}
+          {value.title}進位
         </SelectItem>
       ))}
     </SelectContent>

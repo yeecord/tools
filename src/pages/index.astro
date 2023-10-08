@@ -21,7 +21,7 @@ for (const [fromId, from] of Object.entries(calculatorConfig)) {
     if (fromId === toId) continue;
 
     calculators.push({
-      title: `${from.title}轉${to.title}進位`,
+      title: `${from.title}進位轉${to.title}進位`,
       href: `/calculator/${fromId}/${toId}`,
       from: example.toString(from.base),
       to: example.toString(to.base),

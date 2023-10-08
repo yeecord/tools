@@ -11,22 +11,22 @@ export const calculatorConfig: Record<
   CalculatorConfig
 > = {
   dec: {
-    title: "十進位",
+    title: "十",
     base: 10,
     regex: /^\d+(\.\d+)?$/,
   },
   hex: {
-    title: "十六進位",
+    title: "十六",
     base: 16,
     regex: /^[0-9a-fA-F]+(\.[0-9a-fA-F]+)?$/,
   },
   oct: {
-    title: "八進位",
+    title: "八",
     base: 8,
     regex: /^[0-7]+(.[0-7]+)?$/,
   },
   bin: {
-    title: "二進位",
+    title: "二",
     base: 2,
     regex: /^[0-1]+(.[0-1]+)?$/,
   },
