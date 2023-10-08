@@ -26,7 +26,10 @@ export const Calculator: FC<{
           <CalculatorSelect
             defaultValue={fromId}
             onValueChange={(value) =>
-              value !== toId && (location.href = `/calculator/${value}/${toId}`)
+              (location.href =
+                value === toId
+                  ? `/calculator/${toId}/${fromId}`
+                  : `/calculator/${value}/${toId}`)
             }
           />
         </div>
@@ -46,8 +49,10 @@ export const Calculator: FC<{
           <CalculatorSelect
             defaultValue={toId}
             onValueChange={(value) =>
-              value !== fromId &&
-              (location.href = `/calculator/${fromId}/${value}`)
+              (location.href =
+                value === fromId
+                  ? `/calculator/${toId}/${fromId}`
+                  : `/calculator/${fromId}/${value}`)
             }
           />
         </div>
