@@ -30,7 +30,7 @@ export const Calculator: FC<{
   } = useCalculator(defaultFromId, defaultToId);
 
   return (
-    <div className="max-w-screen-md mx-auto flex flex-col gap-2">
+    <div className="max-w-screen-md md:mx-auto flex flex-col gap-2">
       <div className="flex justify-center w-full px-2">
         <TabGroup
           disabled={toType}
