@@ -69,8 +69,9 @@ export const Calculator: FC<{
       <div className="grid md:grid-cols-2 gap-4">
         <Textarea
           className={cn(
-            "whitespace-pre-wrap inline-block text-start break-words break-all text-xl bg-secondary/25 resize-none focus-visible:ring-0",
-            !fromValid && "border-destructive",
+            "whitespace-pre-wrap inline-block text-start break-words break-all text-xl bg-secondary/25 resize-none focus-visible:ring-0 !ring-offset-0",
+            !fromValid &&
+              "border-destructive outline-destructive ring-destructive",
           )}
           onLoad={(event) => (event.currentTarget.innerHTML = "0")}
           onChange={(event) => {
