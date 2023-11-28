@@ -115,7 +115,7 @@ const TabGroup: FC<{
         value={current}
         onValueChange={(value) => setValue(value as CalculatorType)}
       >
-        <SelectTrigger className="md:hidden border-none gap-2 focus:ring-0 focus:outline-none">
+        <SelectTrigger className="md:hidden focus:ring-offset-0 border-none gap-2 focus:ring-0 focus:outline-none">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
