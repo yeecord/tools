@@ -1,7 +1,7 @@
 export function parseLargeNumber(string: string, radix: number) {
   return [...string.toString()].reduce(
     (r, v) => r * BigInt(radix) + BigInt(parseInt(v, radix)),
-    0n
+    0n,
   );
 }
 
@@ -11,7 +11,9 @@ export function parseFloatToBase(string: string, from: number, to: number) {
   if (parts.length > 1) {
     const number = parseLargeNumber(parts[0], from).toString(to);
 
-    const float = (parseInt(parts[1], from) / Math.pow(from, parts[1].length))
+    const float = (
+      BigInt(parseInt(parts[1], from)) / BigInt(Math.pow(from, parts[1].length))
+    )
       .toString(to)
       .split(".")[1];
 

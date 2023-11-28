@@ -1,89 +1,153 @@
 import type { FC } from "react";
-import type { CalculatorConfig } from "@/utils/calculator";
+import type { CalculatorType } from "@/utils/calculator";
 import { useCalculator } from "@/hooks/use-calculator.ts";
-import { useId } from "react";
 import { cn } from "@/utils/cn";
-import { CalculatorSelect } from "@/components/calculator-select.tsx";
-import { calculatorTypes } from "@/utils/calculator";
-import { Input } from "@/components/ui/input.tsx";
-import { Label } from "@/components/ui/label.tsx";
-import { ArrowDown } from "lucide-react";
+import { calculatorConfig, calculatorTypes } from "@/utils/calculator";
+import { ArrowRightLeft } from "lucide-react";
+import { Button } from "@/components/ui/button.tsx";
+import { Textarea } from "@/components/ui/textarea.tsx";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select.tsx";
+import { createTitle } from "@/utils/title.ts";
 
 export const Calculator: FC<{
-  from: CalculatorConfig;
-  fromId: (typeof calculatorTypes)[number];
-  to: CalculatorConfig;
-  toId: (typeof calculatorTypes)[number];
-}> = ({ from, to, fromId, toId }) => {
-  const { fromValue, toValue, setFromValue, setToValue, fromValid, toValid } =
-    useCalculator(from, to);
+  defaultFromId: CalculatorType;
+  defaultToId: CalculatorType;
+}> = ({ defaultFromId, defaultToId }) => {
+  const {
+    toValue,
+    setFromValue,
+    fromType,
+    toType,
+    fromValid,
+    setFromType,
+    setToType,
+  } = useCalculator(defaultFromId, defaultToId);
 
   return (
-    <div className="space-y-8 mt-8">
-      <div className="space-y-4">
-        <div className="flex gap-2 items-center">
-          <p className="text-xl font-semibold tracking-tight">從</p>
-          <CalculatorSelect
-            defaultValue={fromId}
-            onValueChange={(value) =>
-              (location.href =
-                value === toId
-                  ? `/calculator/${toId}/${fromId}`
-                  : `/calculator/${value}/${toId}`)
-            }
-          />
-        </div>
-        <Item
-          {...from}
-          set={setFromValue}
-          valid={fromValid}
-          value={fromValue}
+    <div className="max-w-screen-md mx-auto flex flex-col gap-2">
+      <div className="flex justify-center w-full px-2">
+        <TabGroup
+          disabled={toType}
+          setValue={(value) => {
+            setFromType(value);
+
+            history.pushState({}, "", `/calculator/${value}/${toType}`);
+            document.title = createTitle(value, toType);
+          }}
+          current={fromType}
+        />
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => {
+            setFromType(toType);
+            setToType(fromType);
+
+            history.pushState({}, "", `/calculator/${toType}/${fromType}`);
+            document.title = createTitle(toType, fromType);
+          }}
+        >
+          <ArrowRightLeft className="w-4 text-primary/75" />
+        </Button>
+        <TabGroup
+          disabled={fromType}
+          setValue={(value) => {
+            setToType(value);
+
+            history.pushState({}, "", `/calculator/${fromType}/${value}`);
+            document.title = createTitle(fromType, value);
+          }}
+          current={toType}
         />
       </div>
-      <ArrowDown />
-      <div className="space-y-4">
-        <div className="flex gap-2 items-center">
-          <p className="text-xl font-semibold tracking-tight whitespace-nowrap">
-            轉為
-          </p>
-          <CalculatorSelect
-            defaultValue={toId}
-            onValueChange={(value) =>
-              (location.href =
-                value === fromId
-                  ? `/calculator/${toId}/${fromId}`
-                  : `/calculator/${fromId}/${value}`)
-            }
-          />
-        </div>
-        <Item {...to} set={setToValue} valid={toValid} value={toValue} />
+      <div className="grid md:grid-cols-2 gap-4">
+        <Textarea
+          className={cn(
+            "whitespace-pre-wrap inline-block text-start break-words break-all text-xl bg-secondary/25 resize-none focus-visible:ring-0",
+            !fromValid && "border-destructive",
+          )}
+          onLoad={(event) => (event.currentTarget.innerHTML = "0")}
+          onChange={(event) => {
+            event.currentTarget.style.height = "";
+            event.currentTarget.style.height =
+              event.currentTarget.scrollHeight + "px";
+
+            setFromValue(event.currentTarget.value);
+          }}
+          rows={3}
+          defaultValue={0}
+        />
+        <Textarea
+          readOnly
+          className="whitespace-pre-wrap inline-block text-start break-words break-all text-xl bg-secondary/50 resize-none border-none"
+          value={toValue}
+        />
       </div>
     </div>
   );
 };
 
-const Item: FC<
-  CalculatorConfig & {
-    value: string;
-    set: (value: string) => void;
-    valid: boolean;
-  }
-> = ({ title, set, valid, value }) => {
-  const id = useId();
-
+const TabGroup: FC<{
+  setValue: (value: CalculatorType) => void;
+  current?: CalculatorType;
+  disabled?: CalculatorType;
+}> = ({ current, setValue, disabled }) => {
   return (
-    <div className="grid w-full items-center gap-2">
-      <Label htmlFor={id}>{title}進位</Label>
-      <Input
-        id={id}
-        placeholder="0"
-        value={value}
-        className={cn(
-          "font-medium text-base border font-mono max-w-xl",
-          !valid && "focus-visible:ring-0 border-red-700",
-        )}
-        onChange={(event) => set(event.target.value.trim())}
-      />
+    <div className="w-full">
+      <ul className="md:flex hidden list-none m-0 [&>li]:m-0 flex-grow md:justify-start justify-center">
+        {calculatorTypes.map((type) => (
+          <TabSelect
+            key={type}
+            name={`${calculatorConfig[type].title}進位`}
+            active={type === current}
+            onClick={() => setValue(type)}
+            disabled={disabled === type}
+          />
+        ))}
+      </ul>
+      <Select
+        value={current}
+        onValueChange={(value) => setValue(value as CalculatorType)}
+      >
+        <SelectTrigger className="md:hidden border-none gap-2 focus:ring-0 focus:outline-none">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          {calculatorTypes.map((type) => (
+            <SelectItem value={type} key={type} disabled={type === disabled}>
+              {calculatorConfig[type].title}進位
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
     </div>
   );
 };
+
+const TabSelect: FC<{
+  name: string;
+  onClick: () => void;
+  active?: boolean;
+  disabled?: boolean;
+}> = ({ name, onClick, active, disabled }) => (
+  <li>
+    <Button
+      disabled={disabled}
+      variant="ghost"
+      className={cn(
+        "border-b-2 border-transparent md:block hidden",
+        active &&
+          "md:border-primary md:rounded-b-none block border-transparent",
+      )}
+      onClick={onClick}
+    >
+      {name}
+    </Button>
+  </li>
+);

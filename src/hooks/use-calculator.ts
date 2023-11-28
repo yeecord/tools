@@ -1,27 +1,50 @@
 import { useEffect, useMemo, useState } from "react";
-import type { CalculatorConfig } from "@/utils/calculator";
-import { parseFloatToBase } from "@/utils/parse";
+import { parseFloatToBase } from "@/utils/parse.ts";
+import {
+  type CalculatorConfig,
+  calculatorConfig,
+  type CalculatorType,
+} from "@/utils/calculator.ts";
 
-export function useCalculator(from: CalculatorConfig, to: CalculatorConfig) {
+export function useCalculator(
+  defaultFromType: CalculatorType,
+  defaultToType: CalculatorType,
+) {
+  const [fromType, setFromType] = useState(defaultFromType);
+  const [toType, setToType] = useState(defaultToType);
   const [fromValue, setFromValue] = useState("0");
   const [toValue, setToValue] = useState("0");
 
-  const fromValid = useMemo(() => from.regex.test(fromValue), [fromValue]);
-  const toValid = useMemo(() => to.regex.test(toValue), [toValue]);
+  const calculate = (
+    value: string,
+    from: CalculatorConfig,
+    to: CalculatorConfig,
+  ) => parseFloatToBase(value, from.base, to.base);
+
+  const fromValid = useMemo(
+    () => calculatorConfig[fromType].regex.test(fromValue),
+    [fromType, fromValue],
+  );
 
   useEffect(() => {
-    if (fromValid) setToValue(parseFloatToBase(fromValue, from.base, to.base));
-  }, [fromValid, fromValue]);
-
-  useEffect(() => {
-    if (toValid) setFromValue(parseFloatToBase(toValue, to.base, from.base));
-  }, [toValid, toValue]);
+    if (fromValid)
+      setToValue(
+        calculate(
+          fromValue,
+          calculatorConfig[fromType],
+          calculatorConfig[toType],
+        ),
+      );
+  }, [fromType, toType, fromValue]);
 
   return {
+    setFromType,
+    setToType,
+    fromType,
+    toType,
     fromValue,
     toValue,
     fromValid,
-    toValid,
     setFromValue,
     setToValue,
   };
