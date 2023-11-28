@@ -23,7 +23,11 @@ export default defineConfig({
     robotsTxt({
       sitemapBaseFileName: "sitemap-index",
     }),
-    mdx(),
+    mdx({
+      optimize: {
+        customComponentNames: ["Adsense"],
+      },
+    }),
   ],
   image: {
     service: sharpImageService(),

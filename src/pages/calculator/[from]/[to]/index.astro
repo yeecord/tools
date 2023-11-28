@@ -9,6 +9,7 @@ import { type InferGetStaticPropsType } from "astro";
 import { Calculator } from "@/components/calculator";
 import { Separator } from "@/components/ui/separator";
 import Article from "@/articles/calculator.mdx";
+import { Adsense } from "@/components/adsense";
 
 export function getStaticPaths() {
   const paths: {
@@ -59,9 +60,23 @@ const description = `在線上使用瀏覽器${title}的計算機`;
       寫作業需要的時候很好用，讓你在不同進位快速轉換
     </p>
     <Calculator defaultFromId={fromId} defaultToId={toId} client:visible />
+    <ins
+      class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-1801171681307308"
+      data-ad-slot="6026331229"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
   </div>
   <Separator className="my-8 block bg-border/50" />
   <article class="my-4">
-    <Article />
+    <Article
+      components={{
+        Adsense,
+      }}
+    />
   </article>
 </BaseLayout>
