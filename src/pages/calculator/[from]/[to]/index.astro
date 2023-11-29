@@ -47,7 +47,7 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { fromId, toId } = Astro.props as Props;
 
-const title = `即時${calculatorConfig[fromId].title}進制轉${calculatorConfig[toId].title}進制轉換器`;
+const title = `即時${calculatorConfig[fromId].title}進制轉${calculatorConfig[toId].title}進制、進轉換器`;
 const description = `在線上使用瀏覽器${title}的計算機`;
 ---
 
@@ -57,7 +57,7 @@ const description = `在線上使用瀏覽器${title}的計算機`;
   >
     <h3 class="text-3xl font-bold">即時進制轉換器</h3>
     <p class="text-muted-foreground">
-      寫作業需要的時候很好用，讓你在不同進位快速轉換
+      寫作業需要的時候很好用，讓你在不同進位快速轉換，考試老師不會查你就用
     </p>
     <Calculator defaultFromId={fromId} defaultToId={toId} client:visible />
     <Adsense />

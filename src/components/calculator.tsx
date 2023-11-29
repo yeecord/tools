@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { useRef, type FC, useEffect } from "react";
 import type { CalculatorType } from "@/utils/calculator";
 import { useCalculator } from "@/hooks/use-calculator.ts";
 import { cn } from "@/utils/cn";
@@ -29,8 +29,17 @@ export const Calculator: FC<{
     setToType,
   } = useCalculator(defaultFromId, defaultToId);
 
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (!inputRef.current) return;
+
+    inputRef.current.value = "0";
+    inputRef.current.focus();
+  }, [inputRef]);
+
   return (
-    <div className="max-w-screen-md md:mx-auto flex flex-col gap-2">
+    <div className="max-w-screen-md w-full md:mx-auto flex flex-col gap-2.5">
       <div className="flex justify-center w-full px-2">
         <TabGroup
           disabled={toType}
@@ -68,12 +77,12 @@ export const Calculator: FC<{
       </div>
       <div className="grid md:grid-cols-2 gap-4">
         <Textarea
+          ref={inputRef}
           className={cn(
-            "whitespace-pre-wrap inline-block text-start break-words break-all text-xl bg-secondary/25 resize-none focus-visible:ring-0 !ring-offset-0",
+            "whitespace-pre-wrap inline-block text-start break-words break-all text-2xl bg-secondary/25 resize-none focus-visible:ring-0 !ring-offset-0",
             !fromValid &&
               "border-destructive outline-destructive ring-destructive",
           )}
-          onLoad={(event) => (event.currentTarget.innerHTML = "0")}
           onChange={(event) => {
             event.currentTarget.style.height = "";
             event.currentTarget.style.height =
@@ -82,11 +91,10 @@ export const Calculator: FC<{
             setFromValue(event.currentTarget.value);
           }}
           rows={3}
-          defaultValue={0}
         />
         <Textarea
           readOnly
-          className="whitespace-pre-wrap inline-block text-start break-words break-all text-xl bg-secondary/50 resize-none border-none"
+          className="whitespace-pre-wrap inline-block text-start break-words break-all text-2xl bg-secondary/50 resize-none border-none"
           value={toValue}
         />
       </div>
