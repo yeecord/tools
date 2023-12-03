@@ -3,13 +3,12 @@ import "@/styles/global.css";
 
 import { calculatorTypes } from "@/utils/calculator";
 import BaseLayout from "@/layouts/base-layout.astro";
-import { calculatorConfig } from "@/utils/calculator";
-import { ArrowRightLeft } from "lucide-react";
 import { type InferGetStaticPropsType } from "astro";
 import { Calculator } from "@/components/calculator";
 import { Separator } from "@/components/ui/separator";
 import Article from "@/articles/calculator.mdx";
 import Adsense from "@/components/adsense.astro";
+import { createTitle } from "../../../../utils/title";
 
 export function getStaticPaths() {
   const paths: {
@@ -47,7 +46,7 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { fromId, toId } = Astro.props as Props;
 
-const title = `即時${calculatorConfig[fromId].title}進制轉${calculatorConfig[toId].title}進制、進轉換器`;
+const title = createTitle(fromId, toId);
 const description = `在線上使用瀏覽器${title}的計算機`;
 ---
 
