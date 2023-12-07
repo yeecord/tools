@@ -59,7 +59,10 @@ const description = `在線上使用瀏覽器${title}的計算機`;
       寫作業需要的時候很好用，讓你在不同進位快速轉換，考試老師不會查你就用
     </p>
     <Calculator defaultFromId={fromId} defaultToId={toId} client:visible />
-    <Adsense />
+    <div class="grid md:grid-cols-2 gap-4">
+      <Adsense />
+      <Adsense />
+    </div>
   </div>
   <Separator className="my-8 block bg-border/50" />
   <article
