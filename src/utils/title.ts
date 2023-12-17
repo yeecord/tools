@@ -7,7 +7,7 @@ export function createTitle(
   toId: CalculatorType,
 ) {
   return t(
-    "base-converter.description",
+    "base-converter.title",
     t(`base-converter.${fromId}`),
     t(`base-converter.${toId}`),
   );
