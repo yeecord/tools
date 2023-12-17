@@ -11,7 +11,7 @@ const t = Astro.props.t as TranslateFunction;
 const url = new URL(Astro.url);
 
 // remove language prefix
-url.pathname = url.pathname.split("/").slice(2).join("/");
+url.pathname = url.pathname.split("/").slice(2).join("/").replace(".html", "");
 
 const code = t("code");
 ---
