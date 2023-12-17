@@ -13,7 +13,7 @@ import Adsense from "@/components/adsense.astro";
 const t = createTranslation(Astro.params.lang);
 
 // @ts-ignore
-const entry = await getEntry("posts", `${lang}/two-complement`);
+const entry = await getEntry("posts", `${Astro.params.lang}/two-complement`);
 
 // @ts-ignore
 const { Content } = await entry.render();
