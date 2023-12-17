@@ -1,2 +1,5 @@
 /sitemap.xml /sitemap-index.xml 301
-/calculator/two-complement/:from/:to /calculator/two-complement 301
+/calculator/two-complement/:from/:to /zh-tw/two-complement-converter 301
+/calculator/two-complement /zh-tw/two-complement-converter 301
+/calculator/:from/:to /zh-tw/base-converter/:from/:to 301
+/ /zh-tw 301

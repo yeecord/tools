@@ -1,6 +1,11 @@
 ---
 import { ArrowRight, Calculator } from "lucide-react";
 import Muted from "@/components/ui/muted.astro";
+import { CalculatorConfig } from "../utils/calculator";
+
+interface Props {
+  config: CalculatorConfig;
+}
 
 const { href, title, from, to } = Astro.props.config;
 ---

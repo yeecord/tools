@@ -1,5 +1,14 @@
-import { calculatorConfig, type CalculatorType } from "@/utils/calculator.ts";
+import { type CalculatorType } from "@/utils/calculator";
+import type { TranslateFunction } from "@/utils/language";
 
-export function createTitle(fromId: CalculatorType, toId: CalculatorType) {
-  return `即時${calculatorConfig[fromId].title}進制轉${calculatorConfig[toId].title}進位轉換器`;
+export function createTitle(
+  t: TranslateFunction,
+  fromId: CalculatorType,
+  toId: CalculatorType,
+) {
+  return t(
+    "base-converter.description",
+    t(`base-converter.${fromId}`),
+    t(`base-converter.${toId}`),
+  );
 }

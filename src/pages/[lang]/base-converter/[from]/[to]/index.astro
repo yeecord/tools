@@ -4,38 +4,36 @@ import "@/styles/global.css";
 import { calculatorTypes } from "@/utils/calculator";
 import BaseLayout from "@/layouts/base-layout.astro";
 import { type InferGetStaticPropsType } from "astro";
-import { Calculator } from "@/components/calculator";
+import { BaseConverter } from "@/components/base-converter";
 import { Separator } from "@/components/ui/separator";
-import Article from "@/articles/calculator.mdx";
+import Article from "@/articles/base-converter.mdx";
 import Adsense from "@/components/adsense.astro";
-import { createTitle } from "../../../../utils/title";
+import { createTitle } from "@/utils/title";
+import { createTranslation } from "@/utils/language";
+import { languages } from "@/utils/language";
 
 export function getStaticPaths() {
   const paths: {
-    props: {
-      fromId: string;
-      toId: string;
-    };
     params: {
       from: string;
       to: string;
+      lang: string;
     };
   }[] = [];
 
-  for (const from of calculatorTypes) {
-    for (const to of calculatorTypes) {
-      if (from === to) continue;
+  for (const lang in languages) {
+    for (const from of calculatorTypes) {
+      for (const to of calculatorTypes) {
+        if (from === to) continue;
 
-      paths.push({
-        props: {
-          fromId: from,
-          toId: to,
-        },
-        params: {
-          from,
-          to,
-        },
-      });
+        paths.push({
+          params: {
+            from,
+            to,
+            lang,
+          },
+        });
+      }
     }
   }
 
@@ -44,21 +42,28 @@ export function getStaticPaths() {
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const { fromId, toId } = Astro.props as Props;
+const { from, to, lang } = Astro.params as Props;
 
-const title = createTitle(fromId, toId);
-const description = `在線上使用瀏覽器${title}的計算機`;
+const t = createTranslation(lang);
+
+const title = createTitle(t, from, to);
+const description = t("base-converter.description", title);
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout {t} {title} {description}>
   <div
     class="text-center min-h-[calc(100dvh-10rem)] md:min-h-[calc(100dvh-16rem)] flex justify-center flex-col"
   >
-    <h3 class="text-3xl font-bold">即時進制轉換器</h3>
+    <h3 class="text-3xl font-bold">{t("base-converter.hero.title")}</h3>
     <p class="text-muted-foreground">
-      寫作業需要的時候很好用，讓你在不同進位快速轉換，考試老師不會查你就用
+      {t("base-converter.hero.description")}
     </p>
-    <Calculator defaultFromId={fromId} defaultToId={toId} client:visible />
+    <BaseConverter
+      language={lang}
+      defaultFromId={from}
+      defaultToId={to}
+      client:visible
+    />
     <div class="grid md:grid-cols-2 gap-4">
       <Adsense />
       <Adsense />

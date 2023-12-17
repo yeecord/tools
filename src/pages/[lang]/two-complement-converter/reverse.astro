@@ -1,23 +1,29 @@
 ---
 import "@/styles/global.css";
-import BaseLayout from "../../../layouts/base-layout.astro";
-import { TwoComplementReverse } from "../../../components/two-complement-reverse";
+import BaseLayout from "@/layouts/base-layout.astro";
+import { TwoComplementReverse } from "@/components/two-complement-reverse";
 import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";
+import { createTranslation } from "@/utils/language";
+export { getStaticPaths } from "@/utils/language";
+
+const t = createTranslation(Astro.params.lang);
 ---
 
 <BaseLayout
+  {t}
   title="二的補數逆向計算機"
   description="簡易的八位元、十六位元等二補數逆向計算機"
 >
   <h2>二的補數逆向計算機</h2>
   <p>簡易的八位元、十六位元等二補數逆向計算機</p>
-  <TwoComplementReverse client:visible />
+  <TwoComplementReverse lang={Astro.params.lang} client:visible />
   <a class="mt-4 inline-block" href="/calculator/two-complement">
     <Button>
       <span class="mr-2">
         <Sparkles size="16" />
-      </span>正向計算
+      </span>
+      {t("global.reverse")}
     </Button>
   </a>
 </BaseLayout>

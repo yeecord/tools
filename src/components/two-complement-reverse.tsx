@@ -6,8 +6,11 @@ import { cn } from "@/utils/cn";
 import { Input } from "@/components/ui/input.tsx";
 import { Label } from "@/components/ui/label.tsx";
 import { ArrowDown } from "lucide-react";
+import { createTranslation, type TranslateFunction } from "@/utils/language.ts";
 
-export const TwoComplementReverse = () => {
+export const TwoComplementReverse = ({ lang }: { lang: string }) => {
+  const t = createTranslation(lang);
+
   const [source, setSource] = useState("0");
   const sourceId = useId();
 
@@ -16,9 +19,11 @@ export const TwoComplementReverse = () => {
   return (
     <div className="space-y-8 mt-8">
       <div className="space-y-4">
-        <h4 className="text-xl font-semibold tracking-tight">從</h4>
+        <h4 className="text-xl font-semibold tracking-tight">
+          {t("global.from")}
+        </h4>
         <div className="grid gap-2">
-          <Label htmlFor={sourceId}>來源 (二進位)</Label>
+          <Label htmlFor={sourceId}>{t("base-converter.bin")}</Label>
           <Input
             id={sourceId}
             className={cn(
@@ -33,8 +38,13 @@ export const TwoComplementReverse = () => {
       </div>
       <ArrowDown />
       <div className="space-y-4">
-        <h4 className="text-xl font-semibold tracking-tight">轉換為</h4>
-        <Output value={isValid ? calculate(source) : ""} label="十進位" />
+        <h4 className="text-xl font-semibold tracking-tight">
+          {t("global.to")}
+        </h4>
+        <Output
+          value={isValid ? calculate(source) : ""}
+          label={t("base-converter.dec")}
+        />
       </div>
     </div>
   );

@@ -6,20 +6,26 @@ import { Button } from "@/components/ui/button";
 import { RotateCcw } from "lucide-react";
 import Article from "@/articles/two-complement.mdx";
 import { Separator } from "@/components/ui/separator";
+import { createTranslation } from "@/utils/language";
+export { getStaticPaths } from "@/utils/language";
+
+const t = createTranslation(Astro.params.lang);
 ---
 
 <BaseLayout
-  title="二的補數計算機"
-  description="簡易的八位元、十六位元、等二補數計算機"
+  {t}
+  title={t("two-complement.title")}
+  description={t("two-complement.description")}
 >
-  <h2>二的補數計算機</h2>
-  <p>簡易的八位元、十六位元二補數計算機</p>
-  <TwoComplement client:visible />
+  <h2>{t("two-complement.title")}</h2>
+  <p>{t("two-complement.description")}</p>
+  <TwoComplement lang={Astro.params.lang} client:visible />
   <a class="my-4 inline-block" href="/calculator/two-complement/reverse">
     <Button>
       <span class="mr-2">
         <RotateCcw size="16" />
-      </span> 反轉
+      </span>
+      {t("global.reverse")}
     </Button>
   </a>
   <Separator className="my-8 block bg-border/50" />

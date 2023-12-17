@@ -4,8 +4,11 @@ import { getBitMask } from "@/utils/bits";
 import { Label } from "@/components/ui/label.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { ArrowDown } from "lucide-react";
+import { createTranslation } from "@/utils/language.ts";
 
-export const TwoComplement = () => {
+export const TwoComplement = ({ lang }: { lang: string }) => {
+  const t = createTranslation(lang);
+
   const [source, setSource] = useState(0n);
   const [bits, setBits] = useState(8);
   const sourceId = useId();
@@ -16,9 +19,11 @@ export const TwoComplement = () => {
   return (
     <div className="space-y-8 mt-8">
       <div className="space-y-4">
-        <h4 className="text-xl font-semibold tracking-tight">從</h4>
+        <h4 className="text-xl font-semibold tracking-tight">
+          {t("global.from")}
+        </h4>
         <div className="grid gap-2">
-          <Label htmlFor={sourceId}>來源 (十進位整數)</Label>
+          <Label htmlFor={sourceId}>{t("base-converter.dec")}</Label>
           <Input
             id={sourceId}
             className="font-medium text-base border font-mono max-w-xl"
@@ -49,8 +54,10 @@ export const TwoComplement = () => {
       </div>
       <ArrowDown />
       <div className="space-y-4">
-        <h4 className="text-xl font-semibold tracking-tight">轉換為</h4>
-        <Output value={source} label="二進位" />
+        <h4 className="text-xl font-semibold tracking-tight">
+          {t("global.to")}
+        </h4>
+        <Output value={source} label={t("base-converter.bin")} />
         <Output
           value={overflow ? "溢位" : calculate(source, bits)}
           label={`二補數 (${bits} 進位)`}

@@ -1,8 +1,8 @@
 import { useRef, type FC, useEffect } from "react";
 import type { CalculatorType } from "@/utils/calculator";
-import { useCalculator } from "@/hooks/use-calculator.ts";
+import { useCalculator } from "@/hooks/use-calculator";
 import { cn } from "@/utils/cn";
-import { calculatorConfig, calculatorTypes } from "@/utils/calculator";
+import { calculatorTypes } from "@/utils/calculator";
 import { ArrowRightLeft } from "lucide-react";
 import { Button } from "@/components/ui/button.tsx";
 import { Textarea } from "@/components/ui/textarea.tsx";
@@ -13,12 +13,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select.tsx";
-import { createTitle } from "@/utils/title.ts";
+import { createTitle } from "@/utils/title";
+import { createTranslation, type TranslateFunction } from "@/utils/language";
 
-export const Calculator: FC<{
+export const BaseConverter: FC<{
+  language: string;
   defaultFromId: CalculatorType;
   defaultToId: CalculatorType;
-}> = ({ defaultFromId, defaultToId }) => {
+}> = ({ language, defaultFromId, defaultToId }) => {
+  const t = createTranslation(language);
+
   const {
     toValue,
     setFromValue,
@@ -42,12 +46,17 @@ export const Calculator: FC<{
     <div className="max-w-screen-md w-full md:mx-auto flex flex-col gap-2.5">
       <div className="flex justify-center w-full px-2">
         <TabGroup
+          t={t}
           disabled={toType}
           setValue={(value) => {
             setFromType(value);
 
-            history.pushState({}, "", `/calculator/${value}/${toType}`);
-            document.title = createTitle(value, toType);
+            history.pushState(
+              {},
+              "",
+              `/${language}/base-converter/${value}/${toType}`,
+            );
+            document.title = createTitle(t, value, toType);
           }}
           current={fromType}
         />
@@ -58,19 +67,28 @@ export const Calculator: FC<{
             setFromType(toType);
             setToType(fromType);
 
-            history.pushState({}, "", `/calculator/${toType}/${fromType}`);
-            document.title = createTitle(toType, fromType);
+            history.pushState(
+              {},
+              "",
+              `/${language}/base-converter/${toType}/${fromType}`,
+            );
+            document.title = createTitle(t, toType, fromType);
           }}
         >
           <ArrowRightLeft className="w-4 text-primary/75" />
         </Button>
         <TabGroup
+          t={t}
           disabled={fromType}
           setValue={(value) => {
             setToType(value);
 
-            history.pushState({}, "", `/calculator/${fromType}/${value}`);
-            document.title = createTitle(fromType, value);
+            history.pushState(
+              {},
+              "",
+              `/${language}/base-converter/${fromType}/${value}`,
+            );
+            document.title = createTitle(t, fromType, value);
           }}
           current={toType}
         />
@@ -103,17 +121,18 @@ export const Calculator: FC<{
 };
 
 const TabGroup: FC<{
+  t: TranslateFunction;
   setValue: (value: CalculatorType) => void;
   current?: CalculatorType;
   disabled?: CalculatorType;
-}> = ({ current, setValue, disabled }) => {
+}> = ({ t, current, setValue, disabled }) => {
   return (
     <div className="w-full">
       <ul className="md:flex hidden list-none m-0 [&>li]:m-0 flex-grow md:justify-start justify-center">
         {calculatorTypes.map((type) => (
           <TabSelect
             key={type}
-            name={`${calculatorConfig[type].title}進位`}
+            name={t(`base-converter.${type}`)}
             active={type === current}
             onClick={() => setValue(type)}
             disabled={disabled === type}
@@ -130,7 +149,7 @@ const TabGroup: FC<{
         <SelectContent>
           {calculatorTypes.map((type) => (
             <SelectItem value={type} key={type} disabled={type === disabled}>
-              {calculatorConfig[type].title}進位
+              {t(`base-converter.${type}`)}
             </SelectItem>
           ))}
         </SelectContent>

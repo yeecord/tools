@@ -1,0 +1,71 @@
+---
+import "@/styles/global.css";
+import BaseLayout from "@/layouts/base-layout.astro";
+import { calculatorConfig } from "@/utils/calculator";
+import { ArrowRightLeft, Sparkles } from "lucide-react";
+import HomeItem from "@/components/home-item.astro";
+import { createTranslation, LanguageKey } from "@/utils/language";
+export { getStaticPaths } from "@/utils/language";
+
+interface Item {
+  title: string;
+  href: string;
+  from: string;
+  to: string;
+}
+
+const calculators: Item[] = [];
+
+const example = 69;
+
+const t = createTranslation(Astro.params.lang);
+
+const code = Astro.params.lang;
+
+for (const [fromId, from] of Object.entries(calculatorConfig)) {
+  for (const [toId, to] of Object.entries(calculatorConfig)) {
+    if (fromId === toId) continue;
+
+    calculators.push({
+      title: t(
+        "home.base-converter.title",
+        t(`base-converter.${fromId}` as LanguageKey),
+        t(`base-converter.${toId}` as LanguageKey),
+      ),
+      href: `/${Astro.params.lang}/base-converter/${fromId}/${toId}`,
+      from: example.toString(from.base),
+      to: example.toString(to.base),
+    });
+  }
+}
+---
+
+<BaseLayout {t} title={t("global.title")} class="space-y-8">
+  <h1 class="mb-8">{t("global.title")}</h1>
+  <p>{t("global.description")}</p>
+  <h2 class="flex items-center gap-2"><Sparkles />{t("home.recommended")}</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <HomeItem
+      config={{
+        title: t("two-complement.title"),
+        href: `/${code}/two-complement-converter`,
+        from: "69",
+        to: "00111011",
+      }}
+    />
+    <HomeItem
+      config={{
+        title: `${t("two-complement.title")} (${t("global.reverse")})`,
+        href: `/${code}/two-complement-converter/reverse`,
+        from: "00111011",
+        to: "69",
+      }}
+    />
+  </div>
+  <h2 class="flex items-center gap-2">
+    <ArrowRightLeft />{t("home.base-converter")}
+  </h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    {calculators.map((item) => <HomeItem {t} config={item} />)}
+  </div>
+</BaseLayout>
