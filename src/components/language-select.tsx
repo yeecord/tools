@@ -19,7 +19,10 @@ export const LanguageSelect: FC<{
       value={code}
       onValueChange={(lang) => (location.href = `/${lang}${path}`)}
     >
-      <SelectTrigger className="w-fit sm:flex hidden mr-2.5">
+      <SelectTrigger
+        className="w-fit sm:flex hidden mr-2.5"
+        aria-label="Language select"
+      >
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
