@@ -4,12 +4,19 @@ import BaseLayout from "@/layouts/base-layout.astro";
 import { TwoComplement } from "@/components/two-complement";
 import { Button } from "@/components/ui/button";
 import { RotateCcw } from "lucide-react";
-import Article from "@/articles/two-complement.mdx";
 import { Separator } from "@/components/ui/separator";
 import { createTranslation } from "@/utils/language";
 export { getStaticPaths } from "@/utils/language";
+import { getEntry } from "astro:content";
+import Adsense from "@/components/adsense.astro";
 
 const t = createTranslation(Astro.params.lang);
+
+// @ts-ignore
+const entry = await getEntry("posts", `${lang}/two-complement`);
+
+// @ts-ignore
+const { Content } = await entry.render();
 ---
 
 <BaseLayout
@@ -30,6 +37,10 @@ const t = createTranslation(Astro.params.lang);
   </a>
   <Separator className="my-8 block bg-border/50" />
   <article class="my-4">
-    <Article />
+    <Content
+      components={{
+        Adsense,
+      }}
+    />
   </article>
 </BaseLayout>
