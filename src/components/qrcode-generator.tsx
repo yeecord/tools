@@ -1,25 +1,25 @@
 import { Textarea } from "@/components/ui/textarea";
 import { useEffect, useRef, useState } from "react";
-import { toCanvas } from "qrcode";
+import { toDataURL } from "qrcode";
 
 export const QrcodeGenerator = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const [value, setValue] = useState("");
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [dataUrl, setDataUrl] = useState<string>();
 
   useEffect(() => {
-    if (!canvasRef.current || !value) return;
+    if (!value) return setDataUrl(undefined);
 
-    void toCanvas(canvasRef.current, value, {
+    toDataURL(value, {
       width: 512,
       margin: 1,
       color: {
         dark: "#000000",
         light: "#ffffff",
       },
-    });
-  }, [value, canvasRef.current]);
+    }).then(setDataUrl);
+  }, [value]);
 
   return (
     <div className="max-w-lg w-full mx-auto flex flex-col items-center gap-4">
@@ -35,7 +35,9 @@ export const QrcodeGenerator = () => {
         }}
         rows={3}
       />
-      <canvas ref={canvasRef} className="!w-40 !h-40" />
+      <div className="!w-40 !h-40">
+        {dataUrl && <img src={dataUrl} alt="QRCode" />}
+      </div>
     </div>
   );
 };
