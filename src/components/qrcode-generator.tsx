@@ -11,7 +11,7 @@ export const QrcodeGenerator = () => {
   useEffect(() => {
     if (!canvasRef.current || !value) return;
 
-    toCanvas(canvasRef.current, value, {
+    void toCanvas(canvasRef.current, value, {
       width: 512,
       margin: 1,
       color: {
@@ -19,7 +19,7 @@ export const QrcodeGenerator = () => {
         light: "#ffffff",
       },
     });
-  }, [value]);
+  }, [value, canvasRef]);
 
   return (
     <div className="max-w-lg w-full mx-auto flex flex-col items-center gap-4">
