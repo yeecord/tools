@@ -23,6 +23,9 @@ export const languages = {
       "寫作業需要的時候很好用，讓你在不同進位快速轉換，考試老師不會查你就用就這個",
     "two-complement.title": "二補數計算機",
     "two-complement.description": "簡易的八位元、十六位元、等二補數計算機",
+    "two-complement-reverse.title": "二補數反轉計算機",
+    "two-complement-reverse.description":
+      "簡易的八位元、十六位元、等二補數反轉計算機",
     "global.from": "從",
     "global.to": "到",
     "global.reverse": "反轉",
@@ -51,6 +54,9 @@ export const languages = {
       "写作业需要的时候很好用，让你在不同进位快速转换，考试老师不会查你就用就这个",
     "two-complement.title": "二补数计算机",
     "two-complement.description": "简易的八位元、十六位元、等二补数计算机",
+    "two-complement-reverse.title": "二补数反转计算机",
+    "two-complement-reverse.description":
+      "简易的八位元、十六位元、等二补数反转计算机",
     "global.from": "从",
     "global.to": "到",
     "global.reverse": "反转",
@@ -80,6 +86,9 @@ export const languages = {
     "two-complement.title": "Two's Complement Calculator",
     "two-complement.description":
       "Simple 8-bit, 16-bit, etc. two's complement calculator",
+    "two-complement-reverse.title": "Two's Complement Reverse Calculator",
+    "two-complement-reverse.description":
+      "Simple 8-bit, 16-bit, etc. two's complement reverse calculator",
     "global.from": "From",
     "global.to": "To",
     "global.reverse": "Reverse",
@@ -109,6 +118,9 @@ export const languages = {
     "two-complement.title": "2の補数計算機",
     "two-complement.description":
       "シンプルな8ビット、16ビットなどの2の補数計算機",
+    "two-complement-reverse.title": "2の補数反転計算機",
+    "two-complement-reverse.description":
+      "シンプルな8ビット、16ビットなどの2の補数反転計算機",
     "global.from": "から",
     "global.to": "へ",
     "global.reverse": "逆",
@@ -137,6 +149,9 @@ export const languages = {
       "숙제를 할 때 유용합니다. 다른 진법 간을 빠르게 변환할 수 있으며, 선생님은 그것을 사용하는지 확인하지 않습니다.",
     "two-complement.title": "2의 보수 계산기",
     "two-complement.description": "간단한 8비트, 16비트 등의 2의 보수 계산기",
+    "two-complement-reverse.title": "2의 보수 반전 계산기",
+    "two-complement-reverse.description":
+      "간단한 8비트, 16비트 등의 2의 보수 반전 계산기",
     "global.from": "에서",
     "global.to": "로",
     "global.reverse": "반전",

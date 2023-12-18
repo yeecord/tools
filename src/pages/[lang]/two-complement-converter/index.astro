@@ -26,7 +26,10 @@ const { Content } = await entry.render();
   <h1>{t("two-complement.title")}</h1>
   <p>{t("two-complement.description")}</p>
   <TwoComplement lang={Astro.params.lang} client:visible />
-  <a class="my-4 inline-block" href="/calculator/two-complement/reverse">
+  <a
+    class="my-4 inline-block"
+    href={`/${Astro.params.lang}/two-complement/reverse`}
+  >
     <Button>
       <span class="mr-2">
         <RotateCcw size="16" />

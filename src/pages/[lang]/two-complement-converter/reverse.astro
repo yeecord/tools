@@ -11,13 +11,13 @@ const t = createTranslation(Astro.params.lang);
 
 <BaseLayout
   {t}
-  title="二的補數逆向計算機"
-  description="簡易的八位元、十六位元等二補數逆向計算機"
+  title={t("two-complement-reverse.title")}
+  description={t("two-complement-reverse.description")}
 >
-  <h1>二的補數逆向計算機</h1>
-  <p>簡易的八位元、十六位元等二補數逆向計算機</p>
+  <h1>{t("two-complement-reverse.title")}</h1>
+  <p>{t("two-complement-reverse.description")}</p>
   <TwoComplementReverse lang={Astro.params.lang} client:visible />
-  <a class="mt-4 inline-block" href="/calculator/two-complement">
+  <a class="mt-4 inline-block" href={`/${Astro.params.lang}/two-complement`}>
     <Button>
       <span class="mr-2">
         <Sparkles size="16" />
