@@ -7,6 +7,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { languages } from "@/utils/language";
+import { Button } from "@/components/ui/button.tsx";
+import { Languages } from "lucide-react";
 
 export const LanguageSelect: FC<{
   code: string;
@@ -20,8 +22,8 @@ export const LanguageSelect: FC<{
       onValueChange={(lang) => (location.href = `/${lang}${path}`)}
     >
       <SelectTrigger
-        className="w-fit sm:flex hidden mr-2.5"
-        aria-label="Language select"
+        className="w-fit mr-2.5"
+        aria-label="Language select for desktop"
       >
         <SelectValue />
       </SelectTrigger>

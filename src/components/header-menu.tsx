@@ -18,7 +18,13 @@ const items: Item[] = [
 
 export function HeaderMenu() {
   return items.map(({ label, ...item }, index) => (
-    <Button key={index} asChild variant="ghost" size="sm" className="ml-2">
+    <Button
+      key={index}
+      asChild
+      variant="ghost"
+      size="sm"
+      className="ml-2 sm:flex hidden"
+    >
       <a {...item} aria-label={label} />
     </Button>
   ));
