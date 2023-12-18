@@ -29,7 +29,7 @@ const code = t("code");
       <span class="font-medium">{t("global.header.title")}</span>
     </a>
     <div class="flex-grow"></div>
-    <LanguageSelect path={url.pathname} code={code} client:visible />
+    <LanguageSelect path={url.pathname} code={code} client:load />
     <ThemeToggle client:visible />
     <HeaderMenu />
   </nav>

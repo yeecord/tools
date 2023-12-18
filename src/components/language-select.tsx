@@ -24,7 +24,7 @@ export const LanguageSelect: FC<{
         className="w-fit mr-2.5"
         aria-label="Language select for desktop"
       >
-        <SelectValue />
+        <SelectValue defaultValue={code} />
       </SelectTrigger>
       <SelectContent>
         {Object.entries(languages).map(([key, value]) => (
