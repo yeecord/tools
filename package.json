@@ -30,6 +30,7 @@
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.0.0",
 		"lucide-react": "^0.298.0",
+		"qrcode": "^1.5.3",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"sharp": "^0.33.0",
@@ -39,6 +40,7 @@
 	},
 	"devDependencies": {
 		"@tailwindcss/typography": "^0.5.10",
+		"@types/qrcode": "^1.5.5",
 		"@types/react": "^18.2.45",
 		"@typescript-eslint/parser": "^6.14.0",
 		"eslint": "^8.56.0",

@@ -2,9 +2,17 @@
 import "@/styles/global.css";
 import BaseLayout from "@/layouts/base-layout.astro";
 import { calculatorConfig } from "@/utils/calculator";
-import { ArrowRightLeft, Sparkles } from "lucide-react";
-import HomeItem from "@/components/home-item.astro";
+import {
+  ArrowRight,
+  ArrowRightLeft,
+  Calculator,
+  Sparkles,
+  QrCode,
+} from "lucide-react";
+import HomeItem from "../../components/home/home-item.astro";
 import { createTranslation, LanguageKey } from "@/utils/language";
+import Muted from "@/components/ui/muted.astro";
+import HomeItemContainer from "@/components/home/home-item-container.astro";
 export { getStaticPaths } from "@/utils/language";
 
 interface Item {
@@ -45,6 +53,10 @@ for (const [fromId, from] of Object.entries(calculatorConfig)) {
   <p>{t("global.description")}</p>
   <h2 class="flex items-center gap-2"><Sparkles />{t("home.recommended")}</h2>
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <HomeItemContainer href={`/${code}/free-qrcode-generator`}>
+      <QrCode />
+      <p>{t("qrcode.title")}</p>
+    </HomeItemContainer>
     <HomeItem
       config={{
         title: t("two-complement.title"),

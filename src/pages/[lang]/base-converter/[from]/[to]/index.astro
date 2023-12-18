@@ -55,10 +55,10 @@ const { Content } = await entry.render();
 ---
 
 <BaseLayout {t} {title} {description}>
-  <div
+  <main
     class="text-center min-h-[calc(100dvh-10rem)] md:min-h-[calc(100dvh-16rem)] flex justify-center flex-col"
   >
-    <h3 class="text-3xl font-bold">{t("base-converter.hero.title")}</h3>
+    <h2 class="text-3xl font-bold">{t("base-converter.hero.title")}</h2>
     <p class="text-muted-foreground">
       {t("base-converter.hero.description")}
     </p>
@@ -72,7 +72,7 @@ const { Content } = await entry.render();
       <Adsense />
       <Adsense />
     </div>
-  </div>
+  </main>
   <Separator className="my-8 block bg-border/50" />
   <article
     class="my-4 prose dark:prose-invert mx-auto prose-h1:text-center max-w-screen-md"

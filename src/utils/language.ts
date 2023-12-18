@@ -26,6 +26,8 @@ export const languages = {
     "global.from": "從",
     "global.to": "到",
     "global.reverse": "反轉",
+    "qrcode.title": "完全免費的線上 QR Code 產生器",
+    "qrcode.description": "簡單的 QR Code 產生器，完全免費",
   },
   "zh-cn": {
     code: "zh-cn",
@@ -52,6 +54,8 @@ export const languages = {
     "global.from": "从",
     "global.to": "到",
     "global.reverse": "反转",
+    "qrcode.title": "完全免费的在线 QR Code 产生器",
+    "qrcode.description": "简单的 QR Code 产生器，完全免费",
   },
   en: {
     code: "en",
@@ -79,6 +83,8 @@ export const languages = {
     "global.from": "From",
     "global.to": "To",
     "global.reverse": "Reverse",
+    "qrcode.title": "Free online QR Code generator",
+    "qrcode.description": "Simple QR Code generator, completely free",
   },
   jp: {
     code: "jp",
@@ -106,6 +112,8 @@ export const languages = {
     "global.from": "から",
     "global.to": "へ",
     "global.reverse": "逆",
+    "qrcode.title": "完全無料のオンラインQRコードジェネレーター",
+    "qrcode.description": "シンプルなQRコードジェネレーター、完全無料",
   },
 } as const;
 

@@ -1,0 +1,25 @@
+---
+import BaseLayout from "@/layouts/base-layout.astro";
+import { createTranslation } from "@/utils/language";
+import Adsense from "@/components/adsense.astro";
+import { QrcodeGenerator } from "@/components/qrcode-generator";
+import { Separator } from "@/components/ui/separator";
+export { getStaticPaths } from "@/utils/language";
+
+const t = createTranslation(Astro.params.lang);
+---
+
+<BaseLayout {t} title={t("qrcode.title")} description={t("qrcode.description")}>
+  <main
+    class="text-center min-h-[calc(100dvh-10rem)] md:min-h-[calc(100dvh-16rem)] flex justify-center flex-col"
+  >
+    <h1 class="text-3xl font-bold">{t("qrcode.title")}</h1>
+    <p class="text-muted-foreground">{t("qrcode.description")}</p>
+    <QrcodeGenerator client:visible />
+    <div class="grid md:grid-cols-2 gap-4">
+      <Adsense />
+      <Adsense />
+    </div>
+  </main>
+  <Separator className="my-8 block bg-border/50" />
+</BaseLayout>

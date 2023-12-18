@@ -5,8 +5,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select.tsx";
-import { languages } from "@/utils/language.ts";
+} from "@/components/ui/select";
+import { languages } from "@/utils/language";
 
 export const LanguageSelect: FC<{
   code: string;
