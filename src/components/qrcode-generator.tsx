@@ -19,7 +19,7 @@ export const QrcodeGenerator = () => {
         light: "#ffffff",
       },
     });
-  }, [value, canvasRef]);
+  }, [value, canvasRef.current]);
 
   return (
     <div className="max-w-lg w-full mx-auto flex flex-col items-center gap-4">

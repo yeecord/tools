@@ -1,4 +1,4 @@
-import { useRef, type FC, useEffect } from "react";
+import { type FC } from "react";
 import type { CalculatorType } from "@/utils/calculator";
 import { useCalculator } from "@/hooks/use-calculator";
 import { cn } from "@/utils/cn";
@@ -32,15 +32,6 @@ export const BaseConverter: FC<{
     setFromType,
     setToType,
   } = useCalculator(defaultFromId, defaultToId);
-
-  const inputRef = useRef<HTMLTextAreaElement>(null);
-
-  useEffect(() => {
-    if (!inputRef.current) return;
-
-    inputRef.current.value = "0";
-    inputRef.current.focus();
-  }, [inputRef]);
 
   return (
     <div className="max-w-screen-md w-full md:mx-auto flex flex-col gap-2.5">
@@ -95,7 +86,12 @@ export const BaseConverter: FC<{
       </div>
       <div className="grid md:grid-cols-2 gap-4">
         <Textarea
-          ref={inputRef}
+          ref={(input) => {
+            if (!input || input.value) return;
+
+            input.value = "0";
+            input.focus();
+          }}
           className={cn(
             "whitespace-pre-wrap inline-block text-start break-words break-all text-2xl bg-secondary/25 resize-none focus-visible:ring-0 !ring-offset-0",
             !fromValid &&
