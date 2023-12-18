@@ -1,5 +1,5 @@
 ---
-const { href } = Astro.props.config;
+const href = Astro.props ?? Astro.props.config;
 ---
 
 <a
