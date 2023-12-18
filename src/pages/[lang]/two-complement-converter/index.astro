@@ -23,7 +23,7 @@ const { Content } = await entry.render();
   title={t("two-complement.title")}
   description={t("two-complement.description")}
 >
-  <h2>{t("two-complement.title")}</h2>
+  <h1>{t("two-complement.title")}</h1>
   <p>{t("two-complement.description")}</p>
   <TwoComplement lang={Astro.params.lang} client:visible />
   <a class="my-4 inline-block" href="/calculator/two-complement/reverse">
