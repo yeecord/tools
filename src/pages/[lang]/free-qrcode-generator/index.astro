@@ -5,8 +5,18 @@ import Adsense from "@/components/adsense.astro";
 import { QrcodeGenerator } from "@/components/qrcode-generator";
 import { Separator } from "@/components/ui/separator";
 export { getStaticPaths } from "@/utils/language";
+import { getEntry } from "astro:content";
 
 const t = createTranslation(Astro.params.lang);
+
+// @ts-ignore
+const entry = await getEntry(
+  "posts",
+  `${Astro.params.lang}/free-qrcode-generator`,
+);
+
+// @ts-ignore
+const { Content } = await entry.render();
 ---
 
 <BaseLayout {t} title={t("qrcode.title")} description={t("qrcode.description")}>
@@ -22,4 +32,13 @@ const t = createTranslation(Astro.params.lang);
     </div>
   </main>
   <Separator className="my-8 block bg-border/50" />
+  <article
+    class="my-4 prose dark:prose-invert mx-auto prose-h1:text-center max-w-screen-md"
+  >
+    <Content
+      components={{
+        Adsense,
+      }}
+    />
+  </article>
 </BaseLayout>
