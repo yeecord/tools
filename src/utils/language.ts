@@ -115,6 +115,34 @@ export const languages = {
     "qrcode.title": "完全無料のオンラインQRコードジェネレーター",
     "qrcode.description": "シンプルなQRコードジェネレーター、完全無料",
   },
+  kr: {
+    code: "kr",
+    name: "한국어",
+    "href-lang": "ko",
+    "global.title": "Yeecord 도구",
+    "global.description":
+      "유용한 수학 도구, 진수 변환기 등의 간단한 도구, 깨끗한 UI",
+    "home.base-converter.title": "{0}에서 {1}로 변환",
+    "home.recommended": "추천",
+    "home.base-converter": "진수 변환기",
+    "global.header.title": "도구",
+    "base-converter.dec": "십진수",
+    "base-converter.bin": "이진수",
+    "base-converter.oct": "8진수",
+    "base-converter.hex": "16진수",
+    "base-converter.title": "실시간 {0}에서 {1}로 변환",
+    "base-converter.description": "브라우저에서 작동하는 {0} 계산기",
+    "base-converter.hero.title": "실시간 진수 변환기",
+    "base-converter.hero.description":
+      "숙제를 할 때 유용합니다. 다른 진법 간을 빠르게 변환할 수 있으며, 선생님은 그것을 사용하는지 확인하지 않습니다.",
+    "two-complement.title": "2의 보수 계산기",
+    "two-complement.description": "간단한 8비트, 16비트 등의 2의 보수 계산기",
+    "global.from": "에서",
+    "global.to": "로",
+    "global.reverse": "반전",
+    "qrcode.title": "완전 무료 온라인 QR 코드 생성기",
+    "qrcode.description": "간단한 QR 코드 생성기, 완전 무료",
+  },
 } as const;
 
 export type TranslateFunction = ReturnType<typeof createTranslation>;
