@@ -1,6 +1,5 @@
 import { type FC, useId } from "react";
-import { Input } from "@/components/ui/input.tsx";
-import { Label } from "@/components/ui/label.tsx";
+import { Input } from "@/components/ui/input";
 
 export const Output: FC<{
   value: bigint | string;
@@ -10,7 +9,7 @@ export const Output: FC<{
 
   return (
     <div className="grid gap-2">
-      <Label htmlFor={id}>{label}</Label>
+      <label htmlFor={id}>{label}</label>
       <Input
         className="font-medium text-base font-mono max-w-xl"
         id={id}

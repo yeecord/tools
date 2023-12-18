@@ -1,12 +1,11 @@
 import { useId, useMemo, useState } from "react";
 import { parseLargeNumber } from "@/utils/parse";
-import { Output } from "@/components/output.tsx";
+import { Output } from "@/components/output";
 import { getBitMask } from "@/utils/bits";
 import { cn } from "@/utils/cn";
-import { Input } from "@/components/ui/input.tsx";
-import { Label } from "@/components/ui/label.tsx";
+import { Input } from "@/components/ui/input";
 import { ArrowDown } from "lucide-react";
-import { createTranslation, type TranslateFunction } from "@/utils/language.ts";
+import { createTranslation, type TranslateFunction } from "@/utils/language";
 
 export const TwoComplementReverse = ({ lang }: { lang: string }) => {
   const t = createTranslation(lang);
@@ -23,7 +22,7 @@ export const TwoComplementReverse = ({ lang }: { lang: string }) => {
           {t("global.from")}
         </h4>
         <div className="grid gap-2">
-          <Label htmlFor={sourceId}>{t("base-converter.bin")}</Label>
+          <label htmlFor={sourceId}>{t("base-converter.bin")}</label>
           <Input
             id={sourceId}
             className={cn(

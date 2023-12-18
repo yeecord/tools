@@ -4,15 +4,15 @@ import { useCalculator } from "@/hooks/use-calculator";
 import { cn } from "@/utils/cn";
 import { calculatorTypes } from "@/utils/calculator";
 import { ArrowRightLeft } from "lucide-react";
-import { Button } from "@/components/ui/button.tsx";
-import { Textarea } from "@/components/ui/textarea.tsx";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select.tsx";
+} from "@/components/ui/select";
 import { createTitle } from "@/utils/title";
 import { createTranslation, type TranslateFunction } from "@/utils/language";
 

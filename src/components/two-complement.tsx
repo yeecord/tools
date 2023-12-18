@@ -1,10 +1,9 @@
 import { useId, useState } from "react";
-import { Output } from "@/components/output.tsx";
+import { Output } from "@/components/output";
 import { getBitMask } from "@/utils/bits";
-import { Label } from "@/components/ui/label.tsx";
-import { Input } from "@/components/ui/input.tsx";
+import { Input } from "@/components/ui/input";
 import { ArrowDown } from "lucide-react";
-import { createTranslation } from "@/utils/language.ts";
+import { createTranslation } from "@/utils/language";
 
 export const TwoComplement = ({ lang }: { lang: string }) => {
   const t = createTranslation(lang);
@@ -23,7 +22,7 @@ export const TwoComplement = ({ lang }: { lang: string }) => {
           {t("global.from")}
         </h4>
         <div className="grid gap-2">
-          <Label htmlFor={sourceId}>{t("base-converter.dec")}</Label>
+          <label htmlFor={sourceId}>{t("base-converter.dec")}</label>
           <Input
             id={sourceId}
             className="font-medium text-base border font-mono max-w-xl"
@@ -37,7 +36,7 @@ export const TwoComplement = ({ lang }: { lang: string }) => {
           />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor={bitsId}>位元數</Label>
+          <label htmlFor={bitsId}>位元數</label>
           <Input
             type="number"
             id={bitsId}
