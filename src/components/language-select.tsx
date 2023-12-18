@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/select";
 import { languages } from "@/utils/language";
 import { Button } from "@/components/ui/button.tsx";
-import { Languages } from "lucide-react";
 
 export const LanguageSelect: FC<{
   code: string;
