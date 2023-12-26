@@ -8,7 +8,7 @@ export const languages = {
     "global.title": "Yeecord 小工具",
     "global.description":
       "實用的數學小工具，包含進位計算機等簡便小工具，以及乾淨的操作介面",
-    "home.base-converter.title": "{0}進位轉{1}進位",
+    "home.base-converter.title": "{0}轉{1}",
     "home.recommended": "為你推薦",
     "home.base-converter": "進制轉換",
     "global.header.title": "小工具",
@@ -16,7 +16,7 @@ export const languages = {
     "base-converter.bin": "二進位",
     "base-converter.oct": "八進位",
     "base-converter.hex": "十六進位",
-    "base-converter.title": "即時{0}進制轉{1}進位轉換器",
+    "base-converter.title": "即時{0}轉{1}轉換器",
     "base-converter.description": "在你的瀏覽器就能使用的{0}的計算機",
     "base-converter.hero.title": "即時進制轉換器",
     "base-converter.hero.description":
@@ -39,7 +39,7 @@ export const languages = {
     "global.title": "Yeecord 小工具",
     "global.description":
       "实用的数学小工具，包含进位计算机等简便小工具，以及干净的操作界面",
-    "home.base-converter.title": "{0}进制转{1}进制",
+    "home.base-converter.title": "{0}转{1}",
     "home.recommended": "为你推荐",
     "home.base-converter": "进制转换",
     "global.header.title": "小工具",
@@ -47,7 +47,7 @@ export const languages = {
     "base-converter.bin": "二进制",
     "base-converter.oct": "八进制",
     "base-converter.hex": "十六进制",
-    "base-converter.title": "即时{0}进制转{1}进制转换器",
+    "base-converter.title": "即时{0}转{1}转换器",
     "base-converter.description": "在你的浏览器就能使用的{0}的计算机",
     "base-converter.hero.title": "即时进制转换器",
     "base-converter.hero.description":
