@@ -1,6 +1,6 @@
 import { defineConfig, sharpImageService } from "astro/config";
 import tailwind from "@astrojs/tailwind";
-import compress from "astro-compress";
+import compress from "@playform/compress";
 import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import robotsTxt from "astro-robots-txt";
