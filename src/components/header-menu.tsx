@@ -1,6 +1,6 @@
-import type { ReactNode } from "react";
-import { Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Github } from "lucide-react";
+import type { ReactNode } from "react";
 
 interface Item {
   children: ReactNode;

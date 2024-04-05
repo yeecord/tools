@@ -1,11 +1,10 @@
-import { defineConfig, sharpImageService } from "astro/config";
+import mdx from "@astrojs/mdx";
+import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import compress from "@playform/compress";
-import sitemap from "@astrojs/sitemap";
-import react from "@astrojs/react";
 import robotsTxt from "astro-robots-txt";
-
-import mdx from "@astrojs/mdx";
+import { defineConfig, sharpImageService } from "astro/config";
 
 export default defineConfig({
   site: "https://tools.yeecord.com",

@@ -1,5 +1,5 @@
-import { type FC, useId } from "react";
 import { Input } from "@/components/ui/input";
+import { useId, type FC } from "react";
 
 export const Output: FC<{
   value: bigint | string;

@@ -1,11 +1,11 @@
-import { useId, useMemo, useState } from "react";
-import { parseLargeNumber } from "@/utils/parse";
 import { Output } from "@/components/output";
+import { Input } from "@/components/ui/input";
 import { getBitMask } from "@/utils/bits";
 import { cn } from "@/utils/cn";
-import { Input } from "@/components/ui/input";
+import { createTranslation } from "@/utils/language";
+import { parseLargeNumber } from "@/utils/parse";
 import { ArrowDown } from "lucide-react";
-import { createTranslation, type TranslateFunction } from "@/utils/language";
+import { useId, useMemo, useState } from "react";
 
 export const TwoComplementReverse = ({ lang }: { lang: string }) => {
   const t = createTranslation(lang);

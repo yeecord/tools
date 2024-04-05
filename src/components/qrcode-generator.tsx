@@ -1,6 +1,6 @@
 import { Textarea } from "@/components/ui/textarea";
-import { useEffect, useRef, useState } from "react";
 import { toDataURL } from "qrcode";
+import { useEffect, useRef, useState } from "react";
 
 export const QrcodeGenerator = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null);

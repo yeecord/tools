@@ -1,11 +1,4 @@
-import { type FC } from "react";
-import type { CalculatorType } from "@/utils/calculator";
-import { useCalculator } from "@/hooks/use-calculator";
-import { cn } from "@/utils/cn";
-import { calculatorTypes } from "@/utils/calculator";
-import { ArrowRightLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -13,8 +6,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { createTitle } from "@/utils/title";
+import { Textarea } from "@/components/ui/textarea";
+import { useCalculator } from "@/hooks/use-calculator";
+import type { CalculatorType } from "@/utils/calculator";
+import { calculatorTypes } from "@/utils/calculator";
+import { cn } from "@/utils/cn";
 import { createTranslation, type TranslateFunction } from "@/utils/language";
+import { createTitle } from "@/utils/title";
+import { ArrowRightLeft } from "lucide-react";
+import { type FC } from "react";
 
 export const BaseConverter: FC<{
   language: string;

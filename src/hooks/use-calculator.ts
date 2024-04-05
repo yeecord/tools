@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
-import { parseFloatToBase } from "@/utils/parse";
 import {
-  type CalculatorConfig,
   calculatorConfig,
+  type CalculatorConfig,
   type CalculatorType,
 } from "@/utils/calculator";
+import { parseFloatToBase } from "@/utils/parse";
+import { useEffect, useMemo, useState } from "react";
 
 export function useCalculator(
   defaultFromType: CalculatorType,

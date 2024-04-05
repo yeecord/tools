@@ -44,6 +44,7 @@
 		"eslint-plugin-jsx-a11y": "^6.8.0",
 		"prettier": "^3.2.5",
 		"prettier-plugin-astro": "^0.13.0",
+		"prettier-plugin-organize-imports": "^3.2.4",
 		"workbox-window": "^7.0.0"
 	}
 }

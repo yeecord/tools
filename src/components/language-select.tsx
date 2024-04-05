@@ -1,4 +1,3 @@
-import type { FC } from "react";
 import {
   Select,
   SelectContent,
@@ -7,7 +6,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { languages } from "@/utils/language";
-import { Button } from "@/components/ui/button.tsx";
+import type { FC } from "react";
 
 export const LanguageSelect: FC<{
   code: string;
