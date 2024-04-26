@@ -1,5 +1,6 @@
 import { Textarea } from "@/components/ui/textarea";
 import type { AddressToEnglishJson } from "@/pages/address-to-english.json.ts";
+import { cn } from "@/utils/cn.ts";
 import { useDeferredValue, useEffect, useRef, useState } from "react";
 import useSWR from "swr";
 
@@ -27,6 +28,7 @@ export const AddressToEnglishInput = () => {
 
   const [value, setValue] = useState("");
   const [result, setResult] = useState<string>();
+  const [isValid, setIsValid] = useState(true);
   const deferredValue = useDeferredValue(value);
 
   const { isLoading, data: addressData } = useSWR<AddressToEnglishJson>(
@@ -80,7 +82,6 @@ export const AddressToEnglishInput = () => {
       }
 
       // decode all numbers back to arabic numbers,
-      // and replace "之" with "-",
       // format ${number}之${extra} to ${number}-${extra}${type} (e.g. 11號之1 => 11-1號)
       mutableAddress = mutableAddress
         .replace(/[零一二三四五六七八九十百]+/g, (ch) =>
@@ -88,8 +89,7 @@ export const AddressToEnglishInput = () => {
             tenMin: true,
           }),
         )
-        .replace(/\d+之\d+/, (ch, number, extra) => ch.replace("之", "-"))
-        .replace(/(\d+)(.)之(\d+)/, (ch, number, type, extra) =>
+        .replace(/(\d+)(.)?之(\d+)/g, (ch, number, type = "", extra) =>
           ch.replace(`${number}${type}之${extra}`, `${number}-${extra}${type}`),
         );
 
@@ -130,6 +130,8 @@ export const AddressToEnglishInput = () => {
       }
 
       setResult(parts.toReversed().join(", "));
+      // if the address is valid, parts will have at least 2 elements, and the address should be empty
+      setIsValid(parts.length > 1 && !mutableAddress.trim());
     }
 
     if (deferredValue) void translate();
@@ -140,7 +142,10 @@ export const AddressToEnglishInput = () => {
       <Textarea
         autoFocus
         ref={inputRef}
-        className="whitespace-pre-wrap inline-block text-start break-words break-all text-2xl bg-secondary/50 resize-none focus-visible:ring-0 !ring-offset-0"
+        className={cn(
+          "whitespace-pre-wrap inline-block text-start break-words break-all text-2xl bg-secondary/50 resize-none focus-visible:ring-0 !ring-offset-0 transition-colors",
+          !isValid && "border-red-500",
+        )}
         placeholder="臺北市中正區重慶南路1段122號"
         onChange={(event) => {
           event.currentTarget.style.height = "";
