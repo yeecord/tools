@@ -3,10 +3,10 @@ import { HeaderMenu } from "./header-menu";
 import { Image } from "astro:assets";
 import logo from "@/assets/logo.png";
 import { ThemeToggle } from "./theme-toggle";
-import { TranslateFunction } from "../utils/language";
+import { createTranslation, TranslateFunction } from "../utils/language";
 import { LanguageSelect } from "./language-select";
 
-const t = Astro.props.t as TranslateFunction;
+const t = (Astro.props.t as TranslateFunction) ?? createTranslation("zh-tw");
 
 const url = new URL(Astro.url);
 
@@ -29,7 +29,12 @@ const code = t("code");
       <span class="font-medium">{t("global.header.title")}</span>
     </a>
     <div class="flex-grow"></div>
-    <LanguageSelect path={url.pathname} code={code} client:load />
+    <LanguageSelect
+      path={url.pathname}
+      disabled={!Astro.props.t}
+      code={code}
+      client:load
+    />
     <ThemeToggle client:visible />
     <HeaderMenu />
   </nav>

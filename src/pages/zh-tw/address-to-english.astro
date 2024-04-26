@@ -1,15 +1,11 @@
 ---
 import BaseLayout from "../../layouts/base-layout.astro";
-import { createTranslation } from "../../utils/language";
 import Adsense from "../../components/adsense.astro";
 export { getStaticPaths } from "../../utils/language";
 import { AddressToEnglishInput } from "../../components/address-to-english-input";
-
-const t = createTranslation("zh-tw");
 ---
 
 <BaseLayout
-  {t}
   title="台灣中華郵政地址轉英文"
   description="輸入臺灣地址轉為英文格式，支援中文、全形數字轉換"
 >

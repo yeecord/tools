@@ -6,6 +6,7 @@ import { ImageMetadata } from "astro";
 import logo from "@/assets/logo.png";
 import { cn } from "@/utils/cn";
 import { TranslateFunction } from "@/utils/language";
+import { createTranslation } from "../utils/language";
 
 interface Props {
   title: string;
@@ -15,12 +16,13 @@ interface Props {
   t: TranslateFunction;
 }
 
+const t = (Astro.props.t as TranslateFunction) ?? createTranslation("zh-tw");
+
 const {
   title,
-  description = Astro.props.t("global.description"),
+  description = t("global.description"),
   icon,
   class: className,
-  t,
 } = Astro.props;
 
 const suffix = t("global.title");
@@ -79,7 +81,7 @@ const themeScript = `!function e(){let t=localStorage.getItem("theme");!t&&windo
       crossorigin="anonymous"></script>
   </head>
   <body>
-    <Header {t} />
+    <Header t={Astro.props.t} />
   </body>
   <div class={cn("mb-8 md:mb-4 container", className)}>
     <slot />

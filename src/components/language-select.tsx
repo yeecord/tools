@@ -11,12 +11,14 @@ import type { FC } from "react";
 export const LanguageSelect: FC<{
   code: string;
   path: string;
-}> = ({ code, path }) => {
+  disabled?: boolean;
+}> = ({ code, path, disabled }) => {
   if (path.endsWith("/")) path = path.slice(0, -1);
 
   return (
     <Select
       value={code}
+      disabled={disabled}
       onValueChange={(lang) => (location.href = `/${lang}${path}`)}
     >
       <SelectTrigger
