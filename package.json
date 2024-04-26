@@ -7,7 +7,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "vitest"
   },
   "dependencies": {
     "@astrojs/mdx": "^2.2.4",
@@ -48,6 +49,9 @@
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
     "prettier-plugin-organize-imports": "^3.2.4",
+    "vite": "^5.2.10",
+    "vite-tsconfig-paths": "^4.3.2",
+    "vitest": "^1.5.2",
     "workbox-window": "^7.0.0"
   }
 }
