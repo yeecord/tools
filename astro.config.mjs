@@ -3,9 +3,11 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import compress from "@playform/compress";
+import playformInline from "@playform/inline";
 import robotsTxt from "astro-robots-txt";
 import { defineConfig, sharpImageService } from "astro/config";
 
+// https://astro.build/config
 export default defineConfig({
   site: "https://tools.yeecord.com",
   trailingSlash: "never",
@@ -23,6 +25,7 @@ export default defineConfig({
       sitemapBaseFileName: "sitemap-index",
     }),
     mdx(),
+    playformInline(),
   ],
   image: {
     service: sharpImageService(),

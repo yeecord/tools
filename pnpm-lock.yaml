@@ -23,6 +23,9 @@ importers:
       '@playform/compress':
         specifier: ^0.0.2
         version: 0.0.2
+      '@playform/inline':
+        specifier: ^0.0.2
+        version: 0.0.2
       '@radix-ui/react-dropdown-menu':
         specifier: ^2.0.6
         version: 2.0.6(@types/react-dom@18.2.24)(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -801,6 +804,9 @@ packages:
 
   '@playform/compress@0.0.2':
     resolution: {integrity: sha512-dL/OxWTbWgjxjtwWiEtRYkgvDgurEsZRD8TerdhuKEVAtpmeofIH3wv9J5BxJ0pvEGMUfMiAX8jRpJOjE515Gw==, tarball: https://registry.npmjs.org/@playform/compress/-/compress-0.0.2.tgz}
+
+  '@playform/inline@0.0.2':
+    resolution: {integrity: sha512-2+h7t4mydMVJjP+U8PZhFz7iUlCqf/oGZX/Y5hUO72WeP6YD76MxkRSMCLJjXbqQkIQ2e5N3irbhz0JKKzMBTQ==, tarball: https://registry.npmjs.org/@playform/inline/-/inline-0.0.2.tgz}
 
   '@playform/pipe@0.0.2':
     resolution: {integrity: sha512-1LJADjJVxUDIfpp5vkIup7vuxsZllWPYYbZO7gLN1CUcOFIekYSi1uxptkrYWBDRW/usiAyUdpd3gSKisED/sQ==, tarball: https://registry.npmjs.org/@playform/pipe/-/pipe-0.0.2.tgz}
@@ -1754,6 +1760,9 @@ packages:
     resolution: {integrity: sha512-U71cyTamuh1CRNCfpGY6to28lxvNwPG4Guz/EVjgf3Jmzv0vlDp1atT9eS5dDjMYHucpHbWns6Lwf3BKz6svdw==, tarball: https://registry.npmjs.org/cookie/-/cookie-0.6.0.tgz}
     engines: {node: '>= 0.6'}
 
+  critters@0.0.22:
+    resolution: {integrity: sha512-NU7DEcQZM2Dy8XTKFHxtdnIM/drE312j2T4PCVaSUcS0oBeyT/NImpRw/Ap0zOr/1SE7SgPK9tGPg1WK/sVakw==, tarball: https://registry.npmjs.org/critters/-/critters-0.0.22.tgz}
+
   cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==, tarball: https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.3.tgz}
     engines: {node: '>= 8'}
@@ -2336,6 +2345,9 @@ packages:
 
   html-void-elements@3.0.0:
     resolution: {integrity: sha512-bEqo66MRXsUGxWHV5IP0PUiAWwoEjba4VCzg0LjFJBpchPaTfyfCKTG6bc5F8ucKec3q5y6qOdGyYTSBEvhCrg==, tarball: https://registry.npmjs.org/html-void-elements/-/html-void-elements-3.0.0.tgz}
+
+  htmlparser2@8.0.2:
+    resolution: {integrity: sha512-GYdjWKDkbRLkZ5geuHs5NY1puJ+PXwP7+fHPRz06Eirsb9ugf6d8kkXav6ADhcODhFFPMIXyxkxSuMf3D6NCFA==, tarball: https://registry.npmjs.org/htmlparser2/-/htmlparser2-8.0.2.tgz}
 
   http-cache-semantics@4.1.1:
     resolution: {integrity: sha512-er295DKPVsV82j5kw1Gjt+ADA/XYHsajl82cGNQG2eyoPkvgUhX+nDIyelzhIWbbsXP39EHcI6l5tYs2FYqYXQ==, tarball: https://registry.npmjs.org/http-cache-semantics/-/http-cache-semantics-4.1.1.tgz}
@@ -3233,6 +3245,9 @@ packages:
         optional: true
       ts-node:
         optional: true
+
+  postcss-media-query-parser@0.2.3:
+    resolution: {integrity: sha512-3sOlxmbKcSHMjlUXQZKQ06jOswE7oVkXPxmZdoB1r5l0q6gTFTQSHxNxOrCccElbW7dxNytifNEo8qidX2Vsig==, tarball: https://registry.npmjs.org/postcss-media-query-parser/-/postcss-media-query-parser-0.2.3.tgz}
 
   postcss-nested@6.0.1:
     resolution: {integrity: sha512-mEp4xPMi5bSWiMbsgoPfcP74lsWLHkQbZc3sY+jWYd65CUwXrUaTp0fmNpa01ZcETKlIgUdFN/MpS2xZtqL9dQ==, tarball: https://registry.npmjs.org/postcss-nested/-/postcss-nested-6.0.1.tgz}
@@ -4783,6 +4798,11 @@ snapshots:
       svgo: 3.2.0
       terser: 5.30.3
 
+  '@playform/inline@0.0.2':
+    dependencies:
+      '@playform/pipe': 0.0.2
+      critters: 0.0.22
+
   '@playform/pipe@0.0.2':
     dependencies:
       '@types/node': 20.12.4
@@ -5859,6 +5879,16 @@ snapshots:
 
   cookie@0.6.0: {}
 
+  critters@0.0.22:
+    dependencies:
+      chalk: 4.1.2
+      css-select: 5.1.0
+      dom-serializer: 2.0.0
+      domhandler: 5.0.3
+      htmlparser2: 8.0.2
+      postcss: 8.4.38
+      postcss-media-query-parser: 0.2.3
+
   cross-spawn@7.0.3:
     dependencies:
       path-key: 3.1.1
@@ -6687,6 +6717,13 @@ snapshots:
       terser: 5.30.3
 
   html-void-elements@3.0.0: {}
+
+  htmlparser2@8.0.2:
+    dependencies:
+      domelementtype: 2.3.0
+      domhandler: 5.0.3
+      domutils: 3.1.0
+      entities: 4.5.0
 
   http-cache-semantics@4.1.1: {}
 
@@ -7787,6 +7824,8 @@ snapshots:
       yaml: 2.4.1
     optionalDependencies:
       postcss: 8.4.38
+
+  postcss-media-query-parser@0.2.3: {}
 
   postcss-nested@6.0.1(postcss@8.4.38):
     dependencies:
