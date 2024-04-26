@@ -65,11 +65,11 @@
   }
 
   html {
-    @apply min-h-full;
+    @apply bg-background text-foreground antialiased;
   }
 
   body {
-    @apply min-h-full bg-background text-foreground;
+    @apply min-h-[100dvh];
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
