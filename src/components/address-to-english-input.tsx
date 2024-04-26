@@ -35,7 +35,8 @@ export const AddressToEnglishInput = () => {
     async function translate() {
       // update url address param without reloading the page
       const url = new URL(location.href);
-      url.searchParams.set("address", deferredValue);
+
+      if (deferredValue) url.searchParams.set("address", deferredValue);
 
       history.replaceState({}, "", url.toString());
 
