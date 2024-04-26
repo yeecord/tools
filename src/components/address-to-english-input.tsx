@@ -23,12 +23,16 @@ export const AddressToEnglishInput = () => {
   );
 
   useEffect(() => {
-    // load address from the url address param
-    const searchParams = new URLSearchParams(location.search);
+    // load address from the url address hash
+    try {
+      const searchParams = new URLSearchParams(location.hash.slice(1));
 
-    const address = searchParams.get("address");
+      const address = searchParams.get("address");
 
-    if (address) setValue(address);
+      if (address) setValue(address);
+    } catch {
+      // ignore
+    }
   }, []);
 
   useEffect(() => {
@@ -36,7 +40,11 @@ export const AddressToEnglishInput = () => {
       // update url address param without reloading the page
       const url = new URL(location.href);
 
-      if (deferredValue) url.searchParams.set("address", deferredValue);
+      const searchParams = new URLSearchParams();
+
+      if (deferredValue) searchParams.set("address", deferredValue);
+
+      url.hash = searchParams.toString();
 
       history.replaceState({}, "", url.toString());
 
