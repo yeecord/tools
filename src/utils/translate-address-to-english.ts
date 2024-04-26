@@ -31,6 +31,13 @@ export function translateAddressToEnglish(
 
   let mutableAddress = prettyAddress(value);
 
+  // if the address starts with a zip code, remove it
+  const zipCodeMatch = mutableAddress.match(/^\d{3,6}/);
+
+  if (zipCodeMatch?.length) {
+    mutableAddress = mutableAddress.replace(zipCodeMatch[0], "");
+  }
+
   // encode all numbers to chinese numbers, in order to match villages and roads
   mutableAddress = mutableAddress.replace(/\d+/g, (ch) =>
     nzhInstance.encodeS(ch),
