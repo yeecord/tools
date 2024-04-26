@@ -11,7 +11,7 @@ import { useCalculator } from "@/hooks/use-calculator";
 import type { CalculatorType } from "@/utils/calculator";
 import { calculatorTypes } from "@/utils/calculator";
 import { cn } from "@/utils/cn";
-import { createTranslation, type TranslateFunction } from "@/utils/language";
+import { useTranslation, type TranslateFunction } from "@/utils/language";
 import { createTitle } from "@/utils/title";
 import { ArrowRightLeft } from "lucide-react";
 import { type FC } from "react";
@@ -21,7 +21,7 @@ export const BaseConverter: FC<{
   defaultFromId: CalculatorType;
   defaultToId: CalculatorType;
 }> = ({ language, defaultFromId, defaultToId }) => {
-  const t = createTranslation(language);
+  const t = useTranslation(language);
 
   const {
     toValue,

@@ -1,3 +1,5 @@
+import { useMemo } from "react";
+
 const defaultLanguage = "zh-tw";
 
 export const languages = {
@@ -31,6 +33,7 @@ export const languages = {
     "global.reverse": "反轉",
     "qrcode.title": "完全免費的線上 QR Code 產生器",
     "qrcode.description": "簡單的 QR Code 產生器，完全免費",
+    "qrcode.placeholder": "在這裡輸入連結或文字",
   },
   "zh-cn": {
     code: "zh-cn",
@@ -62,6 +65,7 @@ export const languages = {
     "global.reverse": "反转",
     "qrcode.title": "完全免费的在线 QR Code 产生器",
     "qrcode.description": "简单的 QR Code 产生器，完全免费",
+    "qrcode.placeholder": "在这里输入连结或文字",
   },
   en: {
     code: "en",
@@ -94,6 +98,7 @@ export const languages = {
     "global.reverse": "Reverse",
     "qrcode.title": "Free online QR Code generator",
     "qrcode.description": "Simple QR Code generator, completely free",
+    "qrcode.placeholder": "Enter link or text here",
   },
   jp: {
     code: "jp",
@@ -126,6 +131,7 @@ export const languages = {
     "global.reverse": "逆",
     "qrcode.title": "完全無料のオンラインQRコードジェネレーター",
     "qrcode.description": "シンプルなQRコードジェネレーター、完全無料",
+    "qrcode.placeholder": "ここにリンクまたはテキストを入力してください",
   },
   kr: {
     code: "kr",
@@ -157,6 +163,7 @@ export const languages = {
     "global.reverse": "반전",
     "qrcode.title": "완전 무료 온라인 QR 코드 생성기",
     "qrcode.description": "간단한 QR 코드 생성기, 완전 무료",
+    "qrcode.placeholder": "여기에 링크 또는 텍스트를 입력하세요",
   },
 } as const;
 
@@ -187,6 +194,10 @@ export function createTranslation(code: string) {
   t.language = code;
 
   return t;
+}
+
+export function useTranslation(code: string) {
+  return useMemo(() => createTranslation(code), [code]);
 }
 
 export function getStaticPaths() {

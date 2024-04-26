@@ -1,0 +1,33 @@
+---
+import BaseLayout from "@/layouts/base-layout.astro";
+import { createTranslation } from "@/utils/language";
+import Adsense from "@/components/adsense.astro";
+export { getStaticPaths } from "@/utils/language";
+import { AddressToEnglishInput } from "@/components/address-to-english-input";
+
+if (Astro.params.lang !== "zh-tw")
+  return Astro.redirect(Astro.url.pathname.replace(Astro.params.lang, "zh-tw"));
+
+const t = createTranslation(Astro.params.lang);
+---
+
+<BaseLayout
+  {t}
+  title="台灣中華郵政地址轉英文"
+  description="台灣中華郵政地址轉英文"
+>
+  <main
+    class="text-center min-h-[calc(100dvh-10rem)] md:min-h-[calc(100dvh-16rem)] flex justify-center flex-col"
+  >
+    <h1 class="text-3xl font-bold">台灣中華郵政地址轉英文</h1>
+    <p class="text-muted-foreground">台灣中華郵政地址轉英文</p>
+    <AddressToEnglishInput client:visible />
+    <p class="text-sm text-muted-foreground">
+      資料來源：中華郵政（縣市鄉鎮中英對照檔、中英文街路名稱對照檔、村里文字巷中英對照文字檔）
+    </p>
+    <div class="grid md:grid-cols-2 gap-4">
+      <Adsense />
+      <Adsense />
+    </div>
+  </main>
+</BaseLayout>

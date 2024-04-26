@@ -1,12 +1,12 @@
 import { Output } from "@/components/output";
 import { Input } from "@/components/ui/input";
 import { getBitMask } from "@/utils/bits";
-import { createTranslation } from "@/utils/language";
+import { useTranslation } from "@/utils/language";
 import { ArrowDown } from "lucide-react";
 import { useId, useState } from "react";
 
 export const TwoComplement = ({ lang }: { lang: string }) => {
-  const t = createTranslation(lang);
+  const t = useTranslation(lang);
 
   const [source, setSource] = useState(0n);
   const [bits, setBits] = useState(8);
