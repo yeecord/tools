@@ -1,14 +1,11 @@
 ---
-import BaseLayout from "@/layouts/base-layout.astro";
-import { createTranslation } from "@/utils/language";
-import Adsense from "@/components/adsense.astro";
-export { getStaticPaths } from "@/utils/language";
-import { AddressToEnglishInput } from "@/components/address-to-english-input";
+import BaseLayout from "../../layouts/base-layout.astro";
+import { createTranslation } from "../../utils/language";
+import Adsense from "../../components/adsense.astro";
+export { getStaticPaths } from "../../utils/language";
+import { AddressToEnglishInput } from "../../components/address-to-english-input";
 
-if (Astro.params.lang !== "zh-tw")
-  return Astro.redirect(Astro.url.pathname.replace(Astro.params.lang, "zh-tw"));
-
-const t = createTranslation(Astro.params.lang);
+const t = createTranslation("zh-tw");
 ---
 
 <BaseLayout
