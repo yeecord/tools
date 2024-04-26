@@ -12,6 +12,14 @@ const testCases = [
     "106台北市大安區臥龍街100號",
     "No. 100, Wolong St., Da’an Dist., Taipei City 106, Taiwan (R.O.C.)",
   ],
+  [
+    "基隆市中正區祥豐街124之1號",
+    "No. 124-1, Xiangfeng St., Zhongzheng Dist., Keelung City 202, Taiwan (R.O.C.)",
+  ],
+  [
+    "桃園市桃園區三民路三段59號",
+    "No. 59, Sec. 3, Sanmin Rd., Taoyuan Dist., Taoyuan City 330, Taiwan (R.O.C.)",
+  ],
 ] as const;
 
 test("address-to-english", async () => {

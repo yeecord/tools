@@ -11,7 +11,8 @@ export const AddressToEnglishInput = () => {
   const [value, setValue] = useState("");
   const [result, setResult] = useState<string>();
   const [isValid, setIsValid] = useState(true);
-  const deferredValue = useDeferredValue(value);
+
+  const deferredValue = useDeferredValue(value.trim());
 
   const { isLoading, data: addressData } = useSWR<AddressToEnglishJson>(
     deferredValue ? "/address-to-english.json" : null,
@@ -22,8 +23,23 @@ export const AddressToEnglishInput = () => {
   );
 
   useEffect(() => {
+    // load address from the url address param
+    const searchParams = new URLSearchParams(location.search);
+
+    const address = searchParams.get("address");
+
+    if (address) setValue(address);
+  }, []);
+
+  useEffect(() => {
     async function translate() {
-      if (!deferredValue || !addressData) return;
+      // update url address param without reloading the page
+      const url = new URL(location.href);
+      url.searchParams.set("address", deferredValue);
+
+      history.replaceState({}, "", url.toString());
+
+      if (!addressData || !deferredValue) return;
 
       const nzh = await import("nzh").then((module) => module.default.hk);
 
@@ -49,13 +65,14 @@ export const AddressToEnglishInput = () => {
           "whitespace-pre-wrap inline-block text-start break-words break-all text-2xl bg-secondary/50 resize-none focus-visible:ring-0 !ring-offset-0 transition-colors",
           !isValid && "border-red-500",
         )}
+        value={value}
         placeholder="臺北市中正區重慶南路1段122號"
         onChange={(event) => {
           event.currentTarget.style.height = "";
           event.currentTarget.style.height =
             event.currentTarget.scrollHeight + "px";
 
-          setValue(event.currentTarget.value.trim());
+          setValue(event.currentTarget.value);
         }}
         rows={3}
       />
@@ -66,14 +83,24 @@ export const AddressToEnglishInput = () => {
         placeholder="No. 122, Sec. 1, Chongqing S. Rd., Zhongzheng Dist., Taipei City 100, Taiwan (R.O.C.)"
       />
       {result && (
-        <a
-          href={`https://www.google.com/maps/search/${encodeURIComponent(result)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-500 underline"
-        >
-          在 Google Maps 上查看
-        </a>
+        <div className="flex items-center gap-2 justify-center">
+          <button
+            className="text-blue-500 underline"
+            onClick={async () =>
+              await navigator.clipboard.writeText(location.href)
+            }
+          >
+            複製連結
+          </button>
+          <a
+            href={`https://www.google.com/maps/search/${encodeURIComponent(result)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 underline"
+          >
+            在 Google Maps 上查看
+          </a>
+        </div>
       )}
     </div>
   );

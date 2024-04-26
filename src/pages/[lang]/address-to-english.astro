@@ -14,13 +14,15 @@ const t = createTranslation(Astro.params.lang);
 <BaseLayout
   {t}
   title="台灣中華郵政地址轉英文"
-  description="台灣中華郵政地址轉英文"
+  description="輸入臺灣地址轉為英文格式，支援中文、全形數字轉換"
 >
   <main
     class="text-center min-h-[calc(100dvh-10rem)] md:min-h-[calc(100dvh-16rem)] flex justify-center flex-col"
   >
     <h1 class="text-3xl font-bold">台灣中華郵政地址轉英文</h1>
-    <p class="text-muted-foreground">台灣中華郵政地址轉英文</p>
+    <p class="text-muted-foreground">
+      輸入臺灣地址轉為英文格式，支援中文、全形數字轉換
+    </p>
     <AddressToEnglishInput client:visible />
     <p class="text-sm text-muted-foreground">
       資料來源：中華郵政（縣市鄉鎮中英對照檔、中英文街路名稱對照檔、村里文字巷中英對照文字檔）
