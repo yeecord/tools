@@ -62,7 +62,7 @@ export const AddressToEnglishInput = () => {
         autoFocus
         ref={inputRef}
         className={cn(
-          "whitespace-pre-wrap inline-block text-start break-words break-all text-2xl bg-secondary/50 resize-none focus-visible:ring-0 !ring-offset-0 transition-colors",
+          "whitespace-pre-wrap inline-block text-start break-words break-all text-2xl bg-secondary/15 resize-none focus-visible:ring-0 !ring-offset-0 transition-colors",
           !isValid && "border-red-500",
         )}
         value={value}
@@ -81,6 +81,7 @@ export const AddressToEnglishInput = () => {
         value={isLoading ? "正在更新中華郵政資料..." : result}
         readOnly
         placeholder="No. 122, Sec. 1, Chongqing S. Rd., Zhongzheng Dist., Taipei City 100, Taiwan (R.O.C.)"
+        rows={3}
       />
       {result && (
         <div className="flex items-center gap-2 justify-center">

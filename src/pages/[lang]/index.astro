@@ -7,6 +7,7 @@ import {
   Calculator,
   Sparkles,
   QrCode,
+  Languages,
 } from "lucide-react";
 import HomeItem from "../../components/home/home-item.astro";
 import { createTranslation, LanguageKey } from "@/utils/language";
@@ -52,6 +53,10 @@ for (const [fromId, from] of Object.entries(calculatorConfig)) {
   <p>{t("global.description")}</p>
   <h2 class="flex items-center gap-2"><Sparkles />{t("home.recommended")}</h2>
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <HomeItemContainer href={`/${code}/address-to-english`}>
+      <Languages />
+      <p>台灣中華郵政地址轉英文</p>
+    </HomeItemContainer>
     <HomeItemContainer href={`/${code}/free-qrcode-generator`}>
       <QrCode />
       <p>{t("qrcode.title")}</p>
