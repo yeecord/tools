@@ -21,6 +21,7 @@ function prettyAddress(address: string) {
 export function translateAddressToEnglish(
   addressData: AddressToEnglishJson,
   value: string,
+  // Manually pass in lazy loaded nzh instance to reduce bundle size
   nzhInstance: typeof Nzh.hk,
 ) {
   // the address parts in reverse order
