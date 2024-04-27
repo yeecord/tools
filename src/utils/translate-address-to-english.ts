@@ -12,11 +12,8 @@ const fullShapeToHalfShape = (str: string) => {
 
 function prettyAddress(address: string) {
   // replace 台 with 臺,
-  // and remove 臺灣,
   // then convert full-width characters to half-width
-  address = fullShapeToHalfShape(
-    address.replace(/台/g, "臺").replace(/^臺灣/, ""),
-  );
+  address = fullShapeToHalfShape(address.replace(/台/g, "臺"));
 
   return address;
 }
@@ -31,8 +28,8 @@ export function translateAddressToEnglish(
 
   let mutableAddress = prettyAddress(value);
 
-  // if the address starts with a zip code, remove it
-  const zipCodeMatch = mutableAddress.match(/^\d{3,6}/);
+  // if the address starts with a zip code or 臺灣, remove it
+  const zipCodeMatch = mutableAddress.match(/^(\d{3,6})? *(臺灣)?/);
 
   if (zipCodeMatch?.length) {
     mutableAddress = mutableAddress.replace(zipCodeMatch[0], "");

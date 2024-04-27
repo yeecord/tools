@@ -20,6 +20,10 @@ const testCases = [
     "桃園市桃園區三民路三段59號",
     "No. 59, Sec. 3, Sanmin Rd., Taoyuan Dist., Taoyuan City 330, Taiwan (R.O.C.)",
   ],
+  [
+    "105台灣台北市松山區南京東路四段1號6樓",
+    "6F., No. 1, Sec. 4, Nanjing E. Rd., Songshan Dist., Taipei City 105, Taiwan (R.O.C.)",
+  ],
 ] as const;
 
 test("address-to-english", async () => {
