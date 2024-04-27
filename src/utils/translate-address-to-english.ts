@@ -47,7 +47,7 @@ const numberMatchingPatterns: {
     render: (match) => `Ln. ${match[1]}`,
   },
   {
-    regex: /(\d+) *	衖/,
+    regex: /(\d+) *衖/,
     render: (match) => `Sub-Alley ${match[1]}`,
   },
   {
@@ -69,6 +69,31 @@ const numberMatchingPatterns: {
   },
 ];
 
+type DataMatchingPattern<T extends keyof AddressToEnglishJson> = {
+  key: T;
+  render: (item: AddressToEnglishJson[T][number]) => string;
+  chineseIndex: number;
+};
+
+const dataMatchingPatterns: DataMatchingPattern<keyof AddressToEnglishJson>[] =
+  [
+    {
+      key: "county",
+      render: ([zipCode, _, english]) => `${english} ${zipCode}`,
+      chineseIndex: 1,
+    },
+    {
+      key: "villages",
+      render: ([_, english]) => english,
+      chineseIndex: 0,
+    },
+    {
+      key: "roads",
+      render: ([_, english]) => english,
+      chineseIndex: 0,
+    },
+  ];
+
 export function translateAddressToEnglish(
   addressData: AddressToEnglishJson,
   value: string,
@@ -84,7 +109,7 @@ export function translateAddressToEnglish(
   const zipCodeMatch = mutableAddress.match(/^(\d{3,6})? *(臺灣)?/);
 
   if (zipCodeMatch?.length) {
-    mutableAddress = mutableAddress.replace(zipCodeMatch[0], "");
+    mutableAddress = mutableAddress.replace(zipCodeMatch[0], "").trim();
   }
 
   // encode all numbers to chinese numbers, in order to match villages and roads
@@ -92,32 +117,18 @@ export function translateAddressToEnglish(
     nzhInstance.encodeS(ch),
   );
 
-  for (const [zipCode, chinese, english] of addressData.county) {
-    if (mutableAddress.startsWith(chinese)) {
-      parts.push(`${english} ${zipCode}`);
-      mutableAddress = mutableAddress.replace(chinese, "");
+  for (const { key, chineseIndex, render } of dataMatchingPatterns) {
+    // find the best match (longest) data matching pattern
+    const bestMatch = addressData[key]
+      .filter((arr) => mutableAddress.startsWith(arr[chineseIndex]))
+      .toSorted((a, b) => b[chineseIndex].length - a[chineseIndex].length)[0];
 
-      break;
+    if (bestMatch) {
+      parts.push(render(bestMatch));
+      mutableAddress = mutableAddress
+        .replace(bestMatch[chineseIndex], "")
+        .trim();
     }
-  }
-
-  for (const [chinese, english] of addressData.villages) {
-    if (mutableAddress.startsWith(chinese)) {
-      parts.push(english);
-      mutableAddress = mutableAddress.replace(chinese, "");
-
-      break;
-    }
-  }
-
-  // find the best match (longest) road name
-  const bestMatchRoad = addressData.roads
-    .filter(([chinese]) => mutableAddress.startsWith(chinese))
-    .toSorted((a, b) => b[0].length - a[0].length)[0];
-
-  if (bestMatchRoad) {
-    parts.push(bestMatchRoad[1]);
-    mutableAddress = mutableAddress.replace(bestMatchRoad[0], "");
   }
 
   // decode all numbers back to arabic numbers,
@@ -144,7 +155,7 @@ export function translateAddressToEnglish(
 
       if (matched?.length) {
         parts.push(render(matched));
-        mutableAddress = mutableAddress.replace(matched[0], "");
+        mutableAddress = mutableAddress.replace(matched[0], "").trim();
         roundSuccess = true;
       }
     }
