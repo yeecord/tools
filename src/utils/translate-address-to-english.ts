@@ -105,7 +105,8 @@ export function translateAddressToEnglish(
     mutableAddress = mutableAddress.replace(numberMatch[0], "");
   }
 
-  const floorMatch = mutableAddress.match(/(\d+) *樓/);
+  // match the floor part same as the number part
+  const floorMatch = mutableAddress.match(/((\d+)(-\d+)?) *樓/);
 
   if (floorMatch?.length) {
     parts.push(`${floorMatch[1]}F.`);
