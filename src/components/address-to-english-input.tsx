@@ -3,6 +3,7 @@ import { cn } from "@/utils/cn.ts";
 import type { AddressToEnglishJson } from "@/utils/get-address-data-json";
 import { translateAddressToEnglish } from "@/utils/translate-address-to-english";
 import { useDeferredValue, useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
 import useSWR from "swr";
 
 export const AddressToEnglishInput = () => {
@@ -94,14 +95,20 @@ export const AddressToEnglishInput = () => {
       />
       {result && (
         <div className="flex items-center gap-2 justify-center">
-          <button
+          <a
             className="text-blue-500 underline"
-            onClick={async () =>
-              await navigator.clipboard.writeText(location.href)
-            }
+            href={location.href}
+            onClick={async (e) => {
+              e.preventDefault();
+              await navigator.clipboard
+                .writeText(location.href)
+                .catch((e) => toast.error(String(e)));
+
+              toast.success("已複製連結到剪貼簿");
+            }}
           >
             複製連結
-          </button>
+          </a>
           <a
             href={`https://www.google.com/maps/search/${encodeURIComponent(result)}`}
             target="_blank"

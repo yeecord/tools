@@ -7,6 +7,7 @@ import logo from "@/assets/logo.png";
 import { cn } from "@/utils/cn";
 import { TranslateFunction } from "@/utils/language";
 import { createTranslation } from "../utils/language";
+import { Toaster } from "../components/ui/sonner";
 
 interface Props {
   title: string;
@@ -85,5 +86,6 @@ const themeScript = `!function e(){let t=localStorage.getItem("theme");!t&&windo
   </body>
   <div class={cn("mb-8 md:mb-4 container", className)}>
     <slot />
+    <Toaster client:idle />
   </div>
 </html>
