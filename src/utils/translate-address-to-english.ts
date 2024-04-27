@@ -56,8 +56,13 @@ const numberMatchingPatterns: {
     render: (match) => `No. ${match[1]}`,
   },
   {
-    regex: /((\d+)(-\d+)?) *樓/,
-    render: (match) => `${match[1]}F.`,
+    regex: /((\d+)(-(\d+))?) *樓/,
+    render(match) {
+      // if extra number is found, format it to 1F.-2 (e.g. 1-1樓 => 1F.-1)
+      if (match[4]) return `${match[2]}F.-${match[4]}`;
+
+      return `${match[1]}F.`;
+    },
   },
   {
     regex: /(\d+) *[室房]/,
@@ -65,7 +70,7 @@ const numberMatchingPatterns: {
   },
   {
     regex: /(\d+) *鄰/,
-    render: (match) => `${nth(Number(match[1]))} Neighborhood`,
+    render: (match) => `${match[1]}${nth(Number(match[1]))} Neighborhood`,
   },
 ];
 
@@ -131,14 +136,14 @@ export function translateAddressToEnglish(
     }
   }
 
-  // decode all numbers back to arabic numbers,
-  // format ${number}之${extra} to ${number}-${extra}${type} (e.g. 11號之1 => 11-1號)
+  // decode all numbers back to arabic numbers
   mutableAddress = mutableAddress
     .replace(/[零一二三四五六七八九十百]+/g, (ch) =>
       nzhInstance.decodeS(ch, {
         tenMin: true,
       }),
     )
+    // format ${number}之${extra} to ${number}-${extra}${type} (e.g. 11號之1 => 11-1號)
     .replace(/(\d+)(.)?之(\d+)/g, (ch, number, type = "", extra) =>
       ch.replace(`${number}${type}之${extra}`, `${number}-${extra}${type}`),
     );
