@@ -18,6 +18,57 @@ function prettyAddress(address: string) {
   return address;
 }
 
+function nth(d: number) {
+  if (d > 3 && d < 21) return "th";
+
+  switch (d % 10) {
+    case 1:
+      return "st";
+    case 2:
+      return "nd";
+    case 3:
+      return "rd";
+    default:
+      return "th";
+  }
+}
+
+// Ref: https://www.post.gov.tw/post/internet/Postal/sz_a_e_ta1.jsp
+const numberMatchingPatterns: {
+  regex: RegExp;
+  render: (match: RegExpMatchArray) => string;
+}[] = [
+  {
+    regex: /(\d+) *弄/,
+    render: (match) => `Aly. ${match[1]}`,
+  },
+  {
+    regex: /(\d+) *巷/,
+    render: (match) => `Ln. ${match[1]}`,
+  },
+  {
+    regex: /(\d+) *	衖/,
+    render: (match) => `Sub-Alley ${match[1]}`,
+  },
+  {
+    // match the number part with only numbers or numbers with a dash (e.g. 11-1)
+    regex: /((\d+)(-\d+)?) *號/,
+    render: (match) => `No. ${match[1]}`,
+  },
+  {
+    regex: /((\d+)(-\d+)?) *樓/,
+    render: (match) => `${match[1]}F.`,
+  },
+  {
+    regex: /(\d+) *[室房]/,
+    render: (match) => `Rm. ${match[1]}`,
+  },
+  {
+    regex: /(\d+) *鄰/,
+    render: (match) => `${nth(Number(match[1]))} Neighborhood`,
+  },
+];
+
 export function translateAddressToEnglish(
   addressData: AddressToEnglishJson,
   value: string,
@@ -81,42 +132,23 @@ export function translateAddressToEnglish(
       ch.replace(`${number}${type}之${extra}`, `${number}-${extra}${type}`),
     );
 
-  const laneMatch = mutableAddress.match(/(\d+) *巷/);
+  let roundSuccess = false;
 
-  if (laneMatch?.length) {
-    parts.push(`Ln. ${laneMatch[1]}`);
-    mutableAddress = mutableAddress.replace(laneMatch[0], "");
-  }
+  // keep retry and iterate until no number matching patterns are found
+  do {
+    roundSuccess = false;
 
-  const alleyMatch = mutableAddress.match(/(\d+) *弄/);
+    // iterate through all number matching patterns, and render the matched part
+    for (const { regex, render } of numberMatchingPatterns) {
+      const matched = mutableAddress.match(regex);
 
-  if (alleyMatch?.length) {
-    parts.push(`Aly. ${alleyMatch[1]}`);
-    mutableAddress = mutableAddress.replace(alleyMatch[0], "");
-  }
-
-  // match the number part with only numbers or numbers with a dash (e.g. 11-1)
-  const numberMatch = mutableAddress.match(/((\d+)(-\d+)?) *號/);
-
-  if (numberMatch?.length) {
-    parts.push(`No. ${numberMatch[1]}`);
-    mutableAddress = mutableAddress.replace(numberMatch[0], "");
-  }
-
-  // match the floor part same as the number part
-  const floorMatch = mutableAddress.match(/((\d+)(-\d+)?) *樓/);
-
-  if (floorMatch?.length) {
-    parts.push(`${floorMatch[1]}F.`);
-    mutableAddress = mutableAddress.replace(floorMatch[0], "");
-  }
-
-  const roomMatch = mutableAddress.match(/(\d+) *[室房]/);
-
-  if (roomMatch?.length) {
-    parts.push(`Rm. ${roomMatch[1]}`);
-    mutableAddress = mutableAddress.replace(roomMatch[0], "");
-  }
+      if (matched?.length) {
+        parts.push(render(matched));
+        mutableAddress = mutableAddress.replace(matched[0], "");
+        roundSuccess = true;
+      }
+    }
+  } while (roundSuccess);
 
   return {
     result: parts.toReversed().join(", "),
