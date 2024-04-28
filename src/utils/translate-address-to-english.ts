@@ -56,7 +56,7 @@ const numberMatchingPatterns: {
     render: (match) => `No. ${match[1]}`,
   },
   {
-    regex: /((\d+)(-(\d+))?) *樓/,
+    regex: /((\d+)(-(\d+))?) *[樓F]/,
     render(match) {
       // if extra number is found, format it to 1F.-2 (e.g. 1-1樓 => 1F.-1)
       if (match[4]) return `${match[2]}F.-${match[4]}`;
@@ -144,8 +144,9 @@ export function translateAddressToEnglish(
       }),
     )
     // format ${number}之${extra} to ${number}-${extra}${type} (e.g. 11號之1 => 11-1號)
-    .replace(/(\d+)(.)?之(\d+)/g, (ch, number, type = "", extra) =>
-      ch.replace(`${number}${type}之${extra}`, `${number}-${extra}${type}`),
+    .replace(
+      /(\d+)(.)?[之-](\d+)/g,
+      (_, number, type = "", extra) => `${number}-${extra}${type}`,
     );
 
   let roundSuccess = false;

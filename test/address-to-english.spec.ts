@@ -28,6 +28,10 @@ const testCases = [
     "105台灣台北市松山區南京東路四段六鄰1號6樓之2",
     "6th Neighborhood, 6F.-2, No. 1, Sec. 4, Nanjing E. Rd., Songshan Dist., Taipei City 105, Taiwan (R.O.C.)",
   ],
+  [
+    "臺中市西區公益路367號10F-2",
+    "10F.-2, No. 367, Gongyi Rd., West Dist., Taichung City 403, Taiwan (R.O.C.)",
+  ],
 ] as const;
 
 test("address-to-english", async () => {
