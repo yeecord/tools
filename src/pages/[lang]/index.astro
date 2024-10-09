@@ -1,17 +1,9 @@
 ---
 import BaseLayout from "@/layouts/base-layout.astro";
 import { calculatorConfig } from "@/utils/calculator";
-import {
-  ArrowRight,
-  ArrowRightLeft,
-  Calculator,
-  Sparkles,
-  QrCode,
-  Languages,
-} from "lucide-react";
+import { ArrowRightLeft, Sparkles, QrCode, Languages } from "lucide-react";
 import HomeItem from "../../components/home/home-item.astro";
-import { createTranslation, LanguageKey } from "@/utils/language";
-import Muted from "@/components/ui/muted.astro";
+import { createTranslation, type LanguageKey } from "@/utils/language";
 import HomeItemContainer from "@/components/home/home-item-container.astro";
 export { getStaticPaths } from "@/utils/language";
 
@@ -82,6 +74,6 @@ for (const [fromId, from] of Object.entries(calculatorConfig)) {
     <ArrowRightLeft />{t("home.base-converter")}
   </h2>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-    {calculators.map((item) => <HomeItem {t} config={item} />)}
+    {calculators.map((item) => <HomeItem config={item} />)}
   </div>
 </BaseLayout>

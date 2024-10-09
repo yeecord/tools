@@ -3,7 +3,7 @@ import { HeaderMenu } from "./header-menu";
 import { Image } from "astro:assets";
 import logo from "@/assets/logo.png";
 import { ThemeToggle } from "./theme-toggle";
-import { createTranslation, TranslateFunction } from "../utils/language";
+import { createTranslation, type TranslateFunction } from "../utils/language";
 import { LanguageSelect } from "./language-select";
 
 const t = (Astro.props.t as TranslateFunction) ?? createTranslation("zh-tw");

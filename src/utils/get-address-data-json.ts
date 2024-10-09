@@ -1,4 +1,4 @@
-import xlsx from "node-xlsx";
+import { read, utils } from "xlsx";
 
 async function downloadXlsToJSON<T>(fileName: string) {
   const response = await fetch(
@@ -7,13 +7,14 @@ async function downloadXlsToJSON<T>(fileName: string) {
 
   const buffer = await response.arrayBuffer();
 
-  const workbook = xlsx.parse<T>(buffer);
+  const file = read(buffer, {
+    type: "buffer",
+  });
 
-  const sheet = workbook[0]?.data;
-
-  if (!sheet) throw new Error(`Sheet not found for ${fileName}`);
-
-  return sheet;
+  return utils.sheet_to_json<T>(file.Sheets[file.SheetNames[0]], {
+    raw: true,
+    header: 1,
+  });
 }
 
 export type AddressToEnglishJson = {
@@ -41,7 +42,10 @@ export async function getAddressToEnglishJson() {
   const villages = villageText
     .replace(//g, "")
     .split("\n")
-    .map((line) => JSON.parse(`[${line}]`) as [string, string]);
+    .map(
+      (line) =>
+        line.split(",").map((item) => item.slice(1, -1)) as [string, string],
+    );
 
   for (const item of villages) {
     item[1] = item[1].replace(/台/g, "臺");
