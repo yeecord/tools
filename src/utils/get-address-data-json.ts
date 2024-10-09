@@ -28,8 +28,6 @@ export async function getAddressToEnglishJson() {
   const county =
     await downloadXlsToJSON<[string, string, string]>("county_h_10706.xls");
 
-  console.log(county);
-
   for (const item of county) {
     item[1] = item[1].replace(/台/g, "臺");
   }
