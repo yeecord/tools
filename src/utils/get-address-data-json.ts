@@ -11,13 +11,10 @@ async function downloadXlsToJSON<T>(fileName: string) {
     type: "buffer",
   });
 
-  // return utils.sheet_to_json<T>(file.Sheets[file.SheetNames[0]], {
-  //   header: 0,
-  // });
-
-  const data = utils.sheet(file.Sheets[file.SheetNames[0]]);
-
-  console.log(data);
+  return utils.sheet_to_json<T>(file.Sheets[file.SheetNames[0]], {
+    raw: true,
+    header: 1,
+  });
 }
 
 export type AddressToEnglishJson = {
