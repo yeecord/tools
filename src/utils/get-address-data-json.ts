@@ -24,7 +24,7 @@ export type AddressToEnglishJson = {
 };
 
 export async function getAddressToEnglishJson() {
-  // zip code, chinese english
+  // zip code, chinese, english
   const county =
     await downloadXlsToJSON<[string, string, string]>("county_h_10706.xls");
 
