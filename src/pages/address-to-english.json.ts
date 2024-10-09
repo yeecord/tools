@@ -3,7 +3,11 @@ import { getAddressToEnglishJson } from "@/utils/get-address-data-json";
 export const prerender = false;
 
 export async function GET() {
-  return Response.json(await getAddressToEnglishJson(), {
+  const result = await getAddressToEnglishJson();
+
+  console.log(result);
+
+  return Response.json(result, {
     headers: {
       "content-type": "application/json",
       "cache-control": "public, stale-while-revalidate=3600, max-age=3600",
