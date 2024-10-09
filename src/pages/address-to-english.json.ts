@@ -1,6 +1,10 @@
 import { getAddressToEnglishJson } from "@/utils/get-address-data-json";
 
+export const prerender = false;
+
 export async function GET() {
+  console.log("Fetching address to english data...");
+
   return new Response(JSON.stringify(await getAddressToEnglishJson()), {
     headers: {
       "content-type": "application/json",

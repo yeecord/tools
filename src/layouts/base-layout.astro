@@ -2,12 +2,13 @@
 import "@/styles/global.css";
 import Header from "@/components/header.astro";
 import { getImage } from "astro:assets";
-import { ImageMetadata } from "astro";
+import type { ImageMetadata } from "astro";
 import logo from "@/assets/logo.png";
 import { cn } from "@/utils/cn";
-import { TranslateFunction } from "@/utils/language";
+import type { TranslateFunction } from "@/utils/language";
 import { createTranslation } from "../utils/language";
 import { Toaster } from "../components/ui/sonner";
+import invariant from "tiny-invariant";
 
 interface Props {
   title: string;
@@ -17,7 +18,7 @@ interface Props {
   t: TranslateFunction;
 }
 
-const t = (Astro.props.t as TranslateFunction) ?? createTranslation("zh-tw");
+const t = Astro.props.t ?? createTranslation("zh-tw");
 
 const {
   title,
@@ -30,12 +31,14 @@ const suffix = t("global.title");
 
 const titleWithPrefix = title ? `${title} - ${suffix}` : suffix;
 
+invariant(Astro.site, "Astro.site is not defined");
+
 const url = `${Astro.site.origin}${Astro.url.pathname.replace(".html", "")}`;
 
 const logoUrl = icon
   ? icon.src
   : (
-      await getImage(<any>{
+      await getImage({
         src: logo,
       })
     ).src;

@@ -4,15 +4,19 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import compress from "@playform/compress";
 import robotsTxt from "astro-robots-txt";
-import { defineConfig, sharpImageService } from "astro/config";
+import { defineConfig, passthroughImageService } from "astro/config";
+
+import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://tools.yeecord.com",
   trailingSlash: "never",
+
   build: {
     format: "file",
   },
+
   integrations: [
     tailwind({
       applyBaseStyles: false,
@@ -25,12 +29,17 @@ export default defineConfig({
     }),
     mdx(),
   ],
+
   image: {
-    service: sharpImageService(),
+    service: passthroughImageService(),
   },
+
   vite: {
     ssr: {
       noExternal: ["@radix-ui/*"],
     },
   },
+
+  output: "hybrid",
+  adapter: cloudflare(),
 });

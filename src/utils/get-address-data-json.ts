@@ -1,4 +1,4 @@
-import xlsx from "node-xlsx";
+import { read, utils } from "xlsx";
 
 async function downloadXlsToJSON<T>(fileName: string) {
   const response = await fetch(
@@ -7,13 +7,17 @@ async function downloadXlsToJSON<T>(fileName: string) {
 
   const buffer = await response.arrayBuffer();
 
-  const workbook = xlsx.parse<T>(buffer);
+  const file = read(buffer, {
+    type: "buffer",
+  });
 
-  const sheet = workbook[0]?.data;
+  // return utils.sheet_to_json<T>(file.Sheets[file.SheetNames[0]], {
+  //   header: 0,
+  // });
 
-  if (!sheet) throw new Error(`Sheet not found for ${fileName}`);
+  const data = utils.sheet(file.Sheets[file.SheetNames[0]]);
 
-  return sheet;
+  console.log(data);
 }
 
 export type AddressToEnglishJson = {
@@ -26,6 +30,8 @@ export async function getAddressToEnglishJson() {
   // zip code, chinese, english
   const county =
     await downloadXlsToJSON<[string, string, string]>("county_h_10706.xls");
+
+  console.log(county);
 
   for (const item of county) {
     item[1] = item[1].replace(/台/g, "臺");
