@@ -5,8 +5,6 @@ export const prerender = false;
 export async function GET() {
   const result = await getAddressToEnglishJson();
 
-  console.log(result);
-
   return Response.json(result, {
     headers: {
       "content-type": "application/json",

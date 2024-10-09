@@ -24,7 +24,7 @@ export type AddressToEnglishJson = {
 };
 
 export async function getAddressToEnglishJson() {
-  // zip code, chinese, english
+  // zip code, chinese english
   const county =
     await downloadXlsToJSON<[string, string, string]>("county_h_10706.xls");
 
@@ -42,7 +42,10 @@ export async function getAddressToEnglishJson() {
   const villages = villageText
     .replace(//g, "")
     .split("\n")
-    .map((line) => JSON.parse(`[${line}]`) as [string, string]);
+    .map(
+      (line) =>
+        line.split(",").map((item) => item.slice(1, -1)) as [string, string],
+    );
 
   for (const item of villages) {
     item[1] = item[1].replace(/台/g, "臺");
