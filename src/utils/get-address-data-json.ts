@@ -2,7 +2,7 @@ import { XMLParser } from "fast-xml-parser";
 import Papa from "papaparse";
 
 export type AddressToEnglishJson = {
-  county: [number, string, string][];
+  county: [string, string, string][];
   villages: [string, string][];
   roads: [string, string][];
 };
@@ -28,7 +28,10 @@ async function getCounty() {
 
   const countyText = fixTextFile(await countyResponse.text());
 
-  const countyParsed = new XMLParser().parse(countyText) as {
+  const countyParsed = new XMLParser({
+    // keep it all string
+    parseTagValue: false,
+  }).parse(countyText) as {
     dataroot: {
       County_h_10906: Record<string, string>[];
     };
@@ -36,7 +39,7 @@ async function getCounty() {
 
   return countyParsed.dataroot.County_h_10906.map((item) =>
     Object.values(item),
-  ) as [number, string, string][];
+  ) as [string, string, string][];
 }
 
 async function getVillages() {
