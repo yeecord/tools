@@ -1,67 +1,74 @@
-import { read, utils } from "xlsx";
-
-async function downloadXlsToJSON<T>(fileName: string) {
-  const response = await fetch(
-    `https://www.post.gov.tw/post/download/${fileName}`,
-  );
-
-  const buffer = await response.arrayBuffer();
-
-  const file = read(buffer, {
-    type: "buffer",
-  });
-
-  return utils.sheet_to_json<T>(file.Sheets[file.SheetNames[0]], {
-    raw: true,
-    header: 1,
-  });
-}
+import { XMLParser } from "fast-xml-parser";
+import Papa from "papaparse";
 
 export type AddressToEnglishJson = {
-  county: [string, string, string][];
+  county: [number, string, string][];
   villages: [string, string][];
   roads: [string, string][];
 };
 
 export async function getAddressToEnglishJson() {
-  // zip code, chinese, english
-  const county =
-    await downloadXlsToJSON<[string, string, string]>("county_h_10706.xls");
+  const [county, villages, roads] = await Promise.all([
+    getCounty(),
+    getVillages(),
+    getRoads(),
+  ]);
 
-  for (const item of county) {
-    item[1] = item[1].replace(/台/g, "臺");
-  }
+  return {
+    county,
+    villages: villages.data,
+    roads: roads.data,
+  } satisfies AddressToEnglishJson;
+}
 
+async function getCounty() {
+  const countyResponse = await fetch(
+    "https://www.post.gov.tw/post/download/County_h_10906.xml",
+  );
+
+  const countyText = fixTextFile(await countyResponse.text());
+
+  const countyParsed = new XMLParser().parse(countyText) as {
+    dataroot: {
+      County_h_10906: Record<string, string>[];
+    };
+  };
+
+  return countyParsed.dataroot.County_h_10906.map((item) =>
+    Object.values(item),
+  ) as [number, string, string][];
+}
+
+async function getVillages() {
   const villageResponse = await fetch(
     "https://www.post.gov.tw/post/internet/Postal/village.txt",
   );
 
-  const villageText = await villageResponse.text();
+  const villageText = fixTextFile(await villageResponse.text());
 
   // remove invalid character
-  const villages = villageText
-    .replace(//g, "")
-    .split("\n")
-    .map(
-      (line) =>
-        line.split(",").map((item) => item.slice(1, -1)) as [string, string],
-    );
+  return Papa.parse<[string, string]>(villageText, {
+    header: false,
+    skipEmptyLines: true,
+  });
+}
 
-  for (const item of villages) {
-    item[1] = item[1].replace(/台/g, "臺");
-  }
-
-  const roads = await downloadXlsToJSON<[string, string]>(
-    "6.5_CEROAD11107.xlsx",
+async function getRoads() {
+  const roadsResponse = await fetch(
+    "https://www.post.gov.tw/post/download/%E4%B8%AD%E8%8B%B1%E6%96%87%E8%A1%97%E8%B7%AF%E5%90%8D%E7%A8%B1%E5%B0%8D%E7%85%A7%E6%AA%941130401.TXT",
   );
 
-  for (const item of roads) {
-    item[1] = item[1].replace(/台/g, "臺");
-  }
+  // convert big5 to utf-8
+  const roadsText = await roadsResponse.arrayBuffer();
 
-  return {
-    county,
-    villages,
-    roads,
-  } satisfies AddressToEnglishJson;
+  const roadsDecoded = fixTextFile(new TextDecoder("big5").decode(roadsText));
+
+  return Papa.parse<[string, string]>(roadsDecoded, {
+    header: false,
+    skipEmptyLines: true,
+  });
+}
+
+function fixTextFile(text: string) {
+  return text.replace(//g, "").replace(/台/g, "臺").replace(/\r\n/g, "\n");
 }
