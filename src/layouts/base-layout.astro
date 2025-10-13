@@ -88,7 +88,7 @@ const themeScript = `!function e(){let t=localStorage.getItem("theme");!t&&windo
   <body>
     <Header t={Astro.props.t} />
   </body>
-  <div class={cn("mb-8 md:mb-4 container mx-auto", className)}>
+  <div class={cn("mb-8 md:mb-4 container mx-auto px-2.5", className)}>
     <slot />
     <Toaster client:idle />
   </div>
