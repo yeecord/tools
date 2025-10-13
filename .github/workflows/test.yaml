@@ -4,7 +4,7 @@ on:
   pull_request:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -14,4 +14,4 @@ jobs:
 
       - run: bun i --frozen-lockfile
       - run: bunx biome ci .
-      - run: bun run test
+      - run: bun test
