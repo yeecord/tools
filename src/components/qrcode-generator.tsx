@@ -1,7 +1,7 @@
-import { Textarea } from "@/components/ui/textarea";
-import { useTranslation } from "@/utils/language.ts";
 import { toDataURL } from "qrcode";
 import { useEffect, useRef, useState } from "react";
+import { Textarea } from "~/components/ui/textarea";
+import { useTranslation } from "~/utils/language.ts";
 
 export const QrcodeGenerator = ({ language }: { language: string }) => {
   const t = useTranslation(language);
@@ -33,8 +33,7 @@ export const QrcodeGenerator = ({ language }: { language: string }) => {
         placeholder={t("qrcode.placeholder")}
         onChange={(event) => {
           event.currentTarget.style.height = "";
-          event.currentTarget.style.height =
-            event.currentTarget.scrollHeight + "px";
+          event.currentTarget.style.height = `${event.currentTarget.scrollHeight}px`;
 
           setValue(event.currentTarget.value);
         }}

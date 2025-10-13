@@ -1,5 +1,5 @@
-import type { AddressToEnglishJson } from "@/utils/get-address-data-json";
 import type Nzh from "nzh";
+import type { AddressToEnglishJson } from "~/utils/get-address-data-json";
 
 // Ref: https://seanacnet.com/js/js-full-shape-to-half-shape/
 const fullShapeToHalfShape = (str: string) => {
@@ -13,9 +13,7 @@ const fullShapeToHalfShape = (str: string) => {
 function prettyAddress(address: string) {
   // replace 台 with 臺,
   // then convert full-width characters to half-width
-  address = fullShapeToHalfShape(address.replace(/台/g, "臺"));
-
-  return address;
+  return fullShapeToHalfShape(address.replace(/台/g, "臺"));
 }
 
 function nth(d: number) {
@@ -113,7 +111,7 @@ export function translateAddressToEnglish(
   // if the address starts with a zip code or 臺灣, remove it
   const zipCodeMatch = mutableAddress.match(/^(\d{3,6})? *(臺灣)?/);
 
-  if (zipCodeMatch?.length) {
+  if (zipCodeMatch && zipCodeMatch.length > 0) {
     mutableAddress = mutableAddress.replace(zipCodeMatch[0], "").trim();
   }
 
@@ -146,7 +144,7 @@ export function translateAddressToEnglish(
     // format ${number}之${extra} to ${number}-${extra}${type} (e.g. 11號之1 => 11-1號)
     .replace(
       /(\d+)(.)?[之-](\d+)/g,
-      (_, number, type = "", extra) => `${number}-${extra}${type}`,
+      (_, number, type, extra) => `${number}-${extra}${type ?? ""}`,
     );
 
   let roundSuccess = false;
@@ -159,7 +157,7 @@ export function translateAddressToEnglish(
     for (const { regex, render } of numberMatchingPatterns) {
       const matched = mutableAddress.match(regex);
 
-      if (matched?.length) {
+      if (matched && matched.length > 0) {
         parts.push(render(matched));
         mutableAddress = mutableAddress.replace(matched[0], "").trim();
         roundSuccess = true;

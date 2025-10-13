@@ -1,10 +1,10 @@
-import { Textarea } from "@/components/ui/textarea";
-import { cn } from "@/utils/cn.ts";
-import type { AddressToEnglishJson } from "@/utils/get-address-data-json";
-import { translateAddressToEnglish } from "@/utils/translate-address-to-english";
 import { useDeferredValue, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import useSWR from "swr";
+import { Textarea } from "~/components/ui/textarea";
+import { cn } from "~/utils/cn.ts";
+import type { AddressToEnglishJson } from "~/utils/get-address-data-json";
+import { translateAddressToEnglish } from "~/utils/translate-address-to-english";
 
 export const AddressToEnglishInput = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -79,8 +79,7 @@ export const AddressToEnglishInput = () => {
         placeholder="臺北市中正區重慶南路1段122號"
         onChange={(event) => {
           event.currentTarget.style.height = "";
-          event.currentTarget.style.height =
-            event.currentTarget.scrollHeight + "px";
+          event.currentTarget.style.height = `${event.currentTarget.scrollHeight}px`;
 
           setValue(event.currentTarget.value);
         }}

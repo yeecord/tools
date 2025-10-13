@@ -1,12 +1,12 @@
+import type { FC } from "react";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { languages } from "@/utils/language";
-import type { FC } from "react";
+} from "~/components/ui/select";
+import { languages } from "~/utils/language";
 
 export const LanguageSelect: FC<{
   code: string;
@@ -19,7 +19,9 @@ export const LanguageSelect: FC<{
     <Select
       value={code}
       disabled={disabled}
-      onValueChange={(lang) => (location.href = `/${lang}${path}`)}
+      onValueChange={(lang) => {
+        location.href = `/${lang}${path}`;
+      }}
     >
       <SelectTrigger
         className="w-fit mr-2.5"

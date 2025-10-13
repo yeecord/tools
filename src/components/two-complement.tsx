@@ -1,9 +1,9 @@
-import { Output } from "@/components/output";
-import { Input } from "@/components/ui/input";
-import { getBitMask } from "@/utils/bits";
-import { useTranslation } from "@/utils/language";
 import { ArrowDown } from "lucide-react";
 import { useId, useState } from "react";
+import { Output } from "~/components/output";
+import { Input } from "~/components/ui/input";
+import { getBitMask } from "~/utils/bits";
+import { useTranslation } from "~/utils/language";
 
 export const TwoComplement = ({ lang }: { lang: string }) => {
   const t = useTranslation(lang);
@@ -31,7 +31,7 @@ export const TwoComplement = ({ lang }: { lang: string }) => {
             onChange={(event) => {
               try {
                 setSource(BigInt(event.target.value.trim()) || 0n);
-              } catch (e) {}
+              } catch {}
             }}
           />
         </div>
@@ -44,7 +44,7 @@ export const TwoComplement = ({ lang }: { lang: string }) => {
             className="font-mono max-w-xl"
             defaultValue={bits}
             onChange={(event) => {
-              const number = parseInt(event.target.value);
+              const number = Number.parseInt(event.target.value, 10);
 
               if (number) return setBits(number);
             }}

@@ -1,12 +1,11 @@
+import cloudflare from "@astrojs/cloudflare";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
 import compress from "@playform/compress";
-import robotsTxt from "astro-robots-txt";
 import { defineConfig, passthroughImageService } from "astro/config";
-
-import cloudflare from "@astrojs/cloudflare";
+import robotsTxt from "astro-robots-txt";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,9 +17,6 @@ export default defineConfig({
   },
 
   integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
     compress(),
     sitemap(),
     react(),
@@ -38,8 +34,11 @@ export default defineConfig({
     ssr: {
       noExternal: ["@radix-ui/*"],
     },
+    plugins: [tailwindcss()],
   },
 
-  output: "hybrid",
-  adapter: cloudflare(),
+  output: "static",
+  adapter: cloudflare({
+    imageService: "passthrough",
+  }),
 });

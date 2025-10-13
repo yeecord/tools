@@ -1,14 +1,13 @@
 ---
-import { calculatorTypes } from "@/utils/calculator";
-import BaseLayout from "@/layouts/base-layout.astro";
-import { type InferGetStaticPropsType } from "astro";
-import { BaseConverter } from "@/components/base-converter";
-import { Separator } from "@/components/ui/separator";
-import Adsense from "@/components/adsense.astro";
-import { createTitle } from "@/utils/title";
-import { createTranslation } from "@/utils/language";
-import { languages } from "@/utils/language";
 import { getEntry } from "astro:content";
+import type { InferGetStaticPropsType } from "astro";
+import Adsense from "~/components/adsense.astro";
+import { BaseConverter } from "~/components/base-converter";
+import { Separator } from "~/components/ui/separator";
+import BaseLayout from "~/layouts/base-layout.astro";
+import { calculatorTypes } from "~/utils/calculator";
+import { createTranslation, languages } from "~/utils/language";
+import { createTitle } from "~/utils/title";
 
 export function getStaticPaths() {
   const paths: {
@@ -47,10 +46,10 @@ const t = createTranslation(lang);
 const title = createTitle(t, from, to);
 const description = t("base-converter.description", title);
 
-// @ts-ignore
+// @ts-expect-error
 const entry = await getEntry("posts", `${lang}/base-converter`);
 
-// @ts-ignore
+// @ts-expect-error
 const { Content } = await entry.render();
 ---
 

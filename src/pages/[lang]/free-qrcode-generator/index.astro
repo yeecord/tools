@@ -1,21 +1,22 @@
 ---
-import BaseLayout from "@/layouts/base-layout.astro";
-import { createTranslation } from "@/utils/language";
-import Adsense from "@/components/adsense.astro";
-import { QrcodeGenerator } from "@/components/qrcode-generator";
-import { Separator } from "@/components/ui/separator";
-export { getStaticPaths } from "@/utils/language";
+import Adsense from "~/components/adsense.astro";
+import { QrcodeGenerator } from "~/components/qrcode-generator";
+import { Separator } from "~/components/ui/separator";
+import BaseLayout from "~/layouts/base-layout.astro";
+import { createTranslation } from "~/utils/language";
+
+export { getStaticPaths } from "~/utils/language";
+
 import { getEntry } from "astro:content";
 
 const t = createTranslation(Astro.params.lang);
 
-// @ts-ignore
 const entry = await getEntry(
   "posts",
   `${Astro.params.lang}/free-qrcode-generator`,
 );
 
-// @ts-ignore
+// @ts-expect-error
 const { Content } = await entry.render();
 ---
 

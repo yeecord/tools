@@ -1,10 +1,10 @@
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
-  calculatorConfig,
   type CalculatorConfig,
   type CalculatorType,
-} from "@/utils/calculator";
-import { parseFloatToBase } from "@/utils/parse";
-import { useEffect, useMemo, useState } from "react";
+  calculatorConfig,
+} from "~/utils/calculator";
+import { parseFloatToBase } from "~/utils/parse";
 
 export function useCalculator(
   defaultFromType: CalculatorType,
@@ -15,11 +15,11 @@ export function useCalculator(
   const [fromValue, setFromValue] = useState("0");
   const [toValue, setToValue] = useState("0");
 
-  const calculate = (
-    value: string,
-    from: CalculatorConfig,
-    to: CalculatorConfig,
-  ) => parseFloatToBase(value, from.base, to.base);
+  const calculate = useCallback(
+    (value: string, from: CalculatorConfig, to: CalculatorConfig) =>
+      parseFloatToBase(value, from.base, to.base),
+    [],
+  );
 
   const fromValid = useMemo(
     () => calculatorConfig[fromType].regex.test(fromValue),
@@ -35,7 +35,7 @@ export function useCalculator(
           calculatorConfig[toType],
         ),
       );
-  }, [fromType, toType, fromValue]);
+  }, [fromType, toType, fromValue, calculate, fromValid]);
 
   return {
     setFromType,

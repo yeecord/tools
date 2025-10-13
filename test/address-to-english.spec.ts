@@ -1,7 +1,7 @@
-import { getAddressToEnglishJson } from "@/utils/get-address-data-json";
-import { translateAddressToEnglish } from "@/utils/translate-address-to-english";
 import Nzh from "nzh";
 import { expect, test } from "vitest";
+import { getAddressToEnglishJson } from "~/utils/get-address-data-json";
+import { translateAddressToEnglish } from "~/utils/translate-address-to-english";
 
 const testCases = [
   [

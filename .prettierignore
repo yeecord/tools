@@ -1,6 +1,0 @@
-node_modules
-*.yaml
-*.md
-.idea
-.vscode
-dist

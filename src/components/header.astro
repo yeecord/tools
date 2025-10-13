@@ -1,10 +1,10 @@
 ---
-import { HeaderMenu } from "./header-menu";
 import { Image } from "astro:assets";
-import logo from "@/assets/logo.png";
-import { ThemeToggle } from "./theme-toggle";
+import logo from "~/assets/logo.png";
 import { createTranslation, type TranslateFunction } from "../utils/language";
+import { HeaderMenu } from "./header-menu";
 import { LanguageSelect } from "./language-select";
+import { ThemeToggle } from "./theme-toggle";
 
 const t = (Astro.props.t as TranslateFunction) ?? createTranslation("zh-tw");
 
@@ -17,7 +17,7 @@ const code = t("code");
 ---
 
 <div class="w-full mb-8 sticky top-0 z-50 bg-background/30 backdrop-blur">
-  <nav class="h-16 flex items-center container">
+  <nav class="h-16 flex items-center container mx-auto">
     <a href={`/${code}`} class="flex items-center">
       <Image
         alt="Yeecord"

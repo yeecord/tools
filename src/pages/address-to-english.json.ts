@@ -1,4 +1,4 @@
-import { getAddressToEnglishJson } from "@/utils/get-address-data-json";
+import { getAddressToEnglishJson } from "~/utils/get-address-data-json";
 
 export const prerender = false;
 

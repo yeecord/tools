@@ -1,5 +1,5 @@
-import { type CalculatorType } from "@/utils/calculator";
-import type { TranslateFunction } from "@/utils/language";
+import type { CalculatorType } from "~/utils/calculator";
+import type { TranslateFunction } from "~/utils/language";
 
 export function createTitle(
   t: TranslateFunction,

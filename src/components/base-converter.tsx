@@ -1,20 +1,20 @@
-import { Button } from "@/components/ui/button";
+import { ArrowRightLeft } from "lucide-react";
+import type { FC } from "react";
+import { Button } from "~/components/ui/button";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import { useCalculator } from "@/hooks/use-calculator";
-import type { CalculatorType } from "@/utils/calculator";
-import { calculatorTypes } from "@/utils/calculator";
-import { cn } from "@/utils/cn";
-import { useTranslation, type TranslateFunction } from "@/utils/language";
-import { createTitle } from "@/utils/title";
-import { ArrowRightLeft } from "lucide-react";
-import { type FC } from "react";
+} from "~/components/ui/select";
+import { Textarea } from "~/components/ui/textarea";
+import { useCalculator } from "~/hooks/use-calculator";
+import type { CalculatorType } from "~/utils/calculator";
+import { calculatorTypes } from "~/utils/calculator";
+import { cn } from "~/utils/cn";
+import { type TranslateFunction, useTranslation } from "~/utils/language";
+import { createTitle } from "~/utils/title";
 
 export const BaseConverter: FC<{
   language: string;
@@ -99,8 +99,7 @@ export const BaseConverter: FC<{
           )}
           onChange={(event) => {
             event.currentTarget.style.height = "";
-            event.currentTarget.style.height =
-              event.currentTarget.scrollHeight + "px";
+            event.currentTarget.style.height = `${event.currentTarget.scrollHeight}px`;
 
             setFromValue(event.currentTarget.value);
           }}

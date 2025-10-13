@@ -1,11 +1,12 @@
 ---
-import BaseLayout from "@/layouts/base-layout.astro";
-import { calculatorConfig } from "@/utils/calculator";
-import { ArrowRightLeft, Sparkles, QrCode, Languages } from "lucide-react";
+import { ArrowRightLeft, Languages, QrCode, Sparkles } from "lucide-react";
+import HomeItemContainer from "~/components/home/home-item-container.astro";
+import BaseLayout from "~/layouts/base-layout.astro";
+import { calculatorConfig } from "~/utils/calculator";
+import { createTranslation, type LanguageKey } from "~/utils/language";
 import HomeItem from "../../components/home/home-item.astro";
-import { createTranslation, type LanguageKey } from "@/utils/language";
-import HomeItemContainer from "@/components/home/home-item-container.astro";
-export { getStaticPaths } from "@/utils/language";
+
+export { getStaticPaths } from "~/utils/language";
 
 interface Item {
   title: string;

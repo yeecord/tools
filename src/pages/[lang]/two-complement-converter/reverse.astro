@@ -1,10 +1,11 @@
 ---
-import BaseLayout from "@/layouts/base-layout.astro";
-import { TwoComplementReverse } from "@/components/two-complement-reverse";
-import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";
-import { createTranslation } from "@/utils/language";
-export { getStaticPaths } from "@/utils/language";
+import { TwoComplementReverse } from "~/components/two-complement-reverse";
+import { Button } from "~/components/ui/button";
+import BaseLayout from "~/layouts/base-layout.astro";
+import { createTranslation } from "~/utils/language";
+
+export { getStaticPaths } from "~/utils/language";
 
 const t = createTranslation(Astro.params.lang);
 ---
