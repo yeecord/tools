@@ -1,0 +1,6 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - run: bunx biome check --no-errors-on-unmatched --files-ignore-unknown=true --colors=off {staged_files}
+      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
+      stage_fixed: true

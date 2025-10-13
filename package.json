@@ -50,6 +50,7 @@
     "@types/papaparse": "^5.3.16",
     "@types/qrcode": "^1.5.5",
     "@types/react": "^19.2.2",
+    "lefthook": "^1.13.6",
     "vite": "6.3.6",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
