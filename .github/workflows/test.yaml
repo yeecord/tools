@@ -1,23 +1,17 @@
-name: Vitest
+name: Test
 on:
   push:
-    branches:
-      - master
   pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
         with:
-          version: 9
+          bun-version: latest
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "pnpm"
-
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm test
+      - run: bun i --frozen-lockfile
+      - run: bunx biome ci .
+      - run: bun run test
