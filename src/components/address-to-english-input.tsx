@@ -1,4 +1,4 @@
-import { Copy, Loader2, MapIcon } from "lucide-react";
+import { Copy, Loader2, MapIcon, Share2 } from "lucide-react";
 import nzh from "nzh/hk";
 import { useDeferredValue, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
@@ -122,16 +122,34 @@ function TranslatedRow({ children }: { children: TranslateAddressToEnglish }) {
           <Button
             variant="outline"
             aria-label="複製到剪貼簿"
-            onClick={async (e) => {
-              e.preventDefault();
+            onClick={async () => {
               await navigator.clipboard
-                .writeText(location.href)
+                .writeText(children.result)
                 .catch((e) => toast.error(String(e)));
 
               toast.success("已複製連結到剪貼簿");
             }}
           >
             <Copy />
+          </Button>
+          <Button
+            variant="outline"
+            aria-label="分享"
+            onClick={async () => {
+              const url = new URL(location.href);
+              url.hash = `#address=${encodeURIComponent(children.original)}`;
+
+              const share = {
+                url: url.toString(),
+              };
+
+              if (!navigator.canShare(share))
+                return toast.error("瀏覽器不支援分享功能");
+
+              await navigator.share(share).catch((e) => toast.error(String(e)));
+            }}
+          >
+            <Share2 />
           </Button>
           <Button asChild variant="outline">
             <a
