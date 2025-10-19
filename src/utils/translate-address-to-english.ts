@@ -169,5 +169,10 @@ export function translateAddressToEnglish(
     result: parts.toReversed().join(", "),
     // if the address is valid, parts will have at least 2 elements, and the address should be empty
     isValid: parts.length > 1 && !mutableAddress.trim(),
+    original: value,
   };
 }
+
+export type TranslateAddressToEnglish = ReturnType<
+  typeof translateAddressToEnglish
+>;
