@@ -1,9 +1,10 @@
 ---
-const { href } = Astro.props;
+const { href, hreflang } = Astro.props;
 ---
 
 <a
   href={href}
+  hreflang={hreflang}
   class="block p-5 border border-border/40 rounded-md space-y-2 hover:bg-border/50 bg-secondary/30 transition-all active:scale-[0.975]"
 >
   <slot />
