@@ -68,6 +68,12 @@ export const AddressToEnglishInput = () => {
 
   return (
     <div className="max-w-2xl w-full mx-auto flex flex-col gap-4">
+      <link
+        rel="preload"
+        href="/address-to-english.json"
+        as="fetch"
+        crossOrigin="anonymous"
+      />
       <Textarea
         autoFocus
         ref={inputRef}
