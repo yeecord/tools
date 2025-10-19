@@ -13,6 +13,8 @@ import {
 import { Button } from "./ui/button";
 import { ButtonGroup } from "./ui/button-group";
 
+const formatter = new Intl.NumberFormat("zh-tw");
+
 export const AddressToEnglishInput = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -96,6 +98,27 @@ export const AddressToEnglishInput = () => {
           正在載入中華郵政資料 <Loader2 className="w-4 animate-spin" />
         </span>
       )}
+      {result.length > 0 && (
+        <div className="flex justify-center items-center">
+          <span className="grow text-start">
+            共翻譯了 {formatter.format(result.length)} 筆
+          </span>
+          <Button
+            variant="outline"
+            aria-label="複製全部翻譯結果"
+            onClick={async () => {
+              await navigator.clipboard
+                .writeText(result.map((x) => x.result).join("\n"))
+                .catch((e) => toast.error(String(e)));
+
+              toast.success("已複製連結到剪貼簿");
+            }}
+          >
+            <Copy />
+            全部複製
+          </Button>
+        </div>
+      )}
       <div className="flex flex-col gap-2">
         {result.map((result, index) => (
           <TranslatedRow key={`${index}-${result}`}>{result}</TranslatedRow>
@@ -109,7 +132,7 @@ function TranslatedRow({ children }: { children: TranslateAddressToEnglish }) {
   return (
     <div
       className={cn(
-        "px-3 py-2 rounded-md whitespace-pre-wrap text-start break-words break-all text-lg border-none bg-secondary/50",
+        "px-3 py-2 rounded-md whitespace-pre-wrap text-start break-words break-all text-lg border border-transparent bg-secondary/50",
         !children.isValid && "border-destructive",
       )}
     >
