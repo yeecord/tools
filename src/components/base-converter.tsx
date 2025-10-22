@@ -34,7 +34,7 @@ export const BaseConverter: FC<{
   } = useCalculator(defaultFromId, defaultToId);
 
   return (
-    <div className="max-w-screen-md w-full md:mx-auto flex flex-col gap-2.5">
+    <div className="max-w-3xl w-full md:mx-auto flex flex-col gap-2.5">
       <div className="flex justify-center w-full px-2">
         <TabGroup
           t={t}
@@ -93,7 +93,7 @@ export const BaseConverter: FC<{
             input.focus();
           }}
           className={cn(
-            "whitespace-pre-wrap inline-block text-start break-words break-all text-2xl bg-secondary/25 resize-none focus-visible:ring-0 !ring-offset-0",
+            "whitespace-pre-wrap inline-block text-start wrap-break-word break-all text-2xl bg-secondary/25 resize-none focus-visible:ring-0 ring-offset-0!",
             !fromValid &&
               "border-destructive outline-destructive ring-destructive",
           )}
@@ -107,7 +107,7 @@ export const BaseConverter: FC<{
         />
         <Textarea
           readOnly
-          className="whitespace-pre-wrap inline-block text-start break-words break-all text-2xl bg-secondary/50 resize-none border-none"
+          className="whitespace-pre-wrap inline-block text-start wrap-break-word break-all text-2xl bg-secondary/50 resize-none border-none"
           value={toValue}
         />
       </div>
@@ -123,7 +123,7 @@ const TabGroup: FC<{
 }> = ({ t, current, setValue, disabled }) => {
   return (
     <div className="w-full">
-      <ul className="md:flex hidden list-none m-0 [&>li]:m-0 flex-grow md:justify-start justify-center">
+      <ul className="md:flex hidden list-none m-0 [&>li]:m-0 grow md:justify-start justify-center">
         {calculatorTypes.map((type) => (
           <TabSelect
             key={type}
